@@ -12,16 +12,16 @@ class Topping(Food):
     side = models.CharField(max_length=64, default='whole')
 
     def __str__(self):
-        return f"{self.name} - {self.side};"
+        return f"{self.name} - {self.side}"
 
 class Pizza(Food):
-    size = models.CharField(max_length=64, default='large')
+    size = models.CharField(max_length=64, default='small')
     topping1 = models.ForeignKey(Topping, on_delete=models.CASCADE, related_name="topping1")
     topping2 = models.ForeignKey(Topping, on_delete=models.CASCADE, related_name="topping2")
     topping3 = models.ForeignKey(Topping, on_delete=models.CASCADE, related_name="topping3")
 
     def __str__(self):
-        return f"{self.name} with toppings {self.topping1}, {self.topping2}, {self.topping3}"
+        return f"{self.name} - {self.size}, with toppings:{self.topping1}, {self.topping2}, {self.topping3}"
 '''
 Using:
 first create instances of class Topping, then create instances of class Pizza
