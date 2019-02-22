@@ -22,12 +22,28 @@ class Pizza(Food):
 
     def __str__(self):
         return f"{self.name} - {self.size}, with toppings:{self.topping1}, {self.topping2}, {self.topping3}"
-'''
-Using:
-first create instances of class Topping, then create instances of class Pizza
-from orders.models import Food, Pizza, Topping
-t1=Topping(name='ham')
-p1=Pizza(name='Regular', topping1=t1, topping2=t1, topping3=t1)
-p1
-<Pizza: Regular with toppings ham , ham , ham >
-'''
+
+class Sub(Food):
+    size = models.CharField(max_length=64, default='small')
+
+    def __str__(self):
+        return f"{self.name} - {self.size}"
+
+class Pasta(Food):
+    sub1 = models.ForeignKey(Sub, on_delete=models.CASCADE, related_name="sub1")
+
+
+    def __str__(self):
+        return f"{self.name} with:{self.sub1.name}"
+
+class Salad(Food):
+
+
+    def __str__(self):
+        return f"{self.name} "
+
+class Platters(Food):
+    size = models.CharField(max_length=64, default='Antipasto')
+
+    def __str__(self):
+        return f"{self.name} - {self.size}"
