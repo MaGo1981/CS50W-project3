@@ -1,0 +1,16 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block body %}
+    <h1>Home Page - Project 3: Pizza</h1>
+    <ul>
+      {% for food in foods %}
+          <li>
+            {{ food }}
+          </li>
+      {% endfor %}
+    </ul>
+{% endblock %}
