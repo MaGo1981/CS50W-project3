@@ -1,0 +1,57 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Menu
+{% endblock %}
+
+{% block body %}
+    <h1>Our Menu</h1>
+    <h2>Pizza</h2>
+    <ul>
+      {% for pizza in pizzas %}
+          <li>
+            {{ pizza.name }}
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Toppings</h2>
+    <ul>
+      {% for topping in toppings %}
+          <li>
+            {{ topping.name }}
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Subs</h2>
+    <ul>
+      {% for sub in subs %}
+          <li>
+            {{ sub.name }}
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Pasta</h2>
+    <ul>
+      {% for pasta in pastas %}
+          <li>
+            {{ pasta }}
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Salads</h2>
+    <ul>
+      {% for salad in salads %}
+          <li>
+            {{ salad }}
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Dinner Platters</h2>
+    <ul>
+      {% for platter in platters %}
+          <li>
+            {{ platter.name }}
+          </li>
+      {% endfor %}
+    </ul>
+{% endblock %}
