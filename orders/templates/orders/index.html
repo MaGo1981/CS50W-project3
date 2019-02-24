@@ -5,12 +5,9 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Home Page - Project 3: Pizza</h1>
+    <h1>Hello, {{ user.first_name }}</h1>
     <ul>
-      {% for food in foods %}
-          <li>
-            {{ food }}
-          </li>
-      {% endfor %}
+        <li>Currently logged in as: {{ user.username }}</li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
     </ul>
 {% endblock %}
