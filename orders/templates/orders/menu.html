@@ -10,7 +10,7 @@
     <ul>
       {% for pizza in pizzas %}
           <li>
-            {{ pizza.name }}
+            {{ pizza.name }}, with toppings:{{ pizza.topping1.name }}, {{ pizza.topping2.name }}, {{ pizza.topping3.name }}, {{ pizza.price }} eur
           </li>
       {% endfor %}
     </ul>
@@ -18,7 +18,7 @@
     <ul>
       {% for topping in toppings %}
           <li>
-            {{ topping.name }}
+            {{ topping.name }}, {{ topping.price }} eur
           </li>
       {% endfor %}
     </ul>
@@ -26,7 +26,7 @@
     <ul>
       {% for sub in subs %}
           <li>
-            {{ sub.name }}
+            {{ sub.name }}, {{ sub.price }} eur
           </li>
       {% endfor %}
     </ul>
@@ -34,7 +34,7 @@
     <ul>
       {% for pasta in pastas %}
           <li>
-            {{ pasta }}
+            {{ pasta.name }}, with {{ pasta.sub1.name }}, {{ pasta.price }} eur
           </li>
       {% endfor %}
     </ul>
@@ -42,7 +42,7 @@
     <ul>
       {% for salad in salads %}
           <li>
-            {{ salad }}
+            {{ salad.name }}, {{ salad.price }} eur
           </li>
       {% endfor %}
     </ul>
@@ -50,7 +50,7 @@
     <ul>
       {% for platter in platters %}
           <li>
-            {{ platter.name }}
+            {{ platter.name }}, {{ platter.size }}, {{ platter.price }} eur
           </li>
       {% endfor %}
     </ul>

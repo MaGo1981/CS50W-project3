@@ -35,7 +35,7 @@ class Pasta(Food):
 
 
     def __str__(self):
-        return f"{self.name} with:{self.sub1.name}, {self.price} eur"
+        return f"{self.name} with {self.sub1.name}, {self.price} eur"
 
 class Salad(Food):
 
