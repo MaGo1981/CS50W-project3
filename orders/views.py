@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
-from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platters
+from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter
 
 # Create your views here.
 def index(request):
@@ -23,7 +23,7 @@ def menu(request):
         "subs": Sub.objects.all(),
         "pastas": Pasta.objects.all(),
         "salads": Salad.objects.all(),
-        "platters": Platters.objects.all()
+        "platters": Platter.objects.all()
     }
 
     return render(request, "orders/menu.html", context)

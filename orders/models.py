@@ -43,7 +43,7 @@ class Salad(Food):
     def __str__(self):
         return f"{self.name}, {self.price} eur"
 
-class Platters(Food):
+class Platter(Food):
     size = models.CharField(max_length=64, default='Antipasto')
 
     def __str__(self):
