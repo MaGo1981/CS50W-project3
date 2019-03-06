@@ -10,7 +10,9 @@
     <ul>
       {% for pizza in pizzas %}
           <li>
-            {{ pizza.name }}, with toppings:{{ pizza.topping1.name }}, {{ pizza.topping2.name }}, {{ pizza.topping3.name }}, {{ pizza.price }} eur
+            <a href="{% url 'food' pizza.id %}">
+                {{ pizza.name }}, with toppings:{{ pizza.topping1.name }}, {{ pizza.topping2.name }}, {{ pizza.topping3.name }}, {{ pizza.price }} eur
+            </a>
           </li>
       {% endfor %}
     </ul>
@@ -18,7 +20,9 @@
     <ul>
       {% for topping in toppings %}
           <li>
-            {{ topping.name }}, {{ topping.price }} eur
+            <a href="{% url 'food' topping.id %}">
+              {{ topping.name }}, {{ topping.price }} eur
+            </a>
           </li>
       {% endfor %}
     </ul>
@@ -26,7 +30,9 @@
     <ul>
       {% for sub in subs %}
           <li>
-            {{ sub.name }}, {{ sub.price }} eur
+            <a href="{% url 'food' sub.id %}">
+              {{ sub.name }}, {{ sub.price }} eur
+            </a>
           </li>
       {% endfor %}
     </ul>
@@ -34,7 +40,9 @@
     <ul>
       {% for pasta in pastas %}
           <li>
-            {{ pasta.name }}, with {{ pasta.sub1.name }}, {{ pasta.price }} eur
+            <a href="{% url 'food' pasta.id %}">
+              {{ pasta.name }}, with {{ pasta.sub1.name }}, {{ pasta.price }} eur
+            </a>
           </li>
       {% endfor %}
     </ul>
@@ -42,7 +50,9 @@
     <ul>
       {% for salad in salads %}
           <li>
-            {{ salad.name }}, {{ salad.price }} eur
+            <a href="{% url 'food' salad.id %}">
+              {{ salad.name }}, {{ salad.price }} eur
+            </a>
           </li>
       {% endfor %}
     </ul>
@@ -50,7 +60,9 @@
     <ul>
       {% for platter in platters %}
           <li>
-            {{ platter.name }}, {{ platter.size }}, {{ platter.price }} eur
+            <a href="{% url 'food' platter.id %}">
+              {{ platter.name }}, {{ platter.size }}, {{ platter.price }} eur
+            </a>
           </li>
       {% endfor %}
     </ul>
