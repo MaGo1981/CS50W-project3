@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -54,3 +54,13 @@ def register_view(request):
         return HttpResponseRedirect(reverse("login"))
     else:
         return render(request, "orders/register.html", {"message": "Invalid credentials."})
+
+def food(request, food_id):
+    try:
+        food = Food.objects.get(pk=food_id)
+    except Food.DoesNotExist:
+        raise Http404("Food does not exist")
+    context = {
+        "food": food
+    }
+    return render(request, "orders/food.html", context)
