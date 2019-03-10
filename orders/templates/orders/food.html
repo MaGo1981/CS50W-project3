@@ -10,5 +10,15 @@
         <li>Name: {{ food.name }}</li>
         <li>Price:  {{ food.price }}</li>
     </ul>
+        <h2>Submit an Order</h2>
+        <form action="{% url 'order' food.id %}" method="post">
+            {% csrf_token %}
+            <select name="passenger">
+                {% for food in allFood %}
+                    <option value="{{ food.id }}">{{ food }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Order Food" />
+        </form>
     <a href="{% url 'menu' %}">Back to the menu.</a>
 {% endblock %}

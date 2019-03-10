@@ -58,9 +58,25 @@ def register_view(request):
 def food(request, food_id):
     try:
         food = Food.objects.get(pk=food_id)
+        allFood = Food.objects.all()
     except Food.DoesNotExist:
         raise Http404("Food does not exist")
     context = {
-        "food": food
+        "food": food,
+        "allFood": allFood
     }
     return render(request, "orders/food.html", context)
+
+def order(request, food_id):
+    try:
+        user_id = int(request.POST["listedFood"])
+        food = Food.objects.get(pk=food_id)
+        user = User.objects.get(pk=user_id)
+    except KeyError:
+        return render(request, "orders/error.html", {"message": "No selection."})
+    except Food.DoesNotExist:
+        return render(request, "orders/error.html", {"message": "No food."})
+    except User.DoesNotExist:
+        return render(request, "orders/error.html", {"message": "No user."})
+    user.foods.add(food)
+    return HttpResponseRedirect(reverse("food", args=(food_id,)))
