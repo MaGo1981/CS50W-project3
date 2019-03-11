@@ -56,6 +56,7 @@ def register_view(request):
         return render(request, "orders/register.html", {"message": "Invalid credentials."})
 
 def food(request, food_id):
+    print(food_id)
     try:
         food = Food.objects.get(pk=food_id)
         allFood = Food.objects.all()
