@@ -5,19 +5,38 @@
 {% endblock %}
 
 {% block body %}
+    <h1>{{ food }}
+      {% if food.pizza %}
+        Pizza
+      {% endif %}
+    </h1>
     <ul>
         <li>Food ID: {{ food.id }}</li>
         <li>Name: {{ food.name }}</li>
         <li>Price:  {{ food.price }}</li>
+        <li>Quantity:  {{ food.quantity }}</li>
+        <li>Special Instructions:  {{ food.specialInstructions }}</li>
+        {% if food.pizza %}
+          <li>Size:  {{ food.pizza.size }}</li>
+        {% endif %}
+        {% if food.sub %}
+          <li>Size:  {{ food.sub.size }}</li>
+        {% endif %}
+        {% if food.topping %}
+          <li>Side:  {{ food.topping.side }}</li>
+        {% endif %}
+
     </ul>
-        <h2>Submit an Order</h2>
+    <br>
+    <h2>Submit an Order</h2>
         <form action="{% url 'order' food.id %}" method="post">
             {% csrf_token %}
             {% for food in allFood %}
                 <input type="checkbox" value="{{ food.id }}" name="{{ food.name }}">{{ food }}<br>
-                {% endfor %}
-
+            {% endfor %}
+                <br>
             <input type="submit" value="Order Food" />
         </form>
+    <br>
     <a href="{% url 'menu' %}">Back to the menu.</a>
 {% endblock %}
