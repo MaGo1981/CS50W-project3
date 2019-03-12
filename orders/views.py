@@ -58,8 +58,12 @@ def register_view(request):
 def food(request, food_id):
     print(food_id)
     try:
+        # food_id = int(request.POST[food.name])
+        # print("food_id:",food_id)
+        # topping = Food.objects.get(pk=food_id)
+        # print("topping:",topping)
         food = Food.objects.get(pk=food_id)
-        allFood = Food.objects.all()
+        allFood = Topping.objects.all()
     except Food.DoesNotExist:
         raise Http404("Food does not exist")
     context = {

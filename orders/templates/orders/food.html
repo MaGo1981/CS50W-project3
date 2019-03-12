@@ -29,14 +29,17 @@
     </ul>
     <br>
     <h2>Submit an Order</h2>
-        <form action="{% url 'order' food.id %}" method="post">
-            {% csrf_token %}
-            {% for food in allFood %}
-                <input type="checkbox" value="{{ food.id }}" name="{{ food.name }}">{{ food }}<br>
-            {% endfor %}
-                <br>
-            <input type="submit" value="Order Food" />
-        </form>
+        {% if food.pizza %}
+          <form action="{% url 'order' food.id %}" method="post">
+              {% csrf_token %}
+              {% for food in allFood %}
+                  <input type="checkbox" value="{{ food.id }}" name="{{ food.name }}">{{ food.name }}<br>
+              {% endfor %}
+                  <br>
+              <input type="submit" value="Order Food" />
+          </form>
+        {% endif %}
+
     <br>
     <a href="{% url 'menu' %}">Back to the menu.</a>
 {% endblock %}
