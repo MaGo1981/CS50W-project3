@@ -56,12 +56,8 @@ def register_view(request):
         return render(request, "orders/register.html", {"message": "Invalid credentials."})
 
 def food(request, food_id):
-    print(food_id)
+    print("food function food_id:", food_id)
     try:
-        # food_id = int(request.POST[food.name])
-        # print("food_id:",food_id)
-        # topping = Food.objects.get(pk=food_id)
-        # print("topping:",topping)
         food = Food.objects.get(pk=food_id)
         allFood = Topping.objects.all()
     except Food.DoesNotExist:
@@ -73,15 +69,21 @@ def food(request, food_id):
     return render(request, "orders/food.html", context)
 
 def order(request, food_id):
+    print("food_id:", food_id)
+    food = Food.objects.get(pk=food_id)
+    print("food:", food)
     try:
-        user_id = int(request.POST["listedFood"])
-        food = Food.objects.get(pk=food_id)
-        user = User.objects.get(pk=user_id)
+        topping_id = int(request.POST["topping"])
+        print("topping_id:",topping_id)
+        topping = Food.objects.get(pk=topping_id)
+        print("topping:",topping)
+
+
     except KeyError:
         return render(request, "orders/error.html", {"message": "No selection."})
     except Food.DoesNotExist:
         return render(request, "orders/error.html", {"message": "No food."})
-    except User.DoesNotExist:
-        return render(request, "orders/error.html", {"message": "No user."})
-    user.foods.add(food)
+    except Topping.DoesNotExist:
+        return render(request, "orders/error.html", {"message": "No topping."})
+    # user.foods.add(food)
     return HttpResponseRedirect(reverse("food", args=(food_id,)))

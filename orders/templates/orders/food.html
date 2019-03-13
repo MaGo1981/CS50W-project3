@@ -33,9 +33,9 @@
           <form action="{% url 'order' food.id %}" method="post">
               {% csrf_token %}
               {% for food in allFood %}
-                  <input type="checkbox" value="{{ food.id }}" name="{{ food.name }}">{{ food.name }}<br>
+                <input type="checkbox" value="{{ food.id }}" name="topping">{{ food.name }}<br>
               {% endfor %}
-                  <br>
+               <br>
               <input type="submit" value="Order Food" />
           </form>
         {% endif %}
