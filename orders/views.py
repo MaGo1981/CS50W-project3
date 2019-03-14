@@ -59,12 +59,12 @@ def food(request, food_id):
     print("food function food_id:", food_id)
     try:
         food = Food.objects.get(pk=food_id)
-        allFood = Topping.objects.all()
+        allToppings = Topping.objects.all()
     except Food.DoesNotExist:
         raise Http404("Food does not exist")
     context = {
         "food": food,
-        "allFood": allFood
+        "allToppings": allToppings
     }
     return render(request, "orders/food.html", context)
 
@@ -75,8 +75,10 @@ def order(request, food_id):
     try:
         topping_id = int(request.POST["topping"])
         print("topping_id:",topping_id)
-        topping = Food.objects.get(pk=topping_id)
+        topping = Topping.objects.get(pk=topping_id)
         print("topping:",topping)
+        order = Pizza(topping1=topping, topping2=topping, topping3=topping)
+        order.save()
 
 
     except KeyError:
@@ -86,4 +88,4 @@ def order(request, food_id):
     except Topping.DoesNotExist:
         return render(request, "orders/error.html", {"message": "No topping."})
     # user.foods.add(food)
-    return HttpResponseRedirect(reverse("food", args=(food_id,)))
+    return HttpResponseRedirect(reverse("menu"))

@@ -32,8 +32,8 @@
         {% if food.pizza %}
           <form action="{% url 'order' food.id %}" method="post">
               {% csrf_token %}
-              {% for food in allFood %}
-                <input type="checkbox" value="{{ food.id }}" name="topping">{{ food.name }}<br>
+              {% for topping in allToppings %}
+                <input type="checkbox" value="{{ topping.id }}" name="topping">{{ topping.name }}<br>
               {% endfor %}
                <br>
               <input type="submit" value="Order Food" />
