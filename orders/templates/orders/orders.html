@@ -1,0 +1,69 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Orders
+{% endblock %}
+
+{% block body %}
+    <h1>Received Orders</h1>
+    <h2>Pizza</h2>
+    <ul>
+      {% for pizza in pizzas %}
+          <li>
+            <a href="{% url 'food' pizza.id %}">
+                {{ pizza.name }}, {{ pizza.size }} with toppings:{{ pizza.topping1.name }}, {{ pizza.topping2.name }}, {{ pizza.topping3.name }}, {{ pizza.price }} eur
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Toppings</h2>
+    <ul>
+      {% for topping in toppings %}
+          <li>
+            <a href="{% url 'food' topping.id %}">
+              {{ topping.name }}, {{ topping.price }} eur
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Subs</h2>
+    <ul>
+      {% for sub in subs %}
+          <li>
+            <a href="{% url 'food' sub.id %}">
+              {{ sub.name }}, {{ sub.price }} eur
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Pasta</h2>
+    <ul>
+      {% for pasta in pastas %}
+          <li>
+            <a href="{% url 'food' pasta.id %}">
+              {{ pasta.name }}, with {{ pasta.sub1.name }}, {{ pasta.price }} eur
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Salads</h2>
+    <ul>
+      {% for salad in salads %}
+          <li>
+            <a href="{% url 'food' salad.id %}">
+              {{ salad.name }}, {{ salad.price }} eur
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Dinner Platters</h2>
+    <ul>
+      {% for platter in platters %}
+          <li>
+            <a href="{% url 'food' platter.id %}">
+              {{ platter.name }}, {{ platter.size }}, {{ platter.price }} eur
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+{% endblock %}

@@ -18,15 +18,27 @@ def index(request):
 
 def menu(request):
     context = {
-        "pizzas": Pizza.objects.all(),
-        "toppings": Topping.objects.all(),
-        "subs": Sub.objects.all(),
-        "pastas": Pasta.objects.all(),
-        "salads": Salad.objects.all(),
-        "platters": Platter.objects.all()
+        "pizzas": Pizza.objects.exclude(menu=False).all(),
+        "toppings": Topping.objects.exclude(menu=False).all(),
+        "subs": Sub.objects.exclude(menu=False).all(),
+        "pastas": Pasta.objects.exclude(menu=False).all(),
+        "salads": Salad.objects.exclude(menu=False).all(),
+        "platters": Platter.objects.exclude(menu=False).all()
     }
 
     return render(request, "orders/menu.html", context)
+
+def orders(request):
+    context = {
+        "pizzas": Pizza.objects.exclude(menu=True).all(),
+        "toppings": Topping.objects.exclude(menu=True).all(),
+        "subs": Sub.objects.exclude(menu=True).all(),
+        "pastas": Pasta.objects.exclude(menu=True).all(),
+        "salads": Salad.objects.exclude(menu=True).all(),
+        "platters": Platter.objects.exclude(menu=True).all()
+    }
+
+    return render(request, "orders/orders.html", context)
 
 def login_view(request):
     username = request.POST.get("username")
@@ -59,7 +71,7 @@ def food(request, food_id):
     print("food function food_id:", food_id)
     try:
         food = Food.objects.get(pk=food_id)
-        allToppings = Topping.objects.all()
+        allToppings = Topping.objects.exclude(menu=False).all()
     except Food.DoesNotExist:
         raise Http404("Food does not exist")
     context = {
