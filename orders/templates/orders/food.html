@@ -29,6 +29,12 @@
     </ul>
     <br>
     <h2>Submit an Order</h2>
+    <h3>{{ food.name }}
+      {% if food.pizza %}
+        Pizza
+      {% endif %}
+    </h3>
+    <h4>Toppings:</h4>
         {% if food.pizza %}
           <form action="{% url 'order' food.id %}" method="post">
               {% csrf_token %}
@@ -38,6 +44,12 @@
                <br>
               <input type="submit" value="Order Food" />
           </form>
+          <br>
+          <span>
+            <button type="button" value="1" name="subtract" action="{% url 'adjustQuantity' food.id %}" method="post">-</button>
+              {{ food.pizza.quantity }}
+            <button type="button" value="1" name="add" action="{% url 'adjustQuantity' food.id %}" method="post">+</button>
+          </span>
         {% endif %}
 
     <br>

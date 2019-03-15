@@ -69,9 +69,12 @@ def register_view(request):
 
 def food(request, food_id):
     print("food function food_id:", food_id)
+
     try:
         food = Food.objects.get(pk=food_id)
         allToppings = Topping.objects.exclude(menu=False).all()
+        quantity = food.quantity
+        print("food.quantity:", quantity)
     except Food.DoesNotExist:
         raise Http404("Food does not exist")
     context = {
@@ -80,18 +83,19 @@ def food(request, food_id):
     }
     return render(request, "orders/food.html", context)
 
+
 def order(request, food_id):
     print("food_id:", food_id)
     food = Food.objects.get(pk=food_id)
     print("food:", food)
+
     try:
         topping_id = int(request.POST["topping"])
         print("topping_id:",topping_id)
         topping = Topping.objects.get(pk=topping_id)
         print("topping:",topping)
-        order = Pizza(topping1=topping, topping2=topping, topping3=topping)
+        order = Pizza(name=food, topping1=topping, topping2=topping, topping3=topping)
         order.save()
-
 
     except KeyError:
         return render(request, "orders/error.html", {"message": "No selection."})
@@ -100,4 +104,34 @@ def order(request, food_id):
     except Topping.DoesNotExist:
         return render(request, "orders/error.html", {"message": "No topping."})
     # user.foods.add(food)
-    return HttpResponseRedirect(reverse("menu"))
+    return HttpResponseRedirect(reverse("orders"))
+
+def adjustQuantity(request, food_id):
+    print("food_id:", food_id)
+    food = Food.objects.get(pk=food_id)
+    print("food:", food)
+    quantity = food.pizza.quantity
+    print("food.quantity:", quantity)
+
+    # try:
+    add = int(request.POST["add"])
+    print("added",add)
+    if add == 1:
+        quantity += 1
+        print("quantity+1:", quantity)
+    quantity.save()
+    print("food.quantity:", quantity)
+
+    #     topping = Topping.objects.get(pk=topping_id)
+    #     print("topping:",topping)
+    #     order = Pizza(name=food, topping1=topping, topping2=topping, topping3=topping)
+    #     order.save()
+    #
+    # except KeyError:
+    #     return render(request, "orders/error.html", {"message": "No selection."})
+    # except Food.DoesNotExist:
+    #     return render(request, "orders/error.html", {"message": "No food."})
+    # except Topping.DoesNotExist:
+    #     return render(request, "orders/error.html", {"message": "No topping."})
+    # # user.foods.add(food)
+    # return HttpResponseRedirect(reverse("menu"))
