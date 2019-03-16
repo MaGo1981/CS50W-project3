@@ -97,10 +97,12 @@ def order(request, food_id):
         topping_id = int(request.POST["topping"])
         quantity = int(request.POST["quantity"])
         size = request.POST["size"]
+        specialInstructions = request.POST["specialInstructions"]
         print("order function topping_id:",topping_id)
+        print("order function specialInstructions:",specialInstructions)
         topping = Topping.objects.get(pk=topping_id)
         print("order function topping:",topping)
-        order = Pizza(name=food, topping1=topping, topping2=topping, topping3=topping, quantity=quantity, size=size)
+        order = Pizza(name=food, topping1=topping, topping2=topping, topping3=topping, quantity=quantity, size=size, specialInstructions=specialInstructions)
         order.save()
 
     except KeyError:

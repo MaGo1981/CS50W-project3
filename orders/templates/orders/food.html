@@ -46,8 +46,11 @@
                {% for pizza in pizzas %}
                  <input type="checkbox" value="{{ pizza.size }}" name="size">{{ pizza.size }}<br>
                {% endfor %}
+               <br><br>
+               <h4>Special Instructions:</h4>
+               <textarea  type="text" value="{{ pizza.specialInstructions }}" name="specialInstructions"></textarea>
                <br><br><br>
-               <label>Quantity:</laber>
+               <h4>Quantity:</h4>
                <input type="number" name="quantity">
                <br><br><br>
                <input type="submit" value="Order Food" />
