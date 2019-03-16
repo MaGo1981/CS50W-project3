@@ -42,16 +42,14 @@
                 <input type="checkbox" value="{{ topping.id }}" name="topping">{{ topping.name }}<br>
               {% endfor %}
                <br>
-              <input type="submit" value="Order Food" />
+               <label>Quantity:</laber>
+               <input type="number" name="quantity">
+               <br><br><br>
+               <input type="submit" value="Order Food" />
           </form>
           <br>
-          <span>
-            <button type="button" value="1" name="subtract" action="{% url 'adjustQuantity' food.id %}" method="post">-</button>
-              {{ food.pizza.quantity }}
-            <button type="button" value="1" name="add" action="{% url 'adjustQuantity' food.id %}" method="post">+</button>
-          </span>
-        {% endif %}
 
-    <br>
-    <a href="{% url 'menu' %}">Back to the menu.</a>
+        {% endif %}
+        <br><br>
+        <a href="{% url 'menu' %}">Back to the menu.</a>
 {% endblock %}

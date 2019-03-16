@@ -85,16 +85,17 @@ def food(request, food_id):
 
 
 def order(request, food_id):
-    print("food_id:", food_id)
+    print("order function food_id:", food_id)
     food = Food.objects.get(pk=food_id)
-    print("food:", food)
+    print("order function food:", food)
 
     try:
         topping_id = int(request.POST["topping"])
-        print("topping_id:",topping_id)
+        quantity = int(request.POST["quantity"])
+        print("order function topping_id:",topping_id)
         topping = Topping.objects.get(pk=topping_id)
-        print("topping:",topping)
-        order = Pizza(name=food, topping1=topping, topping2=topping, topping3=topping)
+        print("order function topping:",topping)
+        order = Pizza(name=food, topping1=topping, topping2=topping, topping3=topping, quantity=quantity)
         order.save()
 
     except KeyError:
@@ -105,33 +106,3 @@ def order(request, food_id):
         return render(request, "orders/error.html", {"message": "No topping."})
     # user.foods.add(food)
     return HttpResponseRedirect(reverse("orders"))
-
-def adjustQuantity(request, food_id):
-    print("food_id:", food_id)
-    food = Food.objects.get(pk=food_id)
-    print("food:", food)
-    quantity = food.pizza.quantity
-    print("food.quantity:", quantity)
-
-    # try:
-    add = int(request.POST["add"])
-    print("added",add)
-    if add == 1:
-        quantity += 1
-        print("quantity+1:", quantity)
-    quantity.save()
-    print("food.quantity:", quantity)
-
-    #     topping = Topping.objects.get(pk=topping_id)
-    #     print("topping:",topping)
-    #     order = Pizza(name=food, topping1=topping, topping2=topping, topping3=topping)
-    #     order.save()
-    #
-    # except KeyError:
-    #     return render(request, "orders/error.html", {"message": "No selection."})
-    # except Food.DoesNotExist:
-    #     return render(request, "orders/error.html", {"message": "No food."})
-    # except Topping.DoesNotExist:
-    #     return render(request, "orders/error.html", {"message": "No topping."})
-    # # user.foods.add(food)
-    # return HttpResponseRedirect(reverse("menu"))
