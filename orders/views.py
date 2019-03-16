@@ -73,13 +73,17 @@ def food(request, food_id):
     try:
         food = Food.objects.get(pk=food_id)
         allToppings = Topping.objects.exclude(menu=False).all()
+        print("food function allToppings:", allToppings)
+        pizzas = Pizza.objects.exclude(menu=False).all()
+        print("food function pizzas:", pizzas)
         quantity = food.quantity
         print("food.quantity:", quantity)
     except Food.DoesNotExist:
         raise Http404("Food does not exist")
     context = {
         "food": food,
-        "allToppings": allToppings
+        "allToppings": allToppings,
+        "pizzas": pizzas
     }
     return render(request, "orders/food.html", context)
 
@@ -92,10 +96,11 @@ def order(request, food_id):
     try:
         topping_id = int(request.POST["topping"])
         quantity = int(request.POST["quantity"])
+        size = request.POST["size"]
         print("order function topping_id:",topping_id)
         topping = Topping.objects.get(pk=topping_id)
         print("order function topping:",topping)
-        order = Pizza(name=food, topping1=topping, topping2=topping, topping3=topping, quantity=quantity)
+        order = Pizza(name=food, topping1=topping, topping2=topping, topping3=topping, quantity=quantity, size=size)
         order.save()
 
     except KeyError:

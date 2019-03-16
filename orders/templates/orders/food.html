@@ -42,6 +42,11 @@
                 <input type="checkbox" value="{{ topping.id }}" name="topping">{{ topping.name }}<br>
               {% endfor %}
                <br>
+               <h4>Size:</h4>
+               {% for pizza in pizzas %}
+                 <input type="checkbox" value="{{ pizza.size }}" name="size">{{ pizza.size }}<br>
+               {% endfor %}
+               <br><br><br>
                <label>Quantity:</laber>
                <input type="number" name="quantity">
                <br><br><br>
