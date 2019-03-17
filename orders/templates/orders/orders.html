@@ -21,7 +21,7 @@
       {% for topping in toppings %}
           <li>
             <a href="{% url 'food' topping.id %}">
-              {{ topping.name }}, {{ topping.price }} eur
+              {{topping.name}} - {{topping.side}}, {{topping.price}} eur, special instructions: {{topping.specialInstructions}}, quantity: {{topping.quantity}}
             </a>
           </li>
       {% endfor %}

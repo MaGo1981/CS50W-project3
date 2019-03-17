@@ -19,11 +19,13 @@
     <h2>Toppings</h2>
     <ul>
       {% for topping in toppings %}
+      {% if topping.side == "whole" %}
           <li>
             <a href="{% url 'food' topping.id %}">
               {{ topping.name }}, {{ topping.price }} eur
             </a>
           </li>
+      {% endif %}
       {% endfor %}
     </ul>
     <h2>Subs</h2>

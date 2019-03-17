@@ -68,7 +68,7 @@ def register_view(request):
         return render(request, "orders/register.html", {"message": "Invalid credentials."})
 
 def food(request, food_id):
-    print("food function food_id:", food_id)
+    # print("food function food_id:", food_id)
 
     try:
         food = Food.objects.get(pk=food_id)
@@ -89,38 +89,47 @@ def food(request, food_id):
 
 
 def order(request, food_id):
-    print("order function food_id:", food_id)
+    # print("order function food_id:", food_id)
     food = Food.objects.get(pk=food_id)
-    print("order function food:", food)
-    print(issubclass(Pizza, Food))
-    print(isinstance(food, Pizza)) # vraca False kad narucujem pizzu, a trebalo bi vracati True
+    # print("order function food:", food)
+    # print(issubclass(Pizza, Food))
+    # print(isinstance(food, Pizza)) # vraca False kad narucujem pizzu, a trebalo bi vracati True
+    # print(isinstance(pizza, Pizza))
     # print("food.pizza:", food.pizza) #vraca pizzu s menu-a ili vraca gresku ako narucujes topping
-    # print("food.topping:", food.topping ) # obrnut od food.pizza
+    # print("food.topping:", food.topping ) # obrnuto od food.pizza
 
     try:
-        if food_id == 25 or food_id == 28:
-            topping_id = int(request.POST["topping"])
+        pizza = Pizza.objects.get(pk=food_id)
+        if isinstance(pizza, Pizza):
+            topping1_id = int(request.POST["topping-whole"])
+            topping2_id = int(request.POST["topping-left"])
+            topping3_id = int(request.POST["topping-right"])
             quantity = int(request.POST["quantity"])
             size = request.POST["size"]
             specialInstructions = request.POST["specialInstructions"]
-            print("order function topping_id:",topping_id)
+            print("order function topping1_id:",topping1_id)
             print("order function specialInstructions:",specialInstructions)
-            topping = Topping.objects.get(pk=topping_id)
-            print("order function topping:",topping)
-            order = Pizza(name=food, topping1=topping, topping2=topping, topping3=topping, quantity=quantity, size=size, specialInstructions=specialInstructions)
-            order.save()
-        elif food_id <= 3:
-            quantity = int(request.POST["quantity"])
-            specialInstructions = request.POST["specialInstructions"]
-            order = Topping(name=food, quantity=quantity, specialInstructions=specialInstructions)
+            topping1 = Topping.objects.get(pk=topping1_id)
+            topping2 = Topping.objects.get(pk=topping2_id)
+            topping3 = Topping.objects.get(pk=topping3_id)
+            print("order function topping1:",topping1)
+            order = Pizza(name=food, topping1=topping1, topping2=topping2, topping3=topping3, quantity=quantity, size=size, specialInstructions=specialInstructions)
             order.save()
 
 
     except KeyError:
-        return render(request, "orders/error.html", {"message": "No selection."})
-    except Food.DoesNotExist:
-        return render(request, "orders/error.html", {"message": "No food."})
-    except Topping.DoesNotExist:
-        return render(request, "orders/error.html", {"message": "No topping."})
-    # user.foods.add(food)
+        return render(request, "orders/error.html", {"message": "No selection, no id."})
+    except Pizza.DoesNotExist:
+        try:
+            topping = Topping.objects.get(pk=food_id)
+            if isinstance(topping, Topping):
+                quantity = int(request.POST["quantity"])
+                specialInstructions = request.POST["specialInstructions"]
+                side = request.POST["side"]
+                order = Topping(name=food, quantity=quantity, specialInstructions=specialInstructions, side=side)
+                order.save()
+        except Topping.DoesNotExist:
+            return render(request, "orders/error.html", {"message": "Not a pizza or a topping."})
+        except KeyError:
+            return render(request, "orders/error.html", {"message": "No selection, no id."})
     return HttpResponseRedirect(reverse("orders"))
