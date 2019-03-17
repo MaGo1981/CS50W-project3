@@ -73,11 +73,11 @@ def food(request, food_id):
     try:
         food = Food.objects.get(pk=food_id)
         allToppings = Topping.objects.exclude(menu=False).all()
-        print("food function allToppings:", allToppings)
+        # print("food function allToppings:", allToppings)
         pizzas = Pizza.objects.exclude(menu=False).all()
-        print("food function pizzas:", pizzas)
+        # print("food function pizzas:", pizzas)
         quantity = food.quantity
-        print("food.quantity:", quantity)
+        # print("food.quantity:", quantity)
     except Food.DoesNotExist:
         raise Http404("Food does not exist")
     context = {
@@ -92,18 +92,29 @@ def order(request, food_id):
     print("order function food_id:", food_id)
     food = Food.objects.get(pk=food_id)
     print("order function food:", food)
+    print(issubclass(Pizza, Food))
+    print(isinstance(food, Pizza)) # vraca False kad narucujem pizzu, a trebalo bi vracati True
+    # print("food.pizza:", food.pizza) #vraca pizzu s menu-a ili vraca gresku ako narucujes topping
+    # print("food.topping:", food.topping ) # obrnut od food.pizza
 
     try:
-        topping_id = int(request.POST["topping"])
-        quantity = int(request.POST["quantity"])
-        size = request.POST["size"]
-        specialInstructions = request.POST["specialInstructions"]
-        print("order function topping_id:",topping_id)
-        print("order function specialInstructions:",specialInstructions)
-        topping = Topping.objects.get(pk=topping_id)
-        print("order function topping:",topping)
-        order = Pizza(name=food, topping1=topping, topping2=topping, topping3=topping, quantity=quantity, size=size, specialInstructions=specialInstructions)
-        order.save()
+        if food_id == 25 or food_id == 28:
+            topping_id = int(request.POST["topping"])
+            quantity = int(request.POST["quantity"])
+            size = request.POST["size"]
+            specialInstructions = request.POST["specialInstructions"]
+            print("order function topping_id:",topping_id)
+            print("order function specialInstructions:",specialInstructions)
+            topping = Topping.objects.get(pk=topping_id)
+            print("order function topping:",topping)
+            order = Pizza(name=food, topping1=topping, topping2=topping, topping3=topping, quantity=quantity, size=size, specialInstructions=specialInstructions)
+            order.save()
+        elif food_id <= 3:
+            quantity = int(request.POST["quantity"])
+            specialInstructions = request.POST["specialInstructions"]
+            order = Topping(name=food, quantity=quantity, specialInstructions=specialInstructions)
+            order.save()
+
 
     except KeyError:
         return render(request, "orders/error.html", {"message": "No selection."})

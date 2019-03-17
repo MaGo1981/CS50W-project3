@@ -34,30 +34,31 @@
         Pizza
       {% endif %}
     </h3>
-    <h4>Toppings:</h4>
-        {% if food.pizza %}
           <form action="{% url 'order' food.id %}" method="post">
               {% csrf_token %}
+              {% if food.pizza %}
+    <h4>Toppings:</h4>
               {% for topping in allToppings %}
                 <input type="checkbox" value="{{ topping.id }}" name="topping">{{ topping.name }}<br>
               {% endfor %}
                <br>
-               <h4>Size:</h4>
+    <h4>Size:</h4>
                {% for pizza in pizzas %}
                  <input type="checkbox" value="{{ pizza.size }}" name="size">{{ pizza.size }}<br>
                {% endfor %}
                <br><br>
-               <h4>Special Instructions:</h4>
-               <textarea  type="text" value="{{ pizza.specialInstructions }}" name="specialInstructions"></textarea>
+               {% endif %}
+   <h4>Special Instructions:</h4>
+               <textarea  type="text" value="{{ food.specialInstructions }}" name="specialInstructions"></textarea>
                <br><br><br>
-               <h4>Quantity:</h4>
+   <h4>Quantity:</h4>
                <input type="number" name="quantity">
                <br><br><br>
                <input type="submit" value="Order Food" />
           </form>
           <br>
 
-        {% endif %}
+
         <br><br>
         <a href="{% url 'menu' %}">Back to the menu.</a>
 {% endblock %}
