@@ -129,7 +129,16 @@ def order(request, food_id):
                 order = Topping(name=food, quantity=quantity, specialInstructions=specialInstructions, side=side)
                 order.save()
         except Topping.DoesNotExist:
-            return render(request, "orders/error.html", {"message": "Not a pizza or a topping."})
+            try:
+                sub = Sub.objects.get(pk=food_id)
+                if isinstance(sub, Sub):
+                    quantity = int(request.POST["quantity"])
+                    size = request.POST["size"]
+                    specialInstructions = request.POST["specialInstructions"]
+                    order = Sub(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions)
+                    order.save()
+            except Sub.DoesNotExist:
+                return render(request, "orders/error.html", {"message": "Not a pizza or a topping or a sub."})
         except KeyError:
             return render(request, "orders/error.html", {"message": "No selection, no id."})
     return HttpResponseRedirect(reverse("orders"))

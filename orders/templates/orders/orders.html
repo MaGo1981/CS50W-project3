@@ -31,7 +31,7 @@
       {% for sub in subs %}
           <li>
             <a href="{% url 'food' sub.id %}">
-              {{ sub.name }}, {{ sub.price }} eur
+              {{ sub.name }}, {{ sub.size }}, special instructions: {{sub.specialInstructions}}, quantity: {{sub.quantity}}, {{ sub.price }} eur
             </a>
           </li>
       {% endfor %}
