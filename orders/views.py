@@ -153,7 +153,24 @@ def order(request, food_id):
                         order = Pasta(name=food, sub1=sub1, quantity=quantity, specialInstructions=specialInstructions)
                         order.save()
                 except Pasta.DoesNotExist:
-                    return render(request, "orders/error.html", {"message": "Not a pizza or a topping or a sub or a pasta."})
+                    try:
+                        salad = Salad.objects.get(pk=food_id)
+                        if isinstance(salad, Salad):
+                            quantity = int(request.POST["quantity"])
+                            specialInstructions = request.POST["specialInstructions"]
+                            order = Salad(name=food, quantity=quantity, specialInstructions=specialInstructions)
+                            order.save()
+                    except Salad.DoesNotExist:
+                        try:
+                            platter = Platter.objects.get(pk=food_id)
+                            if isinstance(platter, Platter):
+                                quantity = int(request.POST["quantity"])
+                                size = request.POST["size"]
+                                specialInstructions = request.POST["specialInstructions"]
+                                order = Platter(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions)
+                                order.save()
+                        except Platter.DoesNotExist:
+                            return render(request, "orders/error.html", {"message": "Not a pizza or a topping or a sub or a pasta or a salad or a platter."})
         except KeyError:
             return render(request, "orders/error.html", {"message": "No selection, no id."})
     return HttpResponseRedirect(reverse("orders"))

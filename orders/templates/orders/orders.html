@@ -51,7 +51,7 @@
       {% for salad in salads %}
           <li>
             <a href="{% url 'food' salad.id %}">
-              {{ salad.name }}, {{ salad.price }} eur
+              {{ salad.name }}, special instructions: {{salad.specialInstructions}}, quantity: {{salad.quantity}},{{ salad.price }} eur
             </a>
           </li>
       {% endfor %}
@@ -61,7 +61,7 @@
       {% for platter in platters %}
           <li>
             <a href="{% url 'food' platter.id %}">
-              {{ platter.name }}, {{ platter.size }}, {{ platter.price }} eur
+              {{ platter.name }}, {{ platter.size }}, special instructions: {{platter.specialInstructions}}, quantity: {{platter.quantity}}, {{ platter.price }} eur
             </a>
           </li>
       {% endfor %}
