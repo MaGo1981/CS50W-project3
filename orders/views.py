@@ -78,12 +78,15 @@ def food(request, food_id):
         # print("food function pizzas:", pizzas)
         quantity = food.quantity
         # print("food.quantity:", quantity)
+        subs = Sub.objects.exclude(menu=False).all()
+
     except Food.DoesNotExist:
         raise Http404("Food does not exist")
     context = {
         "food": food,
         "allToppings": allToppings,
-        "pizzas": pizzas
+        "pizzas": pizzas,
+        "subs": subs
     }
     return render(request, "orders/food.html", context)
 
@@ -101,9 +104,9 @@ def order(request, food_id):
     try:
         pizza = Pizza.objects.get(pk=food_id)
         if isinstance(pizza, Pizza):
-            topping1_id = int(request.POST["topping-whole"])
-            topping2_id = int(request.POST["topping-left"])
-            topping3_id = int(request.POST["topping-right"])
+            topping1_id = int(request.POST["topping-whole"]) # kad se radi o ForeignKey property klase, mora ici po id jer ForeignKey je uvijek ID!!!
+            topping2_id = int(request.POST["topping-left"]) # kad se radi o ForeignKey property klase, mora ici po id jer ForeignKey je uvijek ID!!!
+            topping3_id = int(request.POST["topping-right"])# kad se radi o ForeignKey property klase, mora ici po id jer ForeignKey je uvijek ID!!!
             quantity = int(request.POST["quantity"])
             size = request.POST["size"]
             specialInstructions = request.POST["specialInstructions"]
@@ -138,7 +141,19 @@ def order(request, food_id):
                     order = Sub(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions)
                     order.save()
             except Sub.DoesNotExist:
-                return render(request, "orders/error.html", {"message": "Not a pizza or a topping or a sub."})
+                try:
+                    pasta = Pasta.objects.get(pk=food_id)
+                    if isinstance(pasta, Pasta):
+
+                        quantity = int(request.POST["quantity"])
+                        sub1_id = request.POST["sub1"] # kad se radi o ForeignKey property klase, mora ici po id jer ForeignKey je uvijek ID!!!
+                        sub1 = Sub.objects.get(pk=sub1_id)
+                        print("sub1:", sub1)
+                        specialInstructions = request.POST["specialInstructions"]
+                        order = Pasta(name=food, sub1=sub1, quantity=quantity, specialInstructions=specialInstructions)
+                        order.save()
+                except Pasta.DoesNotExist:
+                    return render(request, "orders/error.html", {"message": "Not a pizza or a topping or a sub or a pasta."})
         except KeyError:
             return render(request, "orders/error.html", {"message": "No selection, no id."})
     return HttpResponseRedirect(reverse("orders"))

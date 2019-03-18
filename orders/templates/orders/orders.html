@@ -41,7 +41,7 @@
       {% for pasta in pastas %}
           <li>
             <a href="{% url 'food' pasta.id %}">
-              {{ pasta.name }}, with {{ pasta.sub1.name }}, {{ pasta.price }} eur
+              {{ pasta.name }}, with {{ pasta.sub1.name }}, special instructions: {{pasta.specialInstructions}}, quantity: {{pasta.quantity}}, {{ pasta.price }} eur
             </a>
           </li>
       {% endfor %}

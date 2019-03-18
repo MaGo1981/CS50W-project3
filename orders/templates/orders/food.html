@@ -41,38 +41,47 @@
               {% for topping in allToppings %}
               {% if topping.side == "whole" %}
                 <input type="checkbox" value="{{ topping.id }}" name="topping-whole">{{ topping.name }}<br>
-              {% endif %}
-              {% endfor %}
                <br>
+               {% endif %}
+               {% endfor %}
          <h4>Toppings - left side:</h4>
              {% for topping in allToppings %}
              {% if topping.side == "left" %}
                <input type="checkbox" value="{{ topping.id }}" name="topping-left">{{ topping.name }}<br>
-             {% endif %}
-             {% endfor %}
-              <br>
+               <br>
+               {% endif %}
+               {% endfor %}
         <h4>Toppings - right side:</h4>
             {% for topping in allToppings %}
             {% if topping.side == "right" %}
               <input type="checkbox" value="{{ topping.id }}" name="topping-right">{{ topping.name }}<br>
+              <br>
+              {% endif %}
+              {% endfor %}
             {% endif %}
-            {% endfor %}
+
+            {% if food.pasta %}
+        <h4>Subs:</h4>
+            {% for sub in subs %}
+              <input type="checkbox" value="{{ sub.id }}" name="sub1">{{ sub.name }}, {{ sub.size }}<br>
+             {% endfor %}
              <br>
-            {% endif %}
+             {% endif %}
+
+
             {% if food.sub or food.pizza %}
        <h4>Size:</h4>
              <input type="checkbox" value="small" name="size">small<br>
              <input type="checkbox" value="large" name="size">large<br>
-           <br><br>
+           <br><br><br>
            {% endif %}
-           <br>
            {% if food.topping %}
        <h4>Side:</h4>
                <input type="checkbox" value="whole" name="side">whole<br>
                <input type="checkbox" value="left" name="side">left<br>
                <input type="checkbox" value="right" name="side">right<br>
+          <br><br>
           {% endif %}
-             <br><br>
        <h4>Special Instructions:</h4>
                <textarea  type="text" value="{{ food.specialInstructions }}" name="specialInstructions"></textarea>
                <br><br><br>
@@ -81,9 +90,6 @@
                <br><br><br>
                <input type="submit" value="Order Food" />
           </form>
-          <br>
-
-
-        <br><br>
+          <br><br><br>
         <a href="{% url 'menu' %}">Back to the menu.</a>
 {% endblock %}
