@@ -1,0 +1,69 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Shopping Card
+{% endblock %}
+
+{% block body %}
+    <h1>My Items:</h1>
+    <h2>Pizza</h2>
+    <ul>
+      {% for pizza in pizzas %}
+          <li>
+            <a href="{% url 'food' pizza.id %}">
+                {{ pizza.name }}, {{ pizza.size }} <br />with toppings:<br />{{ pizza.topping1.name }}, <br />{{ pizza.topping2.name }}, <br />{{ pizza.topping3.name }}, <br />{{ pizza.price }} eur, <br />{{ pizza.quantity }} pcs, <br />special instructions: {{ pizza.specialInstructions }}, <br />user: {{pizza.user}}, <br />menu: {{pizza.menu}}
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Toppings</h2>
+    <ul>
+      {% for topping in toppings %}
+          <li>
+            <a href="{% url 'food' topping.id %}">
+              {{topping.name}} - {{topping.side}}, <br />special instructions: {{topping.specialInstructions}}, <br />quantity: {{topping.quantity}}, <br />user: {{topping.user}}, <br />menu: {{topping.menu}}, <br />{{topping.price}} eur
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Subs</h2>
+    <ul>
+      {% for sub in subs %}
+          <li>
+            <a href="{% url 'food' sub.id %}">
+              {{ sub.name }}, {{ sub.size }}, <br />special instructions: {{sub.specialInstructions}},  <br />quantity: {{sub.quantity}},  <br />user: {{sub.user}},  <br />menu: {{sub.menu}},  <br />price: {{ sub.price }} eur
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Pasta</h2>
+    <ul>
+      {% for pasta in pastas %}
+          <li>
+            <a href="{% url 'food' pasta.id %}">
+              {{ pasta.name }}, with {{ pasta.sub1.name }}, special instructions: {{pasta.specialInstructions}}, quantity: {{pasta.quantity}}, user: {{pasta.user}}, menu: {{pasta.menu}}, {{ pasta.price }} eur
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Salads</h2>
+    <ul>
+      {% for salad in salads %}
+          <li>
+            <a href="{% url 'food' salad.id %}">
+              {{ salad.name }}, special instructions: {{salad.specialInstructions}}, quantity: {{salad.quantity}}, user: {{salad.user}}, menu: {{salad.menu}}, {{ salad.price }} eur
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+    <h2>Dinner Platters</h2>
+    <ul>
+      {% for platter in platters %}
+          <li>
+            <a href="{% url 'food' platter.id %}">
+              {{ platter.name }}, {{ platter.size }}, special instructions: {{platter.specialInstructions}}, quantity: {{platter.quantity}}, user: {{platter.user}}, menu: {{platter.menu}}, {{ platter.price }} eur
+            </a>
+          </li>
+      {% endfor %}
+    </ul>
+{% endblock %}

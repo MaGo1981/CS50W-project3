@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Food(models.Model):
@@ -7,6 +8,7 @@ class Food(models.Model):
     quantity = models.IntegerField(default=1)
     specialInstructions = models.CharField(max_length=640, default='No special instructions')
     menu = models.BooleanField(default=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user", default=1)
 
     def __str__(self):
         return f"{self.name}"
