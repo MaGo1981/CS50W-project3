@@ -5,10 +5,14 @@
 {% endblock %}
 
 {% block body %}
+    <span>
+      <a href="{% url 'menu' %}">Menu</a>
+      <a href="{% url 'orders' %}">Orders</a>
+      <a href="{% url 'card' user.id %}">Shopping Card</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </span>
     <h1>Hello, <a href="{% url 'card' user.id %}">{{ user.first_name }}</a></h1>
     <ul>
         <li>Currently logged in as: {{ user.username }}</li>
-        <li><a href="{% url 'logout' %}">Logout</a></li>
-        <li><a href="{% url 'menu' %}">Menu</a></li>
     </ul>
 {% endblock %}

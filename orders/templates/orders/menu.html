@@ -5,39 +5,127 @@
 {% endblock %}
 
 {% block body %}
+    <span>
+      <a href="{% url 'index' %}">Index</a>
+      <a href="{% url 'orders' %}">Orders</a>
+      <a href="{% url 'card' user.id %}">Shopping Card</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </span>
+
     <h1>Our Menu</h1>
-    <h2>Pizza</h2>
-    <ul>
-      {% for pizza in pizzas %}
-          <li>
-            <a href="{% url 'food' pizza.id %}">
-                {{ pizza.name }}, {{ pizza.size }} with toppings:{{ pizza.topping1.name }}, {{ pizza.topping2.name }}, {{ pizza.topping3.name }}, {{ pizza.price }} eur
-            </a>
-          </li>
-      {% endfor %}
-    </ul>
+    <h2>
+      <a href="{% url 'food' 41 %}">
+        Regular Cheese Pizza
+      </a>
+    </h2>
+
+  <tr>
+    <th>Food</th>
+    <th>Small</th>
+    <th>Large</th>
+  </tr>
+  <br/>
+  <tr>
+    <td>Cheese</td>
+    <td>12.20</td>
+    <td>17.45</td>
+  </tr>
+  <br/>
+  <tr>
+    <td>1 topping</td>
+    <td>13.20</td>
+    <td>19.45</td>
+  </tr>
+  <br/>
+  <tr>
+    <td>2 toppings</td>
+    <td>14.70</td>
+    <td>21.45</td>
+  </tr>
+  <br/>
+  <tr>
+    <td>3 toppings</td>
+    <td>15.70</td>
+    <td>23.45</td>
+  </tr>
+  <br/>
+  <tr>
+    <td>Special</td>
+    <td>17.25</td>
+    <td>25.45</td>
+  </tr>
+  <h2>
+    <a href="{% url 'food' 42 %}">
+      Sicilian Cheese Pizza
+    </a>
+  </h2>
+
+  <tr>
+    <th>Food</th>
+    <th>Small</th>
+    <th>Large</th>
+  </tr>
+  <br/>
+  <tr>
+    <td>Cheese</td>
+    <td>23.75</td>
+    <td>37.70</td>
+  </tr>
+  <br/>
+  <tr>
+    <td>1 topping</td>
+    <td>25.45</td>
+    <td>39.70</td>
+  </tr>
+  <br/>
+  <tr>
+    <td>2 toppings</td>
+    <td>27.45</td>
+    <td>41.70</td>
+  </tr>
+  <br/>
+  <tr>
+    <td>3 toppings</td>
+    <td>28.45</td>
+    <td>43.70</td>
+  </tr>
+  <br/>
+  <tr>
+    <td>Special</td>
+    <td>29.45</td>
+    <td>44.70</td>
+  </tr>
+  <ul>
     <h2>Toppings</h2>
     <ul>
       {% for topping in toppings %}
       {% if topping.side == "whole" %}
           <li>
             <a href="{% url 'food' topping.id %}">
-              {{ topping.name }}, {{ topping.price }} eur
+              {{ topping.name }}
             </a>
           </li>
       {% endif %}
       {% endfor %}
     </ul>
     <h2>Subs</h2>
-    <ul>
+    <tr>
+      <th>Food</th>
+      <th>Small</th>
+      <th>Large</th>
+    </tr>
+    <br/>
+    <tr>
       {% for sub in subs %}
-          <li>
-            <a href="{% url 'food' sub.id %}">
-              {{ sub.name }}, {{ sub.price }} eur
-            </a>
-          </li>
+        <a href="{% url 'food' sub.id %}">
+          <td>{{ sub.name }}</td>
+          <td>{{ sub.price }}</td>
+          <td>{{ sub.price }}</td>
+          <br/>
+        </a>
       {% endfor %}
-    </ul>
+    </tr>
+    <br/>
     <h2>Pasta</h2>
     <ul>
       {% for pasta in pastas %}

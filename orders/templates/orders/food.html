@@ -5,21 +5,23 @@
 {% endblock %}
 
 {% block body %}
+    <span>
+      <a href="{% url 'index' %}">Index</a>
+      <a href="{% url 'menu' %}">Menu</a>
+      <a href="{% url 'orders' %}">Orders</a>
+      <a href="{% url 'card' user.id %}">Shopping Card</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </span>
     <h1>{{ food }}
       {% if food.pizza %}
         Pizza
       {% endif %}
     </h1>
     <ul>
-        <li>User ID: {{ user.id }}</li>
+
         <li>Food ID: {{ food.id }}</li>
         <li>Name: {{ food.name }}</li>
-        <li>Price:  {{ food.price }}</li>
-        <li>Quantity:  {{ food.quantity }}</li>
-        <li>Special Instructions:  {{ food.specialInstructions }}</li>
-        {% if food.pizza %}
-          <li>Size:  {{ food.pizza.size }}</li>
-        {% endif %}
+
         {% if food.sub %}
           <li>Size:  {{ food.sub.size }}</li>
         {% endif %}

@@ -5,6 +5,12 @@
 {% endblock %}
 
 {% block body %}
+    <span>
+        <a href="{% url 'index' %}">Index</a>
+        <a href="{% url 'menu' %}">Menu</a>
+        <a href="{% url 'orders' %}">Orders</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </span>
     <h1>My Items:</h1>
     <h2>Pizza</h2>
     <ul>
