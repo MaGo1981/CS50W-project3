@@ -139,8 +139,29 @@ def order(request, food_id):
                     quantity = int(request.POST["quantity"])
                     size = request.POST["size"]
                     specialInstructions = request.POST["specialInstructions"]
-                    order = Sub(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user)
-                    order.save()
+                    name=food.name
+                    print('sub name', name)
+                    if name=='Meatball':
+                        if size == 'small':
+                            order = Sub(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user, price=6.50)
+                            order.save()
+                        else:
+                            order = Sub(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user, price=7.95)
+                            order.save()
+                    if name=='Turkey':
+                        if size == 'small':
+                            order = Sub(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user, price=7.50)
+                            order.save()
+                        else:
+                            order = Sub(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user, price=8.50)
+                            order.save()
+                    if name=='Tuna':
+                        if size == 'small':
+                            order = Sub(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user, price=6.50)
+                            order.save()
+                        else:
+                            order = Sub(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user, price=7.95)
+                            order.save()
             except Sub.DoesNotExist:
                 try:
                     pasta = Pasta.objects.get(pk=food_id)
