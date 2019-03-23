@@ -117,54 +117,19 @@
     <br/>
     <tr>
       {% for sub in subs %}
-      {% if sub.name == "Meatball" %}
         <a href="{% url 'food' sub.id %}">
-          <td>{{ sub.name }}</td>
-          <td>{{ "6.50" }}</td>
-          <td>{{ 7.95 }}</td>
+          <span>
+            {% if sub.size == "small" %}
+              <td>{{ sub.name }}</td>
+              <td>{{ sub.price }}</td>
+            {% endif %}
+            {% if sub.size == "large" %}
+              <td>{{ sub.price }}</td>
+            {% endif %}
+          </span>
           <br/>
         </a>
-      {% endif %}
-      {% if sub.name == "Tuna" %}
-        <a href="{% url 'food' sub.id %}">
-          <td>{{ sub.name }}</td>
-          <td>{{ "6.50" }}</td>
-          <td>{{ 7.95 }}</td>
-          <br/>
-        </a>
-      {% endif %}
-      {% if sub.name == "Italian" %}
-        <a href="{% url 'food' sub.id %}">
-          <td>{{ sub.name }}</td>
-          <td>{{ "6.50" }}</td>
-          <td>{{ 7.95 }}</td>
-          <br/>
-        </a>
-      {% endif %}
-      {% if sub.name == "Ham + Cheese" %}
-        <a href="{% url 'food' sub.id %}">
-          <td>{{ sub.name }}</td>
-          <td>{{ "6.50" }}</td>
-          <td>{{ 7.95 }}</td>
-          <br/>
-        </a>
-      {% endif %}
-      {% if sub.name == "Turkey" %}
-        <a href="{% url 'food' sub.id %}">
-          <td>{{ sub.name }}</td>
-          <td>{{ "7.50" }}</td>
-          <td>{{ "8.50" }}</td>
-          <br/>
-        </a>
-      {% endif %}
-      {% if sub.name == "Chicken Parmigiana" %}
-        <a href="{% url 'food' sub.id %}">
-          <td>{{ sub.name }}</td>
-          <td>{{ "7.50" }}</td>
-          <td>{{ "8.50" }}</td>
-          <br/>
-        </a>
-      {% endif %}
+
       {% endfor %}
     </tr>
     <br/>
