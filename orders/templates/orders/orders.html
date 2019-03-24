@@ -18,7 +18,7 @@
       {% for pizza in pizzas %}
           <li>
             <a href="{% url 'food' pizza.id %}">
-                {{ pizza.name }}, {{ pizza.size }} with toppings:{{ pizza.topping1.name }}, {{ pizza.topping2.name }}, {{ pizza.topping3.name }}, {{ pizza.price }} eur, {{ pizza.quantity }} pcs, special instructions: {{ pizza.specialInstructions }}
+                {{ pizza }}
             </a>
           </li>
       {% endfor %}
@@ -28,7 +28,7 @@
       {% for topping in toppings %}
           <li>
             <a href="{% url 'food' topping.id %}">
-              {{topping.name}} - {{topping.side}}, {{topping.price}} eur, special instructions: {{topping.specialInstructions}}, quantity: {{topping.quantity}}
+              {{topping}}
             </a>
           </li>
       {% endfor %}

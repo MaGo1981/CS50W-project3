@@ -19,10 +19,8 @@ class Topping(Food):
     side = models.CharField(max_length=64, default='whole')
 
     def __str__(self):
-        if self.size == 'small':
-            return f"{self.name} - {self.side}, {self.priceSmall} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
-        if self.size == 'large':
-            return f"{self.name} - {self.side}, {self.priceLarge} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+        return f"{self.name} - {self.side}, {self.priceSmall} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+
 
 class Pizza(Food):
     size = models.CharField(max_length=64, default='small')
@@ -31,7 +29,10 @@ class Pizza(Food):
     topping3 = models.ForeignKey(Topping, on_delete=models.CASCADE, related_name="topping3")
 
     def __str__(self):
-        return f"{self.name} Pizza - {self.size}, with toppings:{self.topping1.name}, {self.topping2.name}, {self.topping3.name}, {self.price} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+        if self.size == 'small':
+            return f"{self.name} Pizza - {self.size}, with toppings:{self.topping1.name}, {self.topping2.name}, {self.topping3.name}, {self.priceSmall} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+        if self.size == 'large':
+            return f"{self.name} Pizza - {self.size}, with toppings:{self.topping1.name}, {self.topping2.name}, {self.topping3.name}, {self.priceLarge} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
 
 class Sub(Food):
     size = models.CharField(max_length=64, default='small')
@@ -47,16 +48,19 @@ class Pasta(Food):
 
 
     def __str__(self):
-        return f"{self.name} with {self.sub1.name}, {self.price} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+        return f"{self.name} with {self.sub1.name}, {self.priceSmall} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
 
 class Salad(Food):
 
 
     def __str__(self):
-        return f"{self.name}, {self.price} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+        return f"{self.name}, {self.priceSmall} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
 
 class Platter(Food):
     size = models.CharField(max_length=64, default='small')
 
     def __str__(self):
-        return f"{self.name} - {self.size}, {self.price} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+        if self.size == 'small':
+            return f"{self.name} - {self.size}, {self.priceSmall} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+        if self.size == 'large':
+            return f"{self.name} - {self.size}, {self.priceLarge} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
