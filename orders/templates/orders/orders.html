@@ -36,11 +36,20 @@
     <h2>Subs</h2>
     <ul>
       {% for sub in subs %}
-          <li>
-            <a href="{% url 'food' sub.id %}">
-              {{ sub.name }}, {{ sub.size }}, special instructions: {{sub.specialInstructions}}, quantity: {{sub.quantity}}, {{ sub.price }} eur
-            </a>
-          </li>
+        {% if sub.size == 'small' %}
+            <li>
+              <a href="{% url 'food' sub.id %}">
+                {{ sub.name }}, {{ sub.size }}, special instructions: {{sub.specialInstructions}}, quantity: {{sub.quantity}}, {{ sub.priceSmall }} eur
+              </a>
+            </li>
+        {% endif %}
+        {% if sub.size == 'large' %}
+            <li>
+              <a href="{% url 'food' sub.id %}">
+                {{ sub.name }}, {{ sub.size }}, special instructions: {{sub.specialInstructions}}, quantity: {{sub.quantity}}, {{ sub.priceLarge }} eur
+              </a>
+            </li>
+        {% endif %}
       {% endfor %}
     </ul>
     <h2>Pasta</h2>

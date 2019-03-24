@@ -117,19 +117,14 @@
     <br/>
     <tr>
       {% for sub in subs %}
-        <a href="{% url 'food' sub.id %}">
-          <span>
-            {% if sub.size == "small" %}
-              <td>{{ sub.name }}</td>
-              <td>{{ sub.price }}</td>
-            {% endif %}
-            {% if sub.size == "large" %}
-              <td>{{ sub.price }}</td>
-            {% endif %}
-          </span>
-          <br/>
-        </a>
-
+            <a href="{% url 'food' sub.id %}">
+                <tr>
+                  <td>{{ sub.name }}</td>
+                  <td>{{ sub.priceSmall }}</td>
+                  <td>{{ sub.priceLarge }}</td>
+                </tr>
+            </a>
+            <br>
       {% endfor %}
     </tr>
     <br/>
