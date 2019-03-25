@@ -116,8 +116,10 @@ def order(request, food_id):
             topping1 = Topping.objects.get(pk=topping1_id)
             topping2 = Topping.objects.get(pk=topping2_id)
             topping3 = Topping.objects.get(pk=topping3_id)
+            priceSmall=food.priceSmall
+            priceLarge=food.priceLarge
             print("order function topping1:",topping1)
-            order = Pizza(name=food, topping1=topping1, topping2=topping2, topping3=topping3, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user)
+            order = Pizza(name=food, topping1=topping1, topping2=topping2, topping3=topping3, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user, priceSmall=priceSmall, priceLarge=priceLarge)
             order.save()
 
 
@@ -155,7 +157,9 @@ def order(request, food_id):
                         sub1 = Sub.objects.get(pk=sub1_id)
                         print("sub1:", sub1)
                         specialInstructions = request.POST["specialInstructions"]
-                        order = Pasta(name=food, sub1=sub1, quantity=quantity, specialInstructions=specialInstructions, user=user)
+                        priceSmall=food.priceSmall
+                        priceLarge=food.priceLarge
+                        order = Pasta(name=food, sub1=sub1, quantity=quantity, specialInstructions=specialInstructions, user=user, priceSmall=priceSmall, priceLarge=priceLarge)
                         order.save()
                 except Pasta.DoesNotExist:
                     try:
@@ -163,7 +167,9 @@ def order(request, food_id):
                         if isinstance(salad, Salad):
                             quantity = int(request.POST["quantity"])
                             specialInstructions = request.POST["specialInstructions"]
-                            order = Salad(name=food, quantity=quantity, specialInstructions=specialInstructions, user=user)
+                            priceSmall=food.priceSmall
+                            priceLarge=food.priceLarge
+                            order = Salad(name=food, quantity=quantity, specialInstructions=specialInstructions, user=user, priceSmall=priceSmall, priceLarge=priceLarge)
                             order.save()
                     except Salad.DoesNotExist:
                         try:
@@ -172,7 +178,9 @@ def order(request, food_id):
                                 quantity = int(request.POST["quantity"])
                                 size = request.POST["size"]
                                 specialInstructions = request.POST["specialInstructions"]
-                                order = Platter(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user)
+                                priceSmall=food.priceSmall
+                                priceLarge=food.priceLarge
+                                order = Platter(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user, priceSmall=priceSmall, priceLarge=priceLarge)
                                 order.save()
                         except Platter.DoesNotExist:
                             return render(request, "orders/error.html", {"message": "Not a pizza or a topping or a sub or a pasta or a salad or a platter."})
