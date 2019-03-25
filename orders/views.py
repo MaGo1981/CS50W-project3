@@ -191,13 +191,25 @@ def order(request, food_id):
 
 def card(request, user_id):
     user=request.user
+    pizzas = Pizza.objects.filter(user=user).all()
+    print("PIZZAS:", pizzas)
+    pizzaSubtotal = 0
+    for pizza in pizzas:
+        if pizza.size == "small":
+            print("PIZZA:", pizza)
+            pizzaSubtotal= pizzaSubtotal + pizza.priceSmall
+        else:
+            pizzaSubtotal= pizzaSubtotal + pizza.priceLarge
+    pizzaSubtotal = round(pizzaSubtotal, 2)
+    print("pizzaSubtotal:", pizzaSubtotal)
     context = {
         "pizzas": Pizza.objects.filter(user=user).all(),
         "toppings": Topping.objects.filter(user=user).all(),
         "subs": Sub.objects.filter(user=user).all(),
         "pastas": Pasta.objects.filter(user=user).all(),
         "salads": Salad.objects.filter(user=user).all(),
-        "platters": Platter.objects.filter(user=user).all()
+        "platters": Platter.objects.filter(user=user).all(),
+        "pizzaSubtotal": pizzaSubtotal
     }
 
     return render(request, "orders/card.html", context)
