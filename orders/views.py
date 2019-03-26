@@ -202,6 +202,60 @@ def card(request, user_id):
             pizzaSubtotal= pizzaSubtotal + pizza.priceLarge
     pizzaSubtotal = round(pizzaSubtotal, 2)
     print("pizzaSubtotal:", pizzaSubtotal)
+
+    subs = Sub.objects.filter(user=user).all()
+    print("SUBS:", subs)
+    subSubtotal = 0
+    for sub in subs:
+        if sub.size == "small":
+            print("SUB:", sub)
+            subSubtotal= subSubtotal + sub.priceSmall
+        else:
+            subSubtotal= subSubtotal + sub.priceLarge
+    subSubtotal = round(subSubtotal, 2)
+    print("subSubtotal:", subSubtotal)
+
+    platters = Platter.objects.filter(user=user).all()
+    print("platterS:", platters)
+    platterSubtotal = 0
+    for platter in platters:
+        if platter.size == "small":
+            print("platter:", platter)
+            platterSubtotal= platterSubtotal + platter.priceSmall
+        else:
+            platterSubtotal= platterSubtotal + platter.priceLarge
+    platterSubtotal = round(platterSubtotal, 2)
+    print("platterSubtotal:", platterSubtotal)
+
+    toppings = Topping.objects.filter(user=user).all()
+    print("toppingS:", toppings)
+    toppingSubtotal = 0
+    for topping in toppings:
+        print("topping:", topping)
+        toppingSubtotal= toppingSubtotal + topping.priceSmall
+    toppingSubtotal = round(toppingSubtotal, 2)
+    print("toppingSubtotal:", toppingSubtotal)
+
+    pastas = Pasta.objects.filter(user=user).all()
+    print("pastaS:", pastas)
+    pastaSubtotal = 0
+    for pasta in pastas:
+        print("pasta:", pasta)
+        pastaSubtotal= pastaSubtotal + pasta.priceSmall
+    pastaSubtotal = round(pastaSubtotal, 2)
+    print("pastaSubtotal:", pastaSubtotal)
+
+    salads = Salad.objects.filter(user=user).all()
+    print("saladS:", salads)
+    saladSubtotal = 0
+    for salad in salads:
+        print("salad:", salad)
+        saladSubtotal= saladSubtotal + salad.priceSmall
+    saladSubtotal = round(saladSubtotal, 2)
+    print("saladSubtotal:", saladSubtotal)
+
+    total= pizzaSubtotal+subSubtotal+platterSubtotal+pastaSubtotal+saladSubtotal+toppingSubtotal
+
     context = {
         "pizzas": Pizza.objects.filter(user=user).all(),
         "toppings": Topping.objects.filter(user=user).all(),
@@ -209,7 +263,13 @@ def card(request, user_id):
         "pastas": Pasta.objects.filter(user=user).all(),
         "salads": Salad.objects.filter(user=user).all(),
         "platters": Platter.objects.filter(user=user).all(),
-        "pizzaSubtotal": pizzaSubtotal
+        "pizzaSubtotal": pizzaSubtotal,
+        "subSubtotal": subSubtotal,
+        "platterSubtotal": platterSubtotal,
+        "pastaSubtotal": pastaSubtotal,
+        "saladSubtotal": saladSubtotal,
+        "toppingSubtotal": toppingSubtotal,
+        "total": total
     }
 
     return render(request, "orders/card.html", context)

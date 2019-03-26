@@ -33,6 +33,7 @@
           </li>
       {% endfor %}
     </ul>
+    <h3>Subtotal: {{ toppingSubtotal }}</h3>
     <h2>Subs</h2>
     <ul>
       {% for sub in subs %}
@@ -43,6 +44,7 @@
           </li>
       {% endfor %}
     </ul>
+    <h3>Subtotal: {{ subSubtotal }}</h3>
     <h2>Pasta</h2>
     <ul>
       {% for pasta in pastas %}
@@ -53,6 +55,7 @@
           </li>
       {% endfor %}
     </ul>
+    <h3>Subtotal: {{ pastaSubtotal }}</h3>
     <h2>Salads</h2>
     <ul>
       {% for salad in salads %}
@@ -63,6 +66,7 @@
           </li>
       {% endfor %}
     </ul>
+    <h3>Subtotal: {{ saladSubtotal }}</h3>
     <h2>Dinner Platters</h2>
     <ul>
       {% for platter in platters %}
@@ -73,7 +77,8 @@
           </li>
       {% endfor %}
     </ul>
-    <h2>Total:</h2>
+    <h3>Subtotal: {{ platterSubtotal }}</h3>
+    <h2>Total: {{ total }}</h2>
 
 
 {% endblock %}
