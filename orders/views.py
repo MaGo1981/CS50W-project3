@@ -105,13 +105,26 @@ def order(request, food_id):
     try:
         pizza = Pizza.objects.get(pk=food_id)
         if isinstance(pizza, Pizza):
-            topping1_id = int(request.POST["topping-whole"]) # kad se radi o ForeignKey property klase, mora ici po id jer ForeignKey je uvijek ID!!!
-            topping2_id = int(request.POST["topping-left"]) # kad se radi o ForeignKey property klase, mora ici po id jer ForeignKey je uvijek ID!!!
-            topping3_id = int(request.POST["topping-right"])# kad se radi o ForeignKey property klase, mora ici po id jer ForeignKey je uvijek ID!!!
+            # topping1_id = int(request.POST["topping-whole"]) # kad se radi o ForeignKey property klase, mora ici po id jer ForeignKey je uvijek ID!!!
+            topping1_ids = request.POST.getlist("topping-whole")
+            print("topping1_ids", topping1_ids)
+            # topping2_id = int(request.POST["topping-left"]) # kad se radi o ForeignKey property klase, mora ici po id jer ForeignKey je uvijek ID!!!
+            topping2_ids = request.POST.getlist("topping-left")
+            print("topping2_ids", topping2_ids)
+            # topping3_id = int(request.POST["topping-right"])# kad se radi o ForeignKey property klase, mora ici po id jer ForeignKey je uvijek ID!!!
+            topping3_ids = request.POST.getlist("topping-right")
+            print("topping3_ids", topping3_ids)
+            allToppings_ids = topping1_ids + topping2_ids + topping3_ids
+            print("allToppings_ids", allToppings_ids)
+            if len(allToppings_ids) > 3:
+                return render(request, "orders/error.html", {"message": "You can choose maximum of 3 toppings. Please try again!"})
+            topping1_id = allToppings_ids[0]
+            topping2_id = allToppings_ids[1]
+            topping3_id = allToppings_ids[2]
             quantity = int(request.POST["quantity"])
             size = request.POST["size"]
             specialInstructions = request.POST["specialInstructions"]
-            print("order function topping1_id:",topping1_id)
+            # print("order function topping1_id:",topping1_id)
             print("order function specialInstructions:",specialInstructions)
             topping1 = Topping.objects.get(pk=topping1_id)
             topping2 = Topping.objects.get(pk=topping2_id)
