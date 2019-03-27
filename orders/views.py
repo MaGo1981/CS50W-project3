@@ -118,17 +118,26 @@ def order(request, food_id):
             print("allToppings_ids", allToppings_ids)
             if len(allToppings_ids) > 3:
                 return render(request, "orders/error.html", {"message": "You can choose maximum of 3 toppings. Please try again!"})
-            topping1_id = allToppings_ids[0]
-            topping2_id = allToppings_ids[1]
-            topping3_id = allToppings_ids[2]
+            try:
+                topping1_id = allToppings_ids[0]
+                topping1 = Topping.objects.get(pk=topping1_id)
+            except:
+                topping1 = Topping.objects.get(name="None")
+            try:
+                topping2_id = allToppings_ids[1]
+                topping2 = Topping.objects.get(pk=topping2_id)
+            except:
+                topping2 = Topping.objects.get(name="None")
+            try:
+                topping3_id = allToppings_ids[2]
+                topping3 = Topping.objects.get(pk=topping3_id)
+            except:
+                topping3 = Topping.objects.get(name="None")
             quantity = int(request.POST["quantity"])
             size = request.POST["size"]
             specialInstructions = request.POST["specialInstructions"]
             # print("order function topping1_id:",topping1_id)
             print("order function specialInstructions:",specialInstructions)
-            topping1 = Topping.objects.get(pk=topping1_id)
-            topping2 = Topping.objects.get(pk=topping2_id)
-            topping3 = Topping.objects.get(pk=topping3_id)
             priceSmall=food.priceSmall
             priceLarge=food.priceLarge
             print("order function topping1:",topping1)
