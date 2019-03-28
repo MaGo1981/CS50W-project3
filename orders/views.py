@@ -116,30 +116,51 @@ def order(request, food_id):
             print("topping3_ids", topping3_ids)
             allToppings_ids = topping1_ids + topping2_ids + topping3_ids
             print("allToppings_ids", allToppings_ids)
+            priceSmall=food.priceSmall
+            SIpriceSmall=priceSmall
+            priceLarge=food.priceLarge
+            SIpriceLarge=priceLarge
             if len(allToppings_ids) > 3:
                 return render(request, "orders/error.html", {"message": "You can choose maximum of 3 toppings. Please try again!"})
             try:
                 topping1_id = allToppings_ids[0]
                 topping1 = Topping.objects.get(pk=topping1_id)
+                priceSmall= food.priceSmall*1.1
+                priceSmall = round(priceSmall, 2)
+                priceLarge= food.priceLarge*1.1
+                priceLarge = round(priceLarge, 2)
             except:
                 topping1 = Topping.objects.get(name="None")
             try:
                 topping2_id = allToppings_ids[1]
                 topping2 = Topping.objects.get(pk=topping2_id)
+                priceSmall= food.priceSmall*1.1
+                priceSmall = round(priceSmall, 2)
+                priceLarge= food.priceLarge*1.1
+                priceLarge = round(priceLarge, 2)
             except:
                 topping2 = Topping.objects.get(name="None")
+
             try:
                 topping3_id = allToppings_ids[2]
                 topping3 = Topping.objects.get(pk=topping3_id)
+                priceSmall= food.priceSmall*1.1
+                priceSmall = round(priceSmall, 2)
+                priceLarge= food.priceLarge*1.1
+                priceLarge = round(priceLarge, 2)
             except:
                 topping3 = Topping.objects.get(name="None")
+
             quantity = int(request.POST["quantity"])
             size = request.POST["size"]
             specialInstructions = request.POST["specialInstructions"]
+            if specialInstructions != '':
+                    priceSmall= SIpriceSmall*1.42
+                    priceSmall = round(priceSmall, 2)
+                    priceLarge= SIpriceLarge*1.45
+                    priceLarge = round(priceLarge, 2)
             # print("order function topping1_id:",topping1_id)
             print("order function specialInstructions:",specialInstructions)
-            priceSmall=food.priceSmall
-            priceLarge=food.priceLarge
             print("order function topping1:",topping1)
             order = Pizza(name=food, topping1=topping1, topping2=topping2, topping3=topping3, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user, priceSmall=priceSmall, priceLarge=priceLarge)
             order.save()
