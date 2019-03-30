@@ -13,89 +13,49 @@
     </span>
 <div class="">
         <h1>Our Menu</h1>
+        {% for pizza in pizzas %}
         <h2>
-          <a href="{% url 'food' 32 %}">
-            Regular Cheese Pizza
+          <a href="{% url 'food' pizza.id %}">
+            {{ pizza.name }} Pizza
           </a>
         </h2>
+        <tr>
+          <th>Food</th>
+          <th>Small</th>
+          <th>Large</th>
+        </tr>
+        <br/>
+        <tr>
+          <td>Cheese</td>
+          <td>{{ pizza.priceSmall }}</td>
+          <td>{{ pizza.priceLarge }}</td>
+        </tr>
+        <br/>
+        <tr>
+          <td>1 topping</td>
+          <td>{{ pizza.priceSmall }}</td>
+          <td>19.45</td>
+        </tr>
+        <br/>
+        <tr>
+          <td>2 toppings</td>
+          <td>14.70</td>
+          <td>21.45</td>
+        </tr>
+        <br/>
+        <tr>
+          <td>3 toppings</td>
+          <td>15.70</td>
+          <td>23.45</td>
+        </tr>
+        <br/>
+        <tr>
+          <td>Special</td>
+          <td>17.25</td>
+          <td>25.45</td>
+        </tr>
+        {% endfor %}
 
-      <tr>
-        <th>Food</th>
-        <th>Small</th>
-        <th>Large</th>
-      </tr>
-      <br/>
-      <tr>
-        <td>Cheese</td>
-        <td>12.20</td>
-        <td>17.45</td>
-      </tr>
-      <br/>
-      <tr>
-        <td>1 topping</td>
-        <td>13.20</td>
-        <td>19.45</td>
-      </tr>
-      <br/>
-      <tr>
-        <td>2 toppings</td>
-        <td>14.70</td>
-        <td>21.45</td>
-      </tr>
-      <br/>
-      <tr>
-        <td>3 toppings</td>
-        <td>15.70</td>
-        <td>23.45</td>
-      </tr>
-      <br/>
-      <tr>
-        <td>Special</td>
-        <td>17.25</td>
-        <td>25.45</td>
-      </tr>
-      <h2>
-        <a href="{% url 'food' 33 %}">
-          Sicilian Cheese Pizza
-        </a>
-      </h2>
-
-      <tr>
-        <th>Food</th>
-        <th>Small</th>
-        <th>Large</th>
-      </tr>
-      <br/>
-      <tr>
-        <td>Cheese</td>
-        <td>23.75</td>
-        <td>37.70</td>
-      </tr>
-      <br/>
-      <tr>
-        <td>1 topping</td>
-        <td>25.45</td>
-        <td>39.70</td>
-      </tr>
-      <br/>
-      <tr>
-        <td>2 toppings</td>
-        <td>27.45</td>
-        <td>41.70</td>
-      </tr>
-      <br/>
-      <tr>
-        <td>3 toppings</td>
-        <td>28.45</td>
-        <td>43.70</td>
-      </tr>
-      <br/>
-      <tr>
-        <td>Special</td>
-        <td>29.45</td>
-        <td>44.70</td>
-      </tr>
-      <ul>
 </div>
 
     <h2>Toppings</h2>

@@ -117,8 +117,10 @@ def order(request, food_id):
             allToppings_ids = topping1_ids + topping2_ids + topping3_ids
             print("allToppings_ids", allToppings_ids)
             priceSmall=food.priceSmall
+            priceSmall = round(priceSmall, 2)
             SIpriceSmall=priceSmall
             priceLarge=food.priceLarge
+            priceLarge = round(priceLarge, 2)
             SIpriceLarge=priceLarge
             if len(allToppings_ids) > 3:
                 return render(request, "orders/error.html", {"message": "You can choose maximum of 3 toppings. Please try again!"})
