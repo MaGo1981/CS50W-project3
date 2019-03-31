@@ -33,26 +33,26 @@
         <br/>
         <tr>
           <td>1 topping</td>
-          <td>{{ pizza.priceSmall }}</td>
-          <td>19.45</td>
+          <td>{{ pizza.get_priceSmallT1 }}</td>
+          <td>{{ pizza.get_priceLargeT1 }}</td>
         </tr>
         <br/>
         <tr>
           <td>2 toppings</td>
-          <td>14.70</td>
-          <td>21.45</td>
+          <td>{{ pizza.get_priceSmallT2 }}</td>
+          <td>{{ pizza.get_priceLargeT2 }}</td>
         </tr>
         <br/>
         <tr>
           <td>3 toppings</td>
-          <td>15.70</td>
-          <td>23.45</td>
+          <td>{{ pizza.get_priceSmallT3 }}</td>
+          <td>{{ pizza.get_priceLargeT3 }}</td>
         </tr>
         <br/>
         <tr>
           <td>Special</td>
-          <td>17.25</td>
-          <td>25.45</td>
+          <td>{{ pizza.get_SIpriceSmall }}</td>
+          <td>{{ pizza.get_SIpriceLarge }}</td>
         </tr>
         {% endfor %}
 

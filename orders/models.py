@@ -28,6 +28,31 @@ class Pizza(Food):
     topping2 = models.ForeignKey(Topping, on_delete=models.CASCADE, related_name="topping2")
     topping3 = models.ForeignKey(Topping, on_delete=models.CASCADE, related_name="topping3")
 
+    def get_priceSmallT1(self):
+        return round((self.priceSmall*1.1),2)
+
+    def get_priceLargeT1(self):
+        return round((self.priceLarge*1.1),2)
+
+    def get_priceSmallT2(self):
+        return round((self.priceSmall*1.1*1.1),2)
+
+    def get_priceLargeT2(self):
+        return round((self.priceLarge*1.1*1.1),2)
+
+    def get_priceSmallT3(self):
+        return round((self.priceSmall*1.1*1.1*1.1),2)
+
+    def get_priceLargeT3(self):
+        return round((self.priceLarge*1.1*1.1*1.1),2)
+
+    def get_SIpriceSmall(self):
+        return round((self.priceSmall*1.42),2)
+
+    def get_SIpriceLarge(self):
+        return round((self.priceLarge*1.45),2)
+
+
     def __str__(self):
         if self.size == 'small':
             return f"{self.name} Pizza - {self.size}, with toppings:{self.topping1.name}, {self.topping2.name}, {self.topping3.name}, {self.priceSmall} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
