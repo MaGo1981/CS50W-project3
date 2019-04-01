@@ -117,37 +117,41 @@ def order(request, food_id):
             print("topping3_ids", topping3_ids)
             allToppings_ids = topping1_ids + topping2_ids + topping3_ids
             print("allToppings_ids", allToppings_ids)
-
+            priceSmall=food.priceSmall
+            print('priceSmall 1', priceSmall)
+            priceLarge=food.priceLarge
             if len(allToppings_ids) > 3:
                 return render(request, "orders/error.html", {"message": "You can choose maximum of 3 toppings. Please try again!"})
-            try:
-                topping1_id = allToppings_ids[0]
-                topping1 = Topping.objects.get(pk=topping1_id)
+            else:
 
-            except:
-                topping1 = Topping.objects.get(name="None")
-            try:
-                topping2_id = allToppings_ids[1]
-                topping2 = Topping.objects.get(pk=topping2_id)
+                try:
+                    topping3_id = allToppings_ids[2]
+                    topping3 = Topping.objects.get(pk=topping3_id)
 
-            except:
-                topping2 = Topping.objects.get(name="None")
+                except:
+                    topping3 = Topping.objects.get(name="None")
 
-            try:
-                topping3_id = allToppings_ids[2]
-                topping3 = Topping.objects.get(pk=topping3_id)
+                try:
+                    topping2_id = allToppings_ids[1]
+                    topping2 = Topping.objects.get(pk=topping2_id)
 
-            except:
-                topping3 = Topping.objects.get(name="None")
+                except:
+                    topping2 = Topping.objects.get(name="None")
+
+                try:
+                    topping1_id = allToppings_ids[0]
+                    topping1 = Topping.objects.get(pk=topping1_id)
+
+                except:
+                    topping1 = Topping.objects.get(name="None")
 
             quantity = int(request.POST["quantity"])
             size = request.POST["size"]
             specialInstructions = request.POST["specialInstructions"]
-            # if specialInstructions != '':
 
             # print("order function topping1_id:",topping1_id)
-            print("order function specialInstructions:",specialInstructions)
-            print("order function topping1:",topping1)
+            # print("order function specialInstructions:",specialInstructions)
+            # print("order function topping1:",topping1)
             order = Pizza(name=food, topping1=topping1, topping2=topping2, topping3=topping3, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user, priceSmall=priceSmall, priceLarge=priceLarge)
             order.save()
 
@@ -224,9 +228,33 @@ def card(request, user_id):
     print("PIZZAS:", pizzas)
     pizzaSubtotal = 0
     for pizza in pizzas:
-        if pizza.size == "small":
+        if pizza.size == "small" and pizza.topping3.name != 'None':
+            print("PIZZA:", pizza)
+            kT3 = round((1.1*1.1*1.1),2)
+            pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kT3)
+        elif pizza.size == "small" and pizza.topping2.name != 'None':
+            print("PIZZA:", pizza)
+            kT2 = round((1.1*1.1),2)
+            pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kT2)
+        elif pizza.size == "small" and pizza.topping1.name != 'None':
+            print("PIZZA:", pizza)
+            kT1 = round((1.1),2)
+            pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kT1)
+        elif pizza.size == "small":
             print("PIZZA:", pizza)
             pizzaSubtotal= pizzaSubtotal + pizza.priceSmall
+        elif pizza.size == "large" and pizza.topping3.name != 'None':
+            print("PIZZA:", pizza)
+            kT3 = round((1.1*1.1*1.1),2)
+            pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kT3)
+        elif pizza.size == "large" and pizza.topping2.name != 'None':
+            print("PIZZA:", pizza)
+            kT2 = round((1.1*1.1),2)
+            pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kT2)
+        elif pizza.size == "large" and pizza.topping1.name != 'None':
+            print("PIZZA:", pizza)
+            kT1 = round((1.1),2)
+            pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kT1)
         else:
             pizzaSubtotal= pizzaSubtotal + pizza.priceLarge
     pizzaSubtotal = round(pizzaSubtotal, 2)

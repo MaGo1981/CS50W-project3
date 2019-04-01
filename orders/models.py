@@ -55,9 +55,9 @@ class Pizza(Food):
 
     def __str__(self):
         if self.size == 'small':
-            return f"{self.name} Pizza - {self.size}, with toppings:{self.topping1.name}, {self.topping2.name}, {self.topping3.name}, {self.priceSmall} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+            return f"{self.name} Pizza - {self.size}, with toppings:{self.topping1.name}, {self.topping2.name}, {self.topping3.name},  special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}" #{self.priceSmall} eur,
         if self.size == 'large':
-            return f"{self.name} Pizza - {self.size}, with toppings:{self.topping1.name}, {self.topping2.name}, {self.topping3.name}, {self.priceLarge} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+            return f"{self.name} Pizza - {self.size}, with toppings:{self.topping1.name}, {self.topping2.name}, {self.topping3.name},  special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}" #{self.priceLarge} eur,
 
 class Sub(Food):
     size = models.CharField(max_length=64, default='small')
