@@ -96,6 +96,7 @@ def order(request, food_id):
     # print("order function food_id:", food_id)
     food = Food.objects.get(pk=food_id)
     user=request.user
+    user_id=request.user.id
     # print("order function food:", food)
     # print(issubclass(Pizza, Food))
     # print(isinstance(food, Pizza)) # vraca False kad narucujem pizzu, a trebalo bi vracati True
@@ -219,7 +220,7 @@ def order(request, food_id):
                             return render(request, "orders/error.html", {"message": "Not a pizza or a topping or a sub or a pasta or a salad or a platter."})
         except KeyError:
             return render(request, "orders/error.html", {"message": "No selection, no id."})
-    return HttpResponseRedirect(reverse("orders"))
+    return HttpResponseRedirect(reverse("card", args=(user_id,)))
 
 
 def card(request, user_id):
@@ -240,6 +241,10 @@ def card(request, user_id):
             print("PIZZA:", pizza)
             kT1 = round((1.1),2)
             pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kT1)
+        elif pizza.size == "small" and pizza.specialInstructions != '':
+            print("PIZZA:", pizza)
+            kSI = round((1.42),2)
+            pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kSI)#
         elif pizza.size == "small":
             print("PIZZA:", pizza)
             pizzaSubtotal= pizzaSubtotal + pizza.priceSmall
@@ -255,6 +260,10 @@ def card(request, user_id):
             print("PIZZA:", pizza)
             kT1 = round((1.1),2)
             pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kT1)
+        elif pizza.size == "large" and pizza.specialInstructions != '':
+            print("PIZZA:", pizza)
+            kSI = round((1.45),2)
+            pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kSI)#
         else:
             pizzaSubtotal= pizzaSubtotal + pizza.priceLarge
     pizzaSubtotal = round(pizzaSubtotal, 2)

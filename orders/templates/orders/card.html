@@ -15,11 +15,69 @@
     <h2>Pizza</h2>
     <ul>
       {% for pizza in pizzas %}
-          <li>
-            <a href="{% url 'food' pizza.id %}">
-                {{ pizza }}
-            </a>
-          </li>
+        {% if pizza.size == "small" and pizza.topping3.name != 'None' %}
+            <li>
+              <a href="{% url 'food' pizza.id %}">
+                  {{ pizza }} -- {{ pizza.get_priceSmallT3 }} eur
+              </a>
+            </li>
+
+        {% elif pizza.size == "small" and pizza.topping2.name != 'None' %}
+            <li>
+              <a href="{% url 'food' pizza.id %}">
+                  {{ pizza }} -- {{ pizza.get_priceSmallT2 }} eur
+              </a>
+            </li>
+        {% elif pizza.size == "small" and pizza.topping1.name != 'None' %}
+            <li>
+              <a href="{% url 'food' pizza.id %}">
+                  {{ pizza }} -- {{ pizza.get_priceSmallT1 }} eur
+              </a>
+            </li>
+        {% elif pizza.size == "large" and pizza.topping3.name != 'None' %}
+            <li>
+              <a href="{% url 'food' pizza.id %}">
+                  {{ pizza }} -- {{ pizza.get_priceLargeT3 }} eur
+              </a>
+            </li>
+
+        {% elif pizza.size == "large" and pizza.topping2.name != 'None' %}
+            <li>
+              <a href="{% url 'food' pizza.id %}">
+                  {{ pizza }} -- {{ pizza.get_priceLargeT2 }} eur
+              </a>
+            </li>
+        {% elif pizza.size == "large" and pizza.topping1.name != 'None' %}
+            <li>
+              <a href="{% url 'food' pizza.id %}">
+                  {{ pizza }} -- {{ pizza.get_priceLargeT1 }} eur
+              </a>
+            </li>
+        {% elif pizza.size == "large" and pizza.specialInstructions != '' %}
+            <li>
+              <a href="{% url 'food' pizza.id %}">
+                  {{ pizza }} -- {{ pizza.get_SIpriceLarge }} eur
+              </a>
+            </li>
+        {% elif pizza.size == "small" and pizza.specialInstructions != '' %}
+            <li>
+              <a href="{% url 'food' pizza.id %}">
+                  {{ pizza }} -- {{ pizza.get_SIpriceSmall }} eur
+              </a>
+            </li>
+        {% elif pizza.size == "small" %}
+            <li>
+              <a href="{% url 'food' pizza.id %}">
+                  {{ pizza }} -- {{ pizza.priceSmall }} eur
+              </a>
+            </li>
+        {% elif pizza.size == "large" %}
+            <li>
+              <a href="{% url 'food' pizza.id %}">
+                  {{ pizza }} -- {{ pizza.priceLarge }} eur
+              </a>
+            </li>
+        {% endif %}
       {% endfor %}
     </ul>
     <h3>Subtotal: {{ pizzaSubtotal }}</h3>
