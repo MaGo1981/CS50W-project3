@@ -18,20 +18,20 @@
         {% if pizza.size == "small" and pizza.topping3.name != 'None' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_priceSmallT3 }} eur/pc -- {{ pizzaItemSmallSubtotalT3 }} eur
+                  {{ pizza }} -- {{ pizza.get_priceSmallT3 }} eur/pc -- {{ pizza.get_priceSmallT3Subtotal }} eur
               </a>
             </li>
 
         {% elif pizza.size == "small" and pizza.topping2.name != 'None' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_priceSmallT2 }} eur/pc -- {{ pizzaItemSubtotal }} eur
+                  {{ pizza }} -- {{ pizza.get_priceSmallT2 }} eur/pc -- {{ pizza.get_priceSmallT2Subtotal }} eur
               </a>
             </li>
         {% elif pizza.size == "small" and pizza.topping1.name != 'None' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_priceSmallT1 }} eur/pc -- {{ pizzaItemSubtotal }} eur
+                  {{ pizza }} -- {{ pizza.get_priceSmallT1 }} eur/pc -- {{ pizza.get_priceSmallT1Subtotal }} eur
               </a>
             </li>
         {% elif pizza.size == "large" and pizza.topping3.name != 'None' %}
@@ -44,25 +44,25 @@
         {% elif pizza.size == "large" and pizza.topping2.name != 'None' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_priceLargeT2 }} eur/pc -- {{ pizzaItemSubtotal }} eur
+                  {{ pizza }} -- {{ pizza.get_priceLargeT2 }} eur/pc -- {{ pizza.get_priceLargeT2Subtotal }} eur
               </a>
             </li>
         {% elif pizza.size == "large" and pizza.topping1.name != 'None' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_priceLargeT1 }} eur/pc -- {{ pizzaItemSubtotal }} eur
+                  {{ pizza }} -- {{ pizza.get_priceLargeT1 }} eur/pc -- {{ pizza.get_priceLargeT1Subtotal }} eur
               </a>
             </li>
         {% elif pizza.size == "large" and pizza.specialInstructions != '' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_SIpriceLarge }} eur/pc -- {{ pizzaItemSubtotal }} eur
+                  {{ pizza }} -- {{ pizza.get_SIpriceLarge }} eur/pc -- {{ pizza.get_SIpriceLargeSubtotal }} eur
               </a>
             </li>
         {% elif pizza.size == "small" and pizza.specialInstructions != '' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_SIpriceSmall }} eur/pc -- {{ pizzaItemSubtotal }} eur
+                  {{ pizza }} -- {{ pizza.get_SIpriceSmall }} eur/pc -- {{ pizza.get_SIpriceSmallSubtotal }} eur
               </a>
             </li>
         {% elif pizza.size == "small" %}

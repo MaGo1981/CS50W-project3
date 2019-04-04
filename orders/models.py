@@ -31,26 +31,50 @@ class Pizza(Food):
     def get_priceSmallT1(self):
         return round((self.priceSmall*1.1),2)
 
+    def get_priceSmallT1Subtotal(self):
+        return round((round((self.priceSmall*1.1),2) * self.quantity),2 )
+
     def get_priceLargeT1(self):
         return round((self.priceLarge*1.1),2)
+
+    def get_priceLargeT1Subtotal(self):
+        return round((round((self.priceLarge*1.1),2) * self.quantity),2 )
 
     def get_priceSmallT2(self):
         return round((self.priceSmall*1.1*1.1),2)
 
+    def get_priceSmallT2Subtotal(self):
+        return round((round((self.priceSmall*1.1*1.1),2) * self.quantity),2 )
+
     def get_priceLargeT2(self):
         return round((self.priceLarge*1.1*1.1),2)
+
+    def get_priceLargeT2Subtotal(self):
+        return round((round((self.priceLarge*1.1*1.1),2) * self.quantity),2 )
 
     def get_priceSmallT3(self):
         return round((self.priceSmall*1.1*1.1*1.1),2)
 
+    def get_priceSmallT3Subtotal(self):
+        return round((round((self.priceSmall*1.1*1.1*1.1),2) * self.quantity),2 )
+
     def get_priceLargeT3(self):
         return round((self.priceLarge*1.1*1.1*1.1),2)
+
+    def get_priceLargeT3Subtotal(self):
+        return round((round((self.priceLarge*1.1*1.1*1.1),2) * self.quantity),2 )
 
     def get_SIpriceSmall(self):
         return round((self.priceSmall*1.42),2)
 
+    def get_SIpriceSmallSubtotal(self):
+        return round((round((self.priceSmall*1.42),2)* self.quantity),2 )
+
     def get_SIpriceLarge(self):
         return round((self.priceLarge*1.45),2)
+
+    def get_SIpriceLargeSubtotal(self):
+        return round((round((self.priceLarge*1.45),2)* self.quantity),2 )
 
 
     def __str__(self):
