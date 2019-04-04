@@ -228,44 +228,56 @@ def card(request, user_id):
     pizzas = Pizza.objects.filter(user=user).all()
     print("PIZZAS:", pizzas)
     pizzaSubtotal = 0
+    pizzaItemSmallSubtotalT3 = 0
     for pizza in pizzas:
         if pizza.size == "small" and pizza.topping3.name != 'None':
             print("PIZZA:", pizza)
             kT3 = round((1.1*1.1*1.1),2)
             pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kT3)
+            pizzaItemSmallSubtotalT3 = pizza.quantity * pizza.priceSmall * kT3
+            pizzaItemSmallSubtotalT3 = round(pizzaItemSmallSubtotalT3, 2)
         elif pizza.size == "small" and pizza.topping2.name != 'None':
             print("PIZZA:", pizza)
             kT2 = round((1.1*1.1),2)
             pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kT2)
+            pizzaItemSubtotal = pizza.quantity * pizza.priceSmall * kT2
         elif pizza.size == "small" and pizza.topping1.name != 'None':
             print("PIZZA:", pizza)
             kT1 = round((1.1),2)
             pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kT1)
+            pizzaItemSubtotal = pizza.quantity * pizza.priceSmall * kT1
         elif pizza.size == "small" and pizza.specialInstructions != '':
             print("PIZZA:", pizza)
             kSI = round((1.42),2)
-            pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kSI)#
+            pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kSI)
+            pizzaItemSubtotal = pizza.quantity * pizza.priceSmall * kSI
         elif pizza.size == "small":
             print("PIZZA:", pizza)
             pizzaSubtotal= pizzaSubtotal + pizza.priceSmall
+            pizzaItemSubtotal = pizza.quantity * pizza.priceSmall
         elif pizza.size == "large" and pizza.topping3.name != 'None':
             print("PIZZA:", pizza)
             kT3 = round((1.1*1.1*1.1),2)
             pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kT3)
+            pizzaItemSubtotal = pizza.quantity * pizza.priceLarge * kT3
         elif pizza.size == "large" and pizza.topping2.name != 'None':
             print("PIZZA:", pizza)
             kT2 = round((1.1*1.1),2)
             pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kT2)
+            pizzaItemSubtotal = pizza.quantity * pizza.priceLarge * kT2
         elif pizza.size == "large" and pizza.topping1.name != 'None':
             print("PIZZA:", pizza)
             kT1 = round((1.1),2)
             pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kT1)
+            pizzaItemSubtotal = pizza.quantity * pizza.priceLarge * kT1
         elif pizza.size == "large" and pizza.specialInstructions != '':
             print("PIZZA:", pizza)
             kSI = round((1.45),2)
-            pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kSI)#
+            pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kSI)
+            pizzaItemSubtotal = pizza.quantity * pizza.priceLarge * kSI
         else:
             pizzaSubtotal= pizzaSubtotal + pizza.priceLarge
+            pizzaItemSubtotal = pizza.quantity * pizza.priceLarge
     pizzaSubtotal = round(pizzaSubtotal, 2)
     print("pizzaSubtotal:", pizzaSubtotal)
 
@@ -335,7 +347,9 @@ def card(request, user_id):
         "pastaSubtotal": pastaSubtotal,
         "saladSubtotal": saladSubtotal,
         "toppingSubtotal": toppingSubtotal,
+        "pizzaItemSubtotal": pizzaItemSubtotal,
+        "pizzaItemSmallSubtotalT3": pizzaItemSmallSubtotalT3,
         "total": total
     }
-
+    print("pizzaItemSubtotal =",  pizzaItemSubtotal)
     return render(request, "orders/card.html", context)
