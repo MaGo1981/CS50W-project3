@@ -230,54 +230,26 @@ def card(request, user_id):
     pizzaSubtotal = 0
     pizzaItemSmallSubtotalT3 = 0
     for pizza in pizzas:
-        if pizza.size == "small" and pizza.topping3.name != 'None':
-            print("PIZZA:", pizza)
-            kT3 = round((1.1*1.1*1.1),2)
-            pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kT3)
-            pizzaItemSmallSubtotalT3 = pizza.quantity * pizza.priceSmall * kT3
-            pizzaItemSmallSubtotalT3 = round(pizzaItemSmallSubtotalT3, 2)
+        if pizza.size == "small" and pizza.topping3.name != 'None' and pizza.specialInstructions == '':
+            pizzaSubtotal= pizzaSubtotal + (Pizza.get_priceSmallT3Subtotal(pizza)) # USING CLASS TO GET TO THE METHOD!
         elif pizza.size == "small" and pizza.topping2.name != 'None':
-            print("PIZZA:", pizza)
-            kT2 = round((1.1*1.1),2)
-            pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kT2)
-            pizzaItemSubtotal = pizza.quantity * pizza.priceSmall * kT2
+            pizzaSubtotal= pizzaSubtotal + (Pizza.get_priceSmallT2Subtotal(pizza)) # USING CLASS TO GET TO THE METHOD!
         elif pizza.size == "small" and pizza.topping1.name != 'None':
-            print("PIZZA:", pizza)
-            kT1 = round((1.1),2)
-            pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kT1)
-            pizzaItemSubtotal = pizza.quantity * pizza.priceSmall * kT1
-        elif pizza.size == "small" and pizza.specialInstructions != '':
-            print("PIZZA:", pizza)
-            kSI = round((1.42),2)
-            pizzaSubtotal= pizzaSubtotal + (pizza.priceSmall * kSI)
-            pizzaItemSubtotal = pizza.quantity * pizza.priceSmall * kSI
+            pizzaSubtotal= pizzaSubtotal + (Pizza.get_priceSmallT1Subtotal(pizza)) # USING CLASS TO GET TO THE METHOD!
+        elif pizza.size == "small" and pizza.specialInstructions != '': # bug when also toppings clicked!?
+            pizzaSubtotal= pizzaSubtotal + (Pizza.get_SIpriceSmallSubtotal(pizza)) # USING CLASS TO GET TO THE METHOD!
         elif pizza.size == "small":
-            print("PIZZA:", pizza)
-            pizzaSubtotal= pizzaSubtotal + pizza.priceSmall
-            pizzaItemSubtotal = pizza.quantity * pizza.priceSmall
+            pizzaSubtotal = pizzaSubtotal + (Pizza.get_priceSmallSubtotal(pizza)) # USING CLASS TO GET TO THE METHOD!
         elif pizza.size == "large" and pizza.topping3.name != 'None':
-            print("PIZZA:", pizza)
-            kT3 = round((1.1*1.1*1.1),2)
-            pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kT3)
-            pizzaItemSubtotal = pizza.quantity * pizza.priceLarge * kT3
+            pizzaSubtotal= pizzaSubtotal + (Pizza.get_priceLargeT3Subtotal(pizza)) # USING CLASS TO GET TO THE METHOD!
         elif pizza.size == "large" and pizza.topping2.name != 'None':
-            print("PIZZA:", pizza)
-            kT2 = round((1.1*1.1),2)
-            pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kT2)
-            pizzaItemSubtotal = pizza.quantity * pizza.priceLarge * kT2
+            pizzaSubtotal= pizzaSubtotal + (Pizza.get_priceLargeT2Subtotal(pizza)) # USING CLASS TO GET TO THE METHOD!
         elif pizza.size == "large" and pizza.topping1.name != 'None':
-            print("PIZZA:", pizza)
-            kT1 = round((1.1),2)
-            pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kT1)
-            pizzaItemSubtotal = pizza.quantity * pizza.priceLarge * kT1
-        elif pizza.size == "large" and pizza.specialInstructions != '':
-            print("PIZZA:", pizza)
-            kSI = round((1.45),2)
-            pizzaSubtotal= pizzaSubtotal + (pizza.priceLarge * kSI)
-            pizzaItemSubtotal = pizza.quantity * pizza.priceLarge * kSI
+            pizzaSubtotal= pizzaSubtotal + (Pizza.get_priceLargeT1Subtotal(pizza)) # USING CLASS TO GET TO THE METHOD!
+        elif pizza.size == "large" and pizza.specialInstructions != '': # bug when also toppings clicked!?
+            pizzaSubtotal= pizzaSubtotal + (Pizza.get_SIpriceLargeSubtotal(pizza)) # USING CLASS TO GET TO THE METHOD!
         else:
-            pizzaSubtotal= pizzaSubtotal + pizza.priceLarge
-            pizzaItemSubtotal = pizza.quantity * pizza.priceLarge
+            pizzaSubtotal = pizzaSubtotal + (Pizza.get_priceSmallSubtotal(pizza)) # USING CLASS TO GET TO THE METHOD!
     pizzaSubtotal = round(pizzaSubtotal, 2)
     print("pizzaSubtotal:", pizzaSubtotal)
 
@@ -347,9 +319,8 @@ def card(request, user_id):
         "pastaSubtotal": pastaSubtotal,
         "saladSubtotal": saladSubtotal,
         "toppingSubtotal": toppingSubtotal,
-        "pizzaItemSubtotal": pizzaItemSubtotal,
+        # "pizzaItemSubtotal": pizzaItemSubtotal,
         "pizzaItemSmallSubtotalT3": pizzaItemSmallSubtotalT3,
         "total": total
     }
-    print("pizzaItemSubtotal =",  pizzaItemSubtotal)
     return render(request, "orders/card.html", context)

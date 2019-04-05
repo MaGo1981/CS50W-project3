@@ -76,6 +76,12 @@ class Pizza(Food):
     def get_SIpriceLargeSubtotal(self):
         return round((round((self.priceLarge*1.45),2)* self.quantity),2 )
 
+    def get_priceSmallSubtotal(self):
+        return round((round((self.priceSmall),2) * self.quantity),2 )
+
+    def get_priceLargeSubtotal(self):
+        return round((round((self.priceLarge),2) * self.quantity),2 )
+
 
     def __str__(self):
         if self.size == 'small':

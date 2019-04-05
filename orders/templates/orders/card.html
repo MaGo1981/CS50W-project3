@@ -37,7 +37,7 @@
         {% elif pizza.size == "large" and pizza.topping3.name != 'None' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_priceLargeT3 }} eur/pc -- {{ pizzaItemSubtotal }} eur
+                  {{ pizza }} -- {{ pizza.get_priceLargeT3 }} eur/pc -- {{ pizza.get_priceLargeT3Subtotal }} eur
               </a>
             </li>
 
@@ -68,13 +68,13 @@
         {% elif pizza.size == "small" %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.priceSmall }} eur/pc -- {{ pizzaItemSubtotal }} eur
+                  {{ pizza }} -- {{ pizza.priceSmall }} eur/pc -- {{ pizza.get_priceSmallSubtotal }} eur
               </a>
             </li>
         {% elif pizza.size == "large" %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.priceLarge }} eur/pc -- {{ pizzaItemSubtotal }} eur
+                  {{ pizza }} -- {{ pizza.priceLarge }} eur/pc -- {{ pizza.get_priceLargeSubtotal }} eur
               </a>
             </li>
         {% endif %}
