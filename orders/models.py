@@ -10,6 +10,7 @@ class Food(models.Model):
     specialInstructions = models.CharField(max_length=640, default='No special instructions')
     menu = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user", default=1)
+    status = models.CharField(max_length=64, default='Pending...')
 
     def get_priceSmallSubtotal(self):
         return round((round((self.priceSmall),2) * self.quantity),2 )
@@ -17,8 +18,11 @@ class Food(models.Model):
     def get_priceLargeSubtotal(self):
         return round((round((self.priceLarge),2) * self.quantity),2 )
 
+    def set_Status(self, newstatus="Completed"):
+        self.status = newstatus
+
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name}, status: {self.status}"
 
 
 class Topping(Food):
@@ -87,9 +91,9 @@ class Pizza(Food):
 
     def __str__(self):
         if self.size == 'small':
-            return f"{self.name} Pizza - {self.size}, with toppings:{self.topping1.name}, {self.topping2.name}, {self.topping3.name},  special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}" #{self.priceSmall} eur,
+            return f"{self.name} Pizza - {self.size}, with toppings:{self.topping1.name}, {self.topping2.name}, {self.topping3.name},  special instructions: {self.specialInstructions}, quantity: {self.quantity}" #{self.priceSmall} eur,, menu item: {self.menu}
         if self.size == 'large':
-            return f"{self.name} Pizza - {self.size}, with toppings:{self.topping1.name}, {self.topping2.name}, {self.topping3.name},  special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}" #{self.priceLarge} eur,
+            return f"{self.name} Pizza - {self.size}, with toppings:{self.topping1.name}, {self.topping2.name}, {self.topping3.name},  special instructions: {self.specialInstructions}, quantity: {self.quantity}" #{self.priceLarge} eur,, menu item: {self.menu}
 
 class Sub(Food):
     size = models.CharField(max_length=64, default='small')

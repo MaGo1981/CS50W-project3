@@ -11,5 +11,6 @@ urlpatterns = [
     path("logout", views.logout_view, name="logout"),
     path("<int:food_id>", views.food, name="food"),
     path("<int:food_id>/order", views.order, name="order"),
+    path("<int:food_id>/set_Status", views.set_Status, name="status"),
     path("<int:user_id>/card", views.card, name="card")
 ]

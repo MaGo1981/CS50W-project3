@@ -323,3 +323,12 @@ def card(request, user_id):
         "total": total
     }
     return render(request, "orders/card.html", context)
+
+def set_Status(request, food_id):
+    print("food_id:", food_id)
+    food = Food.objects.get(pk=food_id)
+    print("food:", food)
+    Pizza.set_Status(food, newstatus="Pending...")
+    print("food.status:", food.status)
+    food.save()
+    return HttpResponseRedirect(reverse("orders"))
