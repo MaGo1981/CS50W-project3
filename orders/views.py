@@ -259,21 +259,20 @@ def card(request, user_id):
     for sub in subs:
         if sub.size == "small":
             print("SUB:", sub)
-            subSubtotal= subSubtotal + sub.priceSmall
+            subSubtotal= subSubtotal + sub.priceSmall * sub.quantity
         else:
-            subSubtotal= subSubtotal + sub.priceLarge
+            subSubtotal= subSubtotal + sub.priceLarge * sub.quantity
     subSubtotal = round(subSubtotal, 2)
     print("subSubtotal:", subSubtotal)
 
     platters = Platter.objects.filter(user=user).all()
-    print("platterS:", platters)
     platterSubtotal = 0
     for platter in platters:
         if platter.size == "small":
             print("platter:", platter)
-            platterSubtotal= platterSubtotal + platter.priceSmall
+            platterSubtotal= platterSubtotal + platter.priceSmall * platter.quantity
         else:
-            platterSubtotal= platterSubtotal + platter.priceLarge
+            platterSubtotal= platterSubtotal + platter.priceLarge * platter.quantity
     platterSubtotal = round(platterSubtotal, 2)
     print("platterSubtotal:", platterSubtotal)
 
@@ -282,7 +281,7 @@ def card(request, user_id):
     toppingSubtotal = 0
     for topping in toppings:
         print("topping:", topping)
-        toppingSubtotal= toppingSubtotal + topping.priceSmall
+        toppingSubtotal= toppingSubtotal + topping.priceSmall * topping.quantity
     toppingSubtotal = round(toppingSubtotal, 2)
     print("toppingSubtotal:", toppingSubtotal)
 
@@ -291,7 +290,7 @@ def card(request, user_id):
     pastaSubtotal = 0
     for pasta in pastas:
         print("pasta:", pasta)
-        pastaSubtotal= pastaSubtotal + pasta.priceSmall
+        pastaSubtotal= pastaSubtotal + pasta.priceSmall * pasta.quantity
     pastaSubtotal = round(pastaSubtotal, 2)
     print("pastaSubtotal:", pastaSubtotal)
 
@@ -300,7 +299,7 @@ def card(request, user_id):
     saladSubtotal = 0
     for salad in salads:
         print("salad:", salad)
-        saladSubtotal= saladSubtotal + salad.priceSmall
+        saladSubtotal= saladSubtotal + salad.priceSmall * salad.quantity
     saladSubtotal = round(saladSubtotal, 2)
     print("saladSubtotal:", saladSubtotal)
 

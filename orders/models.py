@@ -11,6 +11,12 @@ class Food(models.Model):
     menu = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user", default=1)
 
+    def get_priceSmallSubtotal(self):
+        return round((round((self.priceSmall),2) * self.quantity),2 )
+
+    def get_priceLargeSubtotal(self):
+        return round((round((self.priceLarge),2) * self.quantity),2 )
+
     def __str__(self):
         return f"{self.name}"
 
@@ -19,7 +25,7 @@ class Topping(Food):
     side = models.CharField(max_length=64, default='whole')
 
     def __str__(self):
-        return f"{self.name} - {self.side}, {self.priceSmall} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+        return f"{self.name} - {self.side}, special instructions: {self.specialInstructions}, quantity: {self.quantity}"
 
 
 class Pizza(Food):
@@ -76,11 +82,7 @@ class Pizza(Food):
     def get_SIpriceLargeSubtotal(self):
         return round((round((self.priceLarge*1.45),2)* self.quantity),2 )
 
-    def get_priceSmallSubtotal(self):
-        return round((round((self.priceSmall),2) * self.quantity),2 )
 
-    def get_priceLargeSubtotal(self):
-        return round((round((self.priceLarge),2) * self.quantity),2 )
 
 
     def __str__(self):
@@ -93,29 +95,24 @@ class Sub(Food):
     size = models.CharField(max_length=64, default='small')
 
     def __str__(self):
-        if self.size == 'small':
-            return f"{self.name} - {self.size}, {self.priceSmall} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
-        if self.size == 'large':
-            return f"{self.name} - {self.size}, {self.priceLarge} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+        return f"{self.name} - {self.size}, special instructions: {self.specialInstructions}, quantity: {self.quantity}"
+
 
 class Pasta(Food):
     sub1 = models.ForeignKey(Sub, on_delete=models.CASCADE, related_name="sub1")
 
 
     def __str__(self):
-        return f"{self.name} with {self.sub1.name}, {self.priceSmall} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+        return f"{self.name} with {self.sub1.name}, special instructions: {self.specialInstructions}, quantity: {self.quantity}"
 
 class Salad(Food):
 
 
     def __str__(self):
-        return f"{self.name}, {self.priceSmall} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+        return f"{self.name}, special instructions: {self.specialInstructions}, quantity: {self.quantity}"
 
 class Platter(Food):
     size = models.CharField(max_length=64, default='small')
 
     def __str__(self):
-        if self.size == 'small':
-            return f"{self.name} - {self.size}, {self.priceSmall} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
-        if self.size == 'large':
-            return f"{self.name} - {self.size}, {self.priceLarge} eur, special instructions: {self.specialInstructions}, quantity: {self.quantity}, menu item: {self.menu}"
+        return f"{self.name} - {self.size}, special instructions: {self.specialInstructions}, quantity: {self.quantity}"

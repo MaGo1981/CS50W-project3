@@ -11,7 +11,7 @@
         <a href="{% url 'orders' %}">Orders</a>
         <a href="{% url 'logout' %}">Logout</a>
     </span>
-    <h1>My Items:</h1>
+    <h1>My Shopping Card:</h1>
     <h2>Pizza</h2>
     <ul>
       {% for pizza in pizzas %}
@@ -86,7 +86,7 @@
       {% for topping in toppings %}
           <li>
             <a href="{% url 'food' topping.id %}">
-              {{topping}}
+              {{topping}} -- {{ topping.priceSmall }} eur/pc -- {{ topping.get_priceSmallSubtotal }} eur
             </a>
           </li>
       {% endfor %}
@@ -95,11 +95,19 @@
     <h2>Subs</h2>
     <ul>
       {% for sub in subs %}
+        {% if sub.size == "small" %}
           <li>
             <a href="{% url 'food' sub.id %}">
-              {{ sub }}
+              {{ sub }} -- {{ sub.priceSmall }} eur/pc -- {{ sub.get_priceSmallSubtotal }} eur
             </a>
           </li>
+        {% elif sub.size == "large" %}
+          <li>
+            <a href="{% url 'food' sub.id %}">
+              {{ sub }} -- {{ sub.priceLarge }} eur/pc -- {{ sub.get_priceLargeSubtotal }} eur
+            </a>
+            </li>
+        {% endif %}
       {% endfor %}
     </ul>
     <h3>Subtotal: {{ subSubtotal }}</h3>
@@ -108,7 +116,7 @@
       {% for pasta in pastas %}
           <li>
             <a href="{% url 'food' pasta.id %}">
-              {{ pasta }}
+              {{ pasta }} -- {{ pasta.priceSmall }} eur/pc -- {{ pasta.get_priceSmallSubtotal }} eur
             </a>
           </li>
       {% endfor %}
@@ -119,7 +127,7 @@
       {% for salad in salads %}
           <li>
             <a href="{% url 'food' salad.id %}">
-              {{ salad }}
+              {{ salad }} -- {{ salad.priceSmall }} eur/pc -- {{ salad.get_priceSmallSubtotal }} eur
             </a>
           </li>
       {% endfor %}
@@ -128,11 +136,19 @@
     <h2>Dinner Platters</h2>
     <ul>
       {% for platter in platters %}
-          <li>
-            <a href="{% url 'food' platter.id %}">
-              {{ platter }}
-            </a>
-          </li>
+        {% if platter.size == "small" %}
+            <li>
+              <a href="{% url 'food' platter.id %}">
+                {{ platter }} -- {{ platter.priceSmall }} eur/pc -- {{ platter.get_priceSmallSubtotal }} eur
+              </a>
+            </li>
+        {% elif platter.size == "large" %}
+            <li>
+              <a href="{% url 'food' platter.id %}">
+                {{ platter }} -- {{ platter.priceLarge }} eur/pc -- {{ platter.get_priceLargeSubtotal }} eur
+              </a>
+            </li>
+        {% endif %}
       {% endfor %}
     </ul>
     <h3>Subtotal: {{ platterSubtotal }}</h3>
