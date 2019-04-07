@@ -332,3 +332,12 @@ def set_Status(request, food_id):
     print("food.status:", food.status)
     food.save()
     return HttpResponseRedirect(reverse("orders"))
+
+
+
+def confirmOrder(request, user_id):
+    print("user_id:", user_id)
+    user = User.first_name
+    # print("user:", user)
+    # print("user.status:", user.status)
+    return render(request, "orders/confirmation.html", {"message": "Such a thing has never been made. If you survive, please come again!!"})

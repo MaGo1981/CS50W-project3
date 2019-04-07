@@ -1,0 +1,16 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Confirmation
+{% endblock %}
+
+{% block body %}
+    <h1>Order received, thank you {{ user.first_name }}!</h1>
+
+    {{ message }}
+
+    <hr>
+
+    <a href="{% url 'index' %}">Return to Home page.</a>
+
+{% endblock %}

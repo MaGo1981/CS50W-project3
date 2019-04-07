@@ -80,7 +80,7 @@
         {% endif %}
       {% endfor %}
     </ul>
-    <h3>Subtotal: {{ pizzaSubtotal }}</h3>
+    <h3>Subtotal: {{ pizzaSubtotal }} eur </h3>
     <h2>Toppings</h2>
     <ul>
       {% for topping in toppings %}
@@ -91,7 +91,7 @@
           </li>
       {% endfor %}
     </ul>
-    <h3>Subtotal: {{ toppingSubtotal }}</h3>
+    <h3>Subtotal: {{ toppingSubtotal }} eur</h3>
     <h2>Subs</h2>
     <ul>
       {% for sub in subs %}
@@ -110,7 +110,7 @@
         {% endif %}
       {% endfor %}
     </ul>
-    <h3>Subtotal: {{ subSubtotal }}</h3>
+    <h3>Subtotal: {{ subSubtotal }} eur </h3>
     <h2>Pasta</h2>
     <ul>
       {% for pasta in pastas %}
@@ -121,7 +121,7 @@
           </li>
       {% endfor %}
     </ul>
-    <h3>Subtotal: {{ pastaSubtotal }}</h3>
+    <h3>Subtotal: {{ pastaSubtotal }} eur </h3>
     <h2>Salads</h2>
     <ul>
       {% for salad in salads %}
@@ -132,7 +132,7 @@
           </li>
       {% endfor %}
     </ul>
-    <h3>Subtotal: {{ saladSubtotal }}</h3>
+    <h3>Subtotal: {{ saladSubtotal }} eur </h3>
     <h2>Dinner Platters</h2>
     <ul>
       {% for platter in platters %}
@@ -151,8 +151,17 @@
         {% endif %}
       {% endfor %}
     </ul>
-    <h3>Subtotal: {{ platterSubtotal }}</h3>
-    <h2>Total: {{ total }}</h2>
+    <h3>Subtotal: {{ platterSubtotal }} eur </h3>
+    <h2>Total: {{ total }} eur </h2>
 
+    <h2> Total amount of your order is {{ total }} eur. Would you like to place an order? </h2>
+
+
+    {% if total != 0 %}
+    <form action="{% url 'confirm' user.id %}" method="post">
+        {% csrf_token %}
+         <input type="submit" value="Confirm" />
+    </form>
+    {% endif %}
 
 {% endblock %}
