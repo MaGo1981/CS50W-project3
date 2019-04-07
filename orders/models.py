@@ -22,7 +22,7 @@ class Food(models.Model):
         self.status = newstatus
 
     def __str__(self):
-        return f"{self.name}, status: {self.status}"
+        return f"{self.name}"
 
 
 class Topping(Food):

@@ -328,7 +328,7 @@ def set_Status(request, food_id):
     print("food_id:", food_id)
     food = Food.objects.get(pk=food_id)
     print("food:", food)
-    Pizza.set_Status(food, newstatus="Pending...")
+    Pizza.set_Status(food, newstatus="Completed")
     print("food.status:", food.status)
     food.save()
     return HttpResponseRedirect(reverse("orders"))

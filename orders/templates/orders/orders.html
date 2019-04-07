@@ -21,66 +21,122 @@
               <a href="{% url 'food' pizza.id %}">
                   {{ pizza }} -- {{ pizza.get_priceSmallT3 }} eur/pc -- {{ pizza.get_priceSmallT3Subtotal }} eur -- user: {{ pizza.user }} -- order status: {{ pizza.status }}
               </a>
+              {% if pizza.status == "Pending..." %}
               <form action="{% url 'status' pizza.id %}" method="post">
                   {% csrf_token %}
                    <input type="submit" value="Mark as Completed" />
               </form>
+              {% endif %}
             </li>
 
         {% elif pizza.size == "small" and pizza.topping2.name != 'None' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_priceSmallT2 }} eur/pc -- {{ pizza.get_priceSmallT2Subtotal }} eur -- user: {{ pizza.user }}
+                  {{ pizza }} -- {{ pizza.get_priceSmallT2 }} eur/pc -- {{ pizza.get_priceSmallT2Subtotal }} eur -- user: {{ pizza.user }} -- order status: {{ pizza.status }}
               </a>
+              {% if pizza.status == "Pending..." %}
+              <form action="{% url 'status' pizza.id %}" method="post">
+                  {% csrf_token %}
+                   <input type="submit" value="Mark as Completed" />
+              </form>
+              {% endif %}
             </li>
         {% elif pizza.size == "small" and pizza.topping1.name != 'None' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_priceSmallT1 }} eur/pc -- {{ pizza.get_priceSmallT1Subtotal }} eur -- user: {{ pizza.user }}
+                  {{ pizza }} -- {{ pizza.get_priceSmallT1 }} eur/pc -- {{ pizza.get_priceSmallT1Subtotal }} eur -- user: {{ pizza.user }} -- order status: {{ pizza.status }}
               </a>
+              {% if pizza.status == "Pending..." %}
+              <form action="{% url 'status' pizza.id %}" method="post">
+                  {% csrf_token %}
+                   <input type="submit" value="Mark as Completed" />
+              </form>
+              {% endif %}
             </li>
         {% elif pizza.size == "large" and pizza.topping3.name != 'None' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_priceLargeT3 }} eur/pc -- {{ pizza.get_priceLargeT3Subtotal }} eur -- user: {{ pizza.user }}
+                  {{ pizza }} -- {{ pizza.get_priceLargeT3 }} eur/pc -- {{ pizza.get_priceLargeT3Subtotal }} eur -- user: {{ pizza.user }} -- order status: {{ pizza.status }}
               </a>
+              {% if pizza.status == "Pending..." %}
+              <form action="{% url 'status' pizza.id %}" method="post">
+                  {% csrf_token %}
+                   <input type="submit" value="Mark as Completed" />
+              </form>
+              {% endif %}
             </li>
 
         {% elif pizza.size == "large" and pizza.topping2.name != 'None' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_priceLargeT2 }} eur/pc -- {{ pizza.get_priceLargeT2Subtotal }} eur -- user: {{ pizza.user }}
+                  {{ pizza }} -- {{ pizza.get_priceLargeT2 }} eur/pc -- {{ pizza.get_priceLargeT2Subtotal }} eur -- user: {{ pizza.user }} -- order status: {{ pizza.status }}
               </a>
+              {% if pizza.status == "Pending..." %}
+              <form action="{% url 'status' pizza.id %}" method="post">
+                  {% csrf_token %}
+                   <input type="submit" value="Mark as Completed" />
+              </form>
+              {% endif %}
             </li>
         {% elif pizza.size == "large" and pizza.topping1.name != 'None' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_priceLargeT1 }} eur/pc -- {{ pizza.get_priceLargeT1Subtotal }} eur -- user: {{ pizza.user }}
+                  {{ pizza }} -- {{ pizza.get_priceLargeT1 }} eur/pc -- {{ pizza.get_priceLargeT1Subtotal }} eur -- user: {{ pizza.user }} -- order status: {{ pizza.status }}
               </a>
+              {% if pizza.status == "Pending..." %}
+              <form action="{% url 'status' pizza.id %}" method="post">
+                  {% csrf_token %}
+                   <input type="submit" value="Mark as Completed" />
+              </form>
+              {% endif %}
             </li>
         {% elif pizza.size == "large" and pizza.specialInstructions != '' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_SIpriceLarge }} eur/pc -- {{ pizza.get_SIpriceLargeSubtotal }} eur -- user: {{ pizza.user }}
+                  {{ pizza }} -- {{ pizza.get_SIpriceLarge }} eur/pc -- {{ pizza.get_SIpriceLargeSubtotal }} eur -- user: {{ pizza.user }} -- order status: {{ pizza.status }}
               </a>
+              {% if pizza.status == "Pending..." %}
+              <form action="{% url 'status' pizza.id %}" method="post">
+                  {% csrf_token %}
+                   <input type="submit" value="Mark as Completed" />
+              </form>
+              {% endif %}
             </li>
         {% elif pizza.size == "small" and pizza.specialInstructions != '' %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.get_SIpriceSmall }} eur/pc -- {{ pizza.get_SIpriceSmallSubtotal }} eur -- user: {{ pizza.user }}
+                  {{ pizza }} -- {{ pizza.get_SIpriceSmall }} eur/pc -- {{ pizza.get_SIpriceSmallSubtotal }} eur -- user: {{ pizza.user }} -- order status: {{ pizza.status }}
               </a>
+              {% if pizza.status == "Pending..." %}
+              <form action="{% url 'status' pizza.id %}" method="post">
+                  {% csrf_token %}
+                   <input type="submit" value="Mark as Completed" />
+              </form>
+              {% endif %}
             </li>
         {% elif pizza.size == "small" %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.priceSmall }} eur/pc -- {{ pizza.get_priceSmallSubtotal }} eur -- user: {{ pizza.user }}
+                  {{ pizza }} -- {{ pizza.priceSmall }} eur/pc -- {{ pizza.get_priceSmallSubtotal }} eur -- user: {{ pizza.user }} -- order status: {{ pizza.status }}
               </a>
+              {% if pizza.status == "Pending..." %}
+              <form action="{% url 'status' pizza.id %}" method="post">
+                  {% csrf_token %}
+                   <input type="submit" value="Mark as Completed" />
+              </form>
+              {% endif %}
             </li>
         {% elif pizza.size == "large" %}
             <li>
               <a href="{% url 'food' pizza.id %}">
-                  {{ pizza }} -- {{ pizza.priceLarge }} eur/pc -- {{ pizza.get_priceLargeSubtotal }} eur -- user: {{ pizza.user }}
+                  {{ pizza }} -- {{ pizza.priceLarge }} eur/pc -- {{ pizza.get_priceLargeSubtotal }} eur -- user: {{ pizza.user }} -- order status: {{ pizza.status }}
               </a>
+              {% if pizza.status == "Pending..." %}
+              <form action="{% url 'status' pizza.id %}" method="post">
+                  {% csrf_token %}
+                   <input type="submit" value="Mark as Completed" />
+              </form>
+              {% endif %}
             </li>
         {% endif %}
       {% endfor %}
@@ -91,8 +147,14 @@
       {% for topping in toppings %}
           <li>
             <a href="{% url 'food' topping.id %}">
-              {{topping}} -- {{ topping.priceSmall }} eur/pc -- {{ topping.get_priceSmallSubtotal }} eur -- user: {{ topping.user }}
+              {{topping}} -- {{ topping.priceSmall }} eur/pc -- {{ topping.get_priceSmallSubtotal }} eur -- user: {{ topping.user }} -- order status: {{ topping.status }}
             </a>
+            {% if topping.status == "Pending..." %}
+            <form action="{% url 'status' topping.id %}" method="post">
+                {% csrf_token %}
+                 <input type="submit" value="Mark as Completed" />
+            </form>
+            {% endif %}
           </li>
       {% endfor %}
     </ul>
@@ -103,14 +165,26 @@
         {% if sub.size == "small" %}
           <li>
             <a href="{% url 'food' sub.id %}">
-              {{ sub }} -- {{ sub.priceSmall }} eur/pc -- {{ sub.get_priceSmallSubtotal }} eur -- user: {{ sub.user }}
+              {{ sub }} -- {{ sub.priceSmall }} eur/pc -- {{ sub.get_priceSmallSubtotal }} eur -- user: {{ sub.user }} -- order status: {{ sub.status }}
             </a>
+            {% if sub.status == "Pending..." %}
+            <form action="{% url 'status' sub.id %}" method="post">
+                {% csrf_token %}
+                 <input type="submit" value="Mark as Completed" />
+            </form>
+            {% endif %}
           </li>
         {% elif sub.size == "large" %}
           <li>
             <a href="{% url 'food' sub.id %}">
-              {{ sub }} -- {{ sub.priceLarge }} eur/pc -- {{ sub.get_priceLargeSubtotal }} eur -- user: {{ sub.user }}
+              {{ sub }} -- {{ sub.priceLarge }} eur/pc -- {{ sub.get_priceLargeSubtotal }} eur -- user: {{ sub.user }} -- order status: {{ sub.status }}
             </a>
+            {% if sub.status == "Pending..." %}
+            <form action="{% url 'status' sub.id %}" method="post">
+                {% csrf_token %}
+                 <input type="submit" value="Mark as Completed" />
+            </form>
+            {% endif %}
             </li>
         {% endif %}
       {% endfor %}
@@ -121,8 +195,14 @@
       {% for pasta in pastas %}
           <li>
             <a href="{% url 'food' pasta.id %}">
-              {{ pasta }} -- {{ pasta.priceSmall }} eur/pc -- {{ pasta.get_priceSmallSubtotal }} eur -- user: {{ pasta.user }}
+              {{ pasta }} -- {{ pasta.priceSmall }} eur/pc -- {{ pasta.get_priceSmallSubtotal }} eur -- user: {{ pasta.user }} -- order status: {{ pasta.status }}
             </a>
+            {% if pasta.status == "Pending..." %}
+            <form action="{% url 'status' pasta.id %}" method="post">
+                {% csrf_token %}
+                 <input type="submit" value="Mark as Completed" />
+            </form>
+            {% endif %}
           </li>
       {% endfor %}
     </ul>
@@ -132,8 +212,14 @@
       {% for salad in salads %}
           <li>
             <a href="{% url 'food' salad.id %}">
-              {{ salad }} -- {{ salad.priceSmall }} eur/pc -- {{ salad.get_priceSmallSubtotal }} eur -- user: {{ salad.user }}
+              {{ salad }} -- {{ salad.priceSmall }} eur/pc -- {{ salad.get_priceSmallSubtotal }} eur -- user: {{ salad.user }} -- order status: {{ salad.status }}
             </a>
+            {% if salad.status == "Pending..." %}
+            <form action="{% url 'status' salad.id %}" method="post">
+                {% csrf_token %}
+                 <input type="submit" value="Mark as Completed" />
+            </form>
+            {% endif %}
           </li>
       {% endfor %}
     </ul>
@@ -144,14 +230,26 @@
         {% if platter.size == "small" %}
             <li>
               <a href="{% url 'food' platter.id %}">
-                {{ platter }} -- {{ platter.priceSmall }} eur/pc -- {{ platter.get_priceSmallSubtotal }} eur -- user: {{ platter.user }}
+                {{ platter }} -- {{ platter.priceSmall }} eur/pc -- {{ platter.get_priceSmallSubtotal }} eur -- user: {{ platter.user }} -- order status: {{ platter.status }}
               </a>
+              {% if platter.status == "Pending..." %}
+              <form action="{% url 'status' platter.id %}" method="post">
+                  {% csrf_token %}
+                   <input type="submit" value="Mark as Completed" />
+              </form>
+              {% endif %}
             </li>
         {% elif platter.size == "large" %}
             <li>
               <a href="{% url 'food' platter.id %}">
-                {{ platter }} -- {{ platter.priceLarge }} eur/pc -- {{ platter.get_priceLargeSubtotal }} eur -- user: {{ platter.user }}
+                {{ platter }} -- {{ platter.priceLarge }} eur/pc -- {{ platter.get_priceLargeSubtotal }} eur -- user: {{ platter.user }} -- order status: {{ platter.status }}
               </a>
+              {% if platter.status == "Pending..." %}
+              <form action="{% url 'status' platter.id %}" method="post">
+                  {% csrf_token %}
+                   <input type="submit" value="Mark as Completed" />
+              </form>
+              {% endif %}
             </li>
         {% endif %}
       {% endfor %}
