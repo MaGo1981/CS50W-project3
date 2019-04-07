@@ -38,6 +38,23 @@ class Pizza(Food):
     topping2 = models.ForeignKey(Topping, on_delete=models.CASCADE, related_name="topping2")
     topping3 = models.ForeignKey(Topping, on_delete=models.CASCADE, related_name="topping3")
 
+# dodaj is_validPizza metodu koja provjerava da li se toppings preklapaju! Testiraj!
+    # def is_valid_flight(self):
+    #     return (self.origin != self.destination) and (self.duration >= 0)
+
+    def is_valid_pizza(self):
+        if (self.topping1.name != "None") and (self.topping2.name != "None") and (self.topping3.name != "None"):
+            return (self.topping1.name != self.topping2.name) and (self.topping1.name != self.topping3.name) and (self.topping2.name != self.topping3.name)
+        elif (self.topping1.name == "None") and (self.topping2.name == "None") and (self.topping3.name == "None"):
+            return True
+        elif (self.topping1.name == "None"):
+            return self.topping2.name != self.topping3.name
+        elif (self.topping2.name == "None"):
+            return self.topping1.name == self.topping3.name
+        else:
+            return self.topping2.name != self.topping3.name
+
+
     def get_priceSmallT1(self):
         return round((self.priceSmall*1.1),2)
 

@@ -15,9 +15,10 @@
     <h1>{{ food }}
       {% if food.pizza %}
         Pizza
+      </h1>
+      <ul>
+        <li>Valid: {{ food.pizza.is_valid_pizza }}</li>
       {% endif %}
-    </h1>
-    <ul>
 
         <li>Food ID: {{ food.id }}</li>
         <li>Name: {{ food.name }}</li>
