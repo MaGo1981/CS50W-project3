@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from .models import Topping, Pizza
+from .models import Food, Topping, Pizza
 
 # Create your tests here.
 class ModelsTestCase(TestCase):
@@ -20,14 +20,21 @@ class ModelsTestCase(TestCase):
 
         # Create pizzas.
         Pizza.objects.create(topping1=t1, topping2=t2, topping3=t3)
+        Pizza.objects.create(topping1=t1, topping2=t5, topping3=t9)
 
 
+    def test1_validPizza(self):
+        a1 = Topping.objects.get(name="Oregano",side="whole")
+        a2 = Topping.objects.get(name="Onions",side="left")
+        a3 = Topping.objects.get(name="Olives",side="right")
+        p = Pizza.objects.get(topping1=a1, topping2=a2, topping3=a3))
+        self.assertTrue(p.is_validPizza())
 
-    def test_validPizza(self):
-        t1 = Topping.objects.create(name="Oregano", side="whole")
-        t2 = Topping.objects.create(name="Oregano", side="left")
-        t3 = Topping.objects.create(name="Oregano", side="right")
-        p = Pizza.objects.create(topping1=t1, topping2=t2, topping3=t3))
+    def test2_validPizza(self):
+        a1 = Topping.objects.get(name="Oregano",side="whole")
+        a2 = Topping.objects.get(name="Oregano",side="left")
+        a3 = Topping.objects.get(name="Oregano",side="right")
+        p = Pizza.objects.get(topping1=a1, topping2=a2, topping3=a3))
         self.assertTrue(p.is_validPizza())
 
     # def test_departures_count(self):
