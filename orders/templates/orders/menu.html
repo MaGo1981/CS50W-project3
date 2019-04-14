@@ -5,58 +5,70 @@
 {% endblock %}
 
 {% block body %}
-    <span>
-      <a href="{% url 'index' %}">Index</a>
-      <a href="{% url 'orders' %}">Orders</a>
-      <a href="{% url 'card' user.id %}">Shopping Card</a>
-      <a href="{% url 'logout' %}">Logout</a>
-    </span>
-<div class="">
-        <h1>Our Menu</h1>
+<span class="col-12">
+  <a href="{% url 'index' %}" class="col-3">Index</a>
+  <a href="{% url 'orders' %}" class="col-3">Orders</a>
+  <a href="{% url 'card' user.id %} " class="col-3">Shopping Card</a>
+  <a href="{% url 'logout' %}" class="col-3">Logout</a>
+</span>
+<div class="col-6">
+        <h1 class="col-12" align="center">Our Menu</h1>
         {% for pizza in pizzas %}
-        <h2>
-          <a href="{% url 'food' pizza.id %}">
+        <h2 class="col-12" align="center" >
+          <a href="{% url 'food' pizza.id %}" class="col-12">
             {{ pizza.name }} Pizza
           </a>
         </h2>
-        <tr>
-          <th>Food</th>
-          <th>Small</th>
-          <th>Large</th>
-        </tr>
+        <table align="center">
+          <tr class="col-12">
+            <th class="col-4">Food</th>
+            <th class="col-4">Small</th>
+            <th class="col-4">Large</th>
+          </tr>
+        </table>
         <br/>
-        <tr>
-          <td>Cheese</td>
-          <td>{{ pizza.priceSmall }}</td>
-          <td>{{ pizza.priceLarge }}</td>
-        </tr>
+        <table align="center">
+          <tr class="col-12">
+            <td class="col-4">Cheese</td>
+            <td class="col-4">{{ pizza.priceSmall }}</td>
+            <td class="col-4">{{ pizza.priceLarge }}</td>
+          </tr>
+        </table>
         <br/>
-        <tr>
-          <td>1 topping</td>
-          <td>{{ pizza.get_priceSmallT1 }}</td>
-          <td>{{ pizza.get_priceLargeT1 }}</td>
-        </tr>
+        <table align="center">
+          <tr class="col-12">
+            <td class="col-4">1 topping</td>
+            <td class="col-4">{{ pizza.get_priceSmallT1 }}</td>
+            <td class="col-4">{{ pizza.get_priceLargeT1 }}</td>
+          </tr>
+        </table>
         <br/>
-        <tr>
-          <td>2 toppings</td>
-          <td>{{ pizza.get_priceSmallT2 }}</td>
-          <td>{{ pizza.get_priceLargeT2 }}</td>
-        </tr>
+        <table align="center">
+          <tr class="col-12">
+            <td class="col-4">2 toppings</td>
+            <td class="col-4">{{ pizza.get_priceSmallT2 }}</td>
+            <td class="col-4">{{ pizza.get_priceLargeT2 }}</td>
+          </tr>
+        </table>
         <br/>
-        <tr>
-          <td>3 toppings</td>
-          <td>{{ pizza.get_priceSmallT3 }}</td>
-          <td>{{ pizza.get_priceLargeT3 }}</td>
-        </tr>
+        <table align="center">
+          <tr class="col-12">
+            <td class="col-4">3 toppings</td>
+            <td class="col-4">{{ pizza.get_priceSmallT3 }}</td>
+            <td class="col-4">{{ pizza.get_priceLargeT3 }}</td>
+          </tr>
+        </table>
         <br/>
-        <tr>
-          <td>Special</td>
-          <td>{{ pizza.get_SIpriceSmall }}</td>
-          <td>{{ pizza.get_SIpriceLarge }}</td>
-        </tr>
+        <table align="center">
+          <tr class="col-12">
+            <td>Special</td>
+            <td class="col-4">{{ pizza.get_SIpriceSmall }}</td>
+            <td class="col-4">{{ pizza.get_SIpriceLarge }}</td>
+          </tr>
+        </table>
         {% endfor %}
 
-</div>
+
 
     <h2>Toppings</h2>
     {% for topping in toppings %}
@@ -142,5 +154,7 @@
           </tr>
       </a>
       <br>
+
       {% endfor %}
+</div>
 {% endblock %}
