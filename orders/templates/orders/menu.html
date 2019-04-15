@@ -11,6 +11,8 @@
   <a href="{% url 'card' user.id %} " class="col-3">Shopping Card</a>
   <a href="{% url 'logout' %}" class="col-3">Logout</a>
 </span>
+<br/>
+<br/>
 <div class="col-6">
         <h1 class="col-12" align="center">Our Menu</h1>
         {% for pizza in pizzas %}
@@ -64,7 +66,9 @@
             <td class="col-4">{{ pizza.get_SIpriceSmall }}</td>
             <td class="col-4">{{ pizza.get_SIpriceLarge }}</td>
           </tr>
+
         </table>
+        <br/>
         {% endfor %}
 
 
@@ -83,7 +87,7 @@
       {% endif %}
       {% endfor %}
     </table>
-
+    <br/>
     <h2 class="col-12" align="center">Subs</h2>
     <table align="center">
       <tr class="col-12" align="center">
@@ -100,7 +104,7 @@
         </tr>
       {% endfor %}
     </table>
-
+    <br/>
     <h2 class="col-12" align="center">Pasta</h2>
     <table align="center">
       <tr class="col-12" align="center">
@@ -116,7 +120,7 @@
       </tr>
       {% endfor %}
       </table>
-
+      <br/>
     <h2 class="col-12" align="center">Salads</h2>
     <table align="center">
       <tr class="col-12" align="center">
@@ -130,7 +134,7 @@
             </tr>
       {% endfor %}
       </table>
-
+      <br/>
     <h2 class="col-12" align="center">Dinner Platters</h2>
     <table align="center">
       <tr class="col-12" align="center">

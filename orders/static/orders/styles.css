@@ -5,7 +5,7 @@ body, tr {
     padding: 20px;
 
 }
-td, tr, th, span, div {
+td, tr, th, div {
     border: none;
     border-bottom: ridge;
 }
