@@ -3,10 +3,19 @@ body, tr {
     border: solid;
     margin: 20px;
     padding: 20px;
-    font-weight: 1000
+
 }
-td, tr, span, div, h1, a {
-    border: solid;
+td, tr, th, span, div {
+    border: none;
+    border-bottom: ridge;
+}
+ div {
+    border: ridge;
+    padding-bottom: 15px;
+}
+
+
+
 }
 h1.center {
   align="center";
