@@ -220,7 +220,7 @@ def order(request, food_id):
                             return render(request, "orders/error.html", {"message": "Not a pizza or a topping or a sub or a pasta or a salad or a platter."})
         except KeyError:
             return render(request, "orders/error.html", {"message": "No selection, no id."})
-    return HttpResponseRedirect(reverse("card", args=(user_id,)))
+    return HttpResponseRedirect(reverse("menu"))
 
 
 def card(request, user_id):

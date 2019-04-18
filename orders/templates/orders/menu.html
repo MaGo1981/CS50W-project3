@@ -17,9 +17,12 @@
         <h1 class="col-12" align="center">Our Menu</h1>
         {% for pizza in pizzas %}
         <h2 class="col-12" align="center" >
-          <a href="{% url 'food' pizza.id %}" class="col-12">
+          <span>
+            <a href="{% url 'food' pizza.id %}" class="col-12">
             {{ pizza.name }} Pizza
-          </a>
+            </a>
+            <button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' pizza.id %}">Card</button>
+          </span>
         </h2>
         <table align="center">
           <tr class="col-12">
@@ -79,9 +82,12 @@
       {% if topping.side == "whole" %}
           <tr class="col-12" align="center">
             <td class="col-4" align="center">
-              <a class="col-12" align="center" href="{% url 'food' topping.id %}">
-                {{ topping.name }}
-              </a>
+              <span>
+                <a class="col-12" align="center" href="{% url 'food' topping.id %}">
+                  {{ topping.name }}
+                </a>
+                <button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' topping.id %}">Card</button>
+              </span>
             </td>
           </tr>
       {% endif %}
@@ -101,6 +107,7 @@
           <td class="col-4"><a  class="col-12" align="center" href="{% url 'food' sub.id %}">{{ sub.name }}</a></td>
           <td class="col-4" align="center">{{ sub.priceSmall }}</td>
           <td class="col-4" align="center">{{ sub.priceLarge }}</td>
+          <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' sub.id %}">Card</button></td>
         </tr>
       {% endfor %}
     </table>
@@ -116,6 +123,7 @@
       <tr class="col-12" align="center">
         <td class="col-4" align="center"><a  align="center"href="{% url 'food' pasta.id %}">{{ pasta.name }} with {{ pasta.sub1.name }}</a></td>
         <td class="col-4" align="center">{{ pasta.priceSmall }}</td>
+        <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' pasta.id %}">Card</button></td>
         <!-- <td>{{ pasta.priceLarge }}</td> -->
       </tr>
       {% endfor %}
@@ -131,6 +139,7 @@
             <tr class="col-12" align="center">
               <td class="col-4" align="center"><a href="{% url 'food' salad.id %}">{{ salad.name }}</a></td>
               <td class="col-4" align="center">{{ salad.priceSmall }}</td>
+              <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' salad.id %}">Card</button></td>
             </tr>
       {% endfor %}
       </table>
@@ -147,7 +156,23 @@
         <td class="col-4"><a  class="col-12" align="center" href="{% url 'food' platter.id %}">{{ platter.name }}</a></td>
         <td class="col-4" align="center">{{ platter.priceSmall }}</td>
         <td class="col-4" align="center">{{ platter.priceLarge }}</td>
+        <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' platter.id %}">Card</button></td>
       </tr>
       {% endfor %}
+</div>
+
+<!-- ------------------------MODAL------------------------------------- -->
+
+<div id="myModal" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"></h3>
+        <button data-dismiss="modal"></button>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
 </div>
 {% endblock %}

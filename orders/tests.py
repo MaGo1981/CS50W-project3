@@ -29,14 +29,14 @@ class PizzaTestCase(TestCase):
         a1 = Topping.objects.get(name="Oregano",side="whole")
         a2 = Topping.objects.get(name="Onions",side="left")
         a3 = Topping.objects.get(name="Olives",side="right")
-        p = Pizza.objects.get(topping1=a1, topping2=a2, topping3=a3))
+        p = Pizza.objects.get(topping1=a1, topping2=a2, topping3=a3)
         self.assertTrue(p.is_validPizza())
 
     def test2_validPizza(self):
         a1 = Topping.objects.get(name="Oregano",side="whole")
         a2 = Topping.objects.get(name="Oregano",side="left")
         a3 = Topping.objects.get(name="Oregano",side="right")
-        p = Pizza.objects.get(topping1=a1, topping2=a2, topping3=a3))
+        p = Pizza.objects.get(topping1=a1, topping2=a2, topping3=a3)
         self.assertTrue(p.is_validPizza())
 
     # TESTING THE TEMPLATE SIDE - RESPONSES CODES, CONTEXT, ETC.
@@ -51,19 +51,19 @@ class PizzaTestCase(TestCase):
         a1 = Topping.objects.get(name="Oregano",side="whole")
         a2 = Topping.objects.get(name="Oregano",side="left")
         a3 = Topping.objects.get(name="Oregano",side="right")
-        p = Pizza.objects.get(topping1=a1, topping2=a2, topping3=a3))
+        p = Pizza.objects.get(topping1=a1, topping2=a2, topping3=a3)
 
         c = Client()
         response = c.get(f"/{p.id}")
         self.assertEqual(response.status_code, 200)
 
 
-    def test_invalid_food_page(self):
-        max_id = Food.objects.all().aggregate(Max("id"))["id__max"] # We want to get the maximum value of any ID of any flight.
-                                                                    # We want to test what happends if we go to an ID number that does not exist.
-        c = Client()
-        response = c.get(f"/{max_id + 1}")
-        self.assertEqual(response.status_code, 404)
+#     def test_invalid_food_page(self):
+#         max_id = Food.objects.all().aggregate(Max("id"))["id__max"] # We want to get the maximum value of any ID of any flight.
+#                                                                     # We want to test what happends if we go to an ID number that does not exist.
+#         c = Client()
+#         response = c.get(f"/{max_id + 1}")
+#         self.assertEqual(response.status_code, 404)
 
 
     # def test_departures_count(self):
