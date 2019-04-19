@@ -1,22 +1,33 @@
-body, tr {
+/* body, tr {
     font-family: sans-serif;
-    border: solid;
+    border: none;
     margin: 20px;
     padding: 20px;
 
-}
+} */
 td, tr, th, div {
-    border: none;
-    border-bottom: ridge;
+    border: 1px ridge;
+    border-bottom: 1px ridge;
 }
- div {
+ /* div {
     border: ridge;
     padding-bottom: 15px;
-}
+} */
 
 
-
-}
 h1.center {
   align="center";
 }
+
+
+h1,h2 {
+  text-align: center;
+  /* font-family: Verdana,Arial,Helvetica,sans-serif;
+  margin: 0; */
+}
+.green { background-color: #fcc607; }
+.red {background-color: #ee1c23;}
+
+/* body {
+  background-color: #bf8d3c;
+} */
