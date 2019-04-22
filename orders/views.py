@@ -17,8 +17,11 @@ def index(request):
     return render(request, "orders/index.html", context)
 
 def menu(request):
+    if not request.user.is_authenticated:
+        return render(request, "orders/register.html", {"message": None})
 
     context = {
+        "user": request.user, 
         "pizzas": Pizza.objects.exclude(menu=False).all(),
         "toppings": Topping.objects.exclude(menu=False).all(),
         "subs": Sub.objects.exclude(menu=False).all(),

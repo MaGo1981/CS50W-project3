@@ -12,27 +12,31 @@
       <a href="{% url 'card' user.id %}">Shopping Card</a>
       <a href="{% url 'logout' %}">Logout</a>
     </span>
-    <h1>{{ food }}
+    <h1 class = "foodPage">{{ food }}
       {% if food.pizza %}
         Pizza
-      </h1>
+    </h1>
+      <br/>
       <ul>
         <li>Valid: {{ food.pizza.is_valid_pizza }}</li>
       {% endif %}
-
+      <br/>
         <li>Food ID: {{ food.id }}</li>
-        <li>Name: {{ food.name }}</li>
+        <!-- <li>Name: {{ food.name }}</li> -->
 
         {% if food.sub %}
           <li>Size:  {{ food.sub.size }}</li>
+          <br/>
         {% endif %}
         {% if food.topping %}
           <li>Side:  {{ food.topping.side }}</li>
+          
         {% endif %}
 
     </ul>
     <br>
-    <h2>Submit an Order</h2>
+    <h2 class = "foodPage">Submit an Order:</h2>
+    <br/>
     <h3>{{ food.name }}
       {% if food.pizza %}
         Pizza
