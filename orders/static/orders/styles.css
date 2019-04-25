@@ -6,6 +6,11 @@
 
 } */
 td, tr, th, div {
+    /* border: 1px ridge; */
+    border-bottom: 1px ridge;
+}
+
+div {
     border: 1px ridge;
     border-bottom: 1px ridge;
 }

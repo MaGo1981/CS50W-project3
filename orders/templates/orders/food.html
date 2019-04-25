@@ -6,12 +6,13 @@
 
 {% block body %}
     <span>
-      <a href="{% url 'index' %}">Index</a>
-      <a href="{% url 'menu' %}">Menu</a>
-      <a href="{% url 'orders' %}">Orders</a>
-      <a href="{% url 'card' user.id %}">Shopping Card</a>
-      <a href="{% url 'logout' %}">Logout</a>
+      <a href="{% url 'index' %}" class="col-3">Index</a>
+      <a href="{% url 'menu' %}"  class="col-3">Menu</a>
+      <a href="{% url 'orders' %}" class="col-3">Orders</a>
+      <a href="{% url 'card' user.id %} " class="col-3">Shopping Card</a>
+      <a href="{% url 'logout' %}" class="col-3">Logout</a>
     </span>
+    <br/><br/>
     <h1 class = "foodPage">{{ food }}
       {% if food.pizza %}
         Pizza
@@ -30,7 +31,7 @@
         {% endif %}
         {% if food.topping %}
           <li>Side:  {{ food.topping.side }}</li>
-          
+
         {% endif %}
 
     </ul>
@@ -45,6 +46,7 @@
           <form action="{% url 'order' food.id %}" method="post">
               {% csrf_token %}
               {% if food.pizza %}
+          <br/>
           <h4>Toppings - whole pizza:</h4>
               {% for topping in allToppings %}
               {% if topping.side == "whole" %}
@@ -81,7 +83,7 @@
        <h4>Size:</h4>
              <input type="checkbox" value="small" name="size">small<br>
              <input type="checkbox" value="large" name="size">large<br>
-           <br><br><br>
+           <br><br>
            {% endif %}
            {% if food.topping %}
        <h4>Side:</h4>
@@ -98,6 +100,7 @@
                <br><br><br>
                <input type="submit" value="Add to Shopping Card" />
           </form>
-          <br><br><br>
+          <br><br>
         <a href="{% url 'menu' %}">Back to the menu.</a>
+        <br><br>
 {% endblock %}

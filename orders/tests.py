@@ -55,6 +55,8 @@ class PizzaTestCase(TestCase):
         response = c.get("/menu") # that is NOT how the path is written in urlpatterns???
         self.assertEqual(response.status_code, 200) # AssertionError: 404 != 200; 404 Not found
         # self.assertEqual(response.context["pizzas"].count(), 2)
+        # print (self.client.login(username='marko', password='Pword123'))
+        # print (c.login(username='marko', password='Pword123'))
 
     # def test_valid_food_page(self):
     #     a1 = Topping.objects.get(name="Oregano",side="whole")

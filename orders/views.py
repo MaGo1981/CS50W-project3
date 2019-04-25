@@ -21,7 +21,7 @@ def menu(request):
         return render(request, "orders/register.html", {"message": None})
 
     context = {
-        "user": request.user, 
+        "user": request.user,
         "pizzas": Pizza.objects.exclude(menu=False).all(),
         "toppings": Topping.objects.exclude(menu=False).all(),
         "subs": Sub.objects.exclude(menu=False).all(),

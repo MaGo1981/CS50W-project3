@@ -6,10 +6,10 @@
 
 {% block body %}
     <span>
-        <a href="{% url 'index' %}">Index</a>
-        <a href="{% url 'menu' %}">Menu</a>
-        <a href="{% url 'orders' %}">Orders</a>
-        <a href="{% url 'logout' %}">Logout</a>
+      <a href="{% url 'index' %}" class="col-3">Index</a>
+      <a href="{% url 'menu' %}"  class="col-3">Menu</a>
+      <a href="{% url 'orders' %}" class="col-3">Orders</a>
+      <a href="{% url 'logout' %}" class="col-3">Logout</a>
     </span>
     <h1>My Shopping Card:</h1>
     <h2>Pizza</h2>
@@ -152,16 +152,18 @@
       {% endfor %}
     </ul>
     <h3>Subtotal: {{ platterSubtotal }} eur </h3>
-    <h2>Total: {{ total }} eur </h2>
-
-    <h2> Total amount of your order is {{ total }} eur. Would you like to place an order? </h2>
-
+    <br>
+    <h3>Total: {{ total }} eur </h3>
+    <br>
+    <h3> Total amount of your order is {{ total }} eur. Would you like to place an order? </h3>
+    <br>
 
     {% if total != 0 %}
     <form action="{% url 'confirm' user.id %}" method="post">
         {% csrf_token %}
-         <input type="submit" value="Confirm" />
+         <input type="submit" value="Place an order" />
     </form>
     {% endif %}
+    <br><br>
 
 {% endblock %}
