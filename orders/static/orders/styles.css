@@ -13,6 +13,9 @@ td, tr, th, div {
 div {
     border: 1px ridge;
     border-bottom: 1px ridge;
+    background-color: white;
+    margin: 5px;
+
 }
  /* div {
     border: ridge;
@@ -21,7 +24,7 @@ div {
 
 
 h1.center {
-  align="center";
+  align: center;
 }
 
 
@@ -30,11 +33,32 @@ h1,h2 {
   /* font-family: Verdana,Arial,Helvetica,sans-serif;
   margin: 0; */
 }
-.green { background-color: #fcc607; }
+.green { background-color: green; }
 .red {background-color: #ee1c23;}
 
 /* body {
   background-color: #bf8d3c;
 } */
 
-.foodPage { text-align: left; }
+.foodPage { text-align: center; }
+
+
+.food {  max-height: 50%;
+          max-width: 100%;
+          text-align: center;
+  }
+
+.pic {
+    border: 1px ridge;
+    border-bottom: 1px ridge;
+    background-color: green;
+    background: url("pizza2.jpg") no-repeat top center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+.index {background: url("index.jpg") no-repeat top center;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        height: 520px;
+        width: 100%;
+  }

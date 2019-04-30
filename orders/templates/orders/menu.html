@@ -13,156 +13,160 @@
 </span>
 <br/>
 <br/>
-<div class="col-6">
-        <h1 class="col-12" align="center">Our Menu</h1>
-        {% for pizza in pizzas %}
-        <h2 class="col-12" align="center" >
-          <span>
-            <a href="{% url 'food' pizza.id %}" class="col-12">
-            {{ pizza.name }} Pizza
-            </a>
-            <button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' pizza.id %}">Card</button>
-          </span>
-        </h2>
+<div class="pic">
+
+    <div class="col-6">
+            <h1 class="col-12" align="center">Our Menu</h1>
+            {% for pizza in pizzas %}
+            <h2 class="col-12" align="center" >
+              <span>
+                <a href="{% url 'food' pizza.id %}" class="col-12">
+                {{ pizza.name }} Pizza
+                </a>
+                <button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' pizza.id %}">Card</button>
+              </span>
+            </h2>
+            <table align="center">
+              <tr class="col-12">
+                <th class="col-4">Food</th>
+                <th class="col-4">Small</th>
+                <th class="col-4">Large</th>
+              </tr>
+
+
+
+              <tr class="col-12">
+                <td class="col-4">Cheese</td>
+                <td class="col-4">{{ pizza.priceSmall }}</td>
+                <td class="col-4">{{ pizza.priceLarge }}</td>
+              </tr>
+
+
+
+              <tr class="col-12">
+                <td class="col-4">1 topping</td>
+                <td class="col-4">{{ pizza.get_priceSmallT1 }}</td>
+                <td class="col-4">{{ pizza.get_priceLargeT1 }}</td>
+              </tr>
+
+
+
+              <tr class="col-12">
+                <td class="col-4">2 toppings</td>
+                <td class="col-4">{{ pizza.get_priceSmallT2 }}</td>
+                <td class="col-4">{{ pizza.get_priceLargeT2 }}</td>
+              </tr>
+
+
+
+              <tr class="col-12">
+                <td class="col-4">3 toppings</td>
+                <td class="col-4">{{ pizza.get_priceSmallT3 }}</td>
+                <td class="col-4">{{ pizza.get_priceLargeT3 }}</td>
+              </tr>
+
+
+              <tr class="col-12">
+                <td class="col-4">Special</td>
+                <td class="col-4">{{ pizza.get_SIpriceSmall }}</td>
+                <td class="col-4">{{ pizza.get_SIpriceLarge }}</td>
+              </tr>
+
+            </table>
+            <br/>
+            {% endfor %}
+
+
+
+        <h2 class="col-12" align="center">Toppings</h2>
         <table align="center">
-          <tr class="col-12">
-            <th class="col-4">Food</th>
-            <th class="col-4">Small</th>
-            <th class="col-4">Large</th>
-          </tr>
-
-
-
-          <tr class="col-12">
-            <td class="col-4">Cheese</td>
-            <td class="col-4">{{ pizza.priceSmall }}</td>
-            <td class="col-4">{{ pizza.priceLarge }}</td>
-          </tr>
-
-
-
-          <tr class="col-12">
-            <td class="col-4">1 topping</td>
-            <td class="col-4">{{ pizza.get_priceSmallT1 }}</td>
-            <td class="col-4">{{ pizza.get_priceLargeT1 }}</td>
-          </tr>
-
-
-
-          <tr class="col-12">
-            <td class="col-4">2 toppings</td>
-            <td class="col-4">{{ pizza.get_priceSmallT2 }}</td>
-            <td class="col-4">{{ pizza.get_priceLargeT2 }}</td>
-          </tr>
-
-
-
-          <tr class="col-12">
-            <td class="col-4">3 toppings</td>
-            <td class="col-4">{{ pizza.get_priceSmallT3 }}</td>
-            <td class="col-4">{{ pizza.get_priceLargeT3 }}</td>
-          </tr>
-
-
-          <tr class="col-12">
-            <td class="col-4">Special</td>
-            <td class="col-4">{{ pizza.get_SIpriceSmall }}</td>
-            <td class="col-4">{{ pizza.get_SIpriceLarge }}</td>
-          </tr>
-
+          {% for topping in toppings %}
+          {% if topping.side == "whole" %}
+              <tr class="col-12" align="center">
+                <td class="col-4" align="center">
+                  <span>
+                    <a class="col-12" align="center" href="{% url 'food' topping.id %}">
+                      {{ topping.name }}
+                    </a>
+                    <button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' topping.id %}">Card</button>
+                  </span>
+                </td>
+              </tr>
+          {% endif %}
+          {% endfor %}
         </table>
         <br/>
-        {% endfor %}
 
-
-
-    <h2 class="col-12" align="center">Toppings</h2>
-    <table align="center">
-      {% for topping in toppings %}
-      {% if topping.side == "whole" %}
+        <h2 class="col-12" align="center">Subs</h2>
+        <table align="center">
           <tr class="col-12" align="center">
-            <td class="col-4" align="center">
-              <span>
-                <a class="col-12" align="center" href="{% url 'food' topping.id %}">
-                  {{ topping.name }}
-                </a>
-                <button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' topping.id %}">Card</button>
-              </span>
-            </td>
+            <th class="col-4" align="center">Food</th>
+            <th class="col-4" align="center">Small</th>
+            <th class="col-4" align="center">Large</th>
           </tr>
-      {% endif %}
-      {% endfor %}
-    </table>
-    <br/>
-    <h2 class="col-12" align="center">Subs</h2>
-    <table align="center">
-      <tr class="col-12" align="center">
-        <th class="col-4" align="center">Food</th>
-        <th class="col-4" align="center">Small</th>
-        <th class="col-4" align="center">Large</th>
-      </tr>
 
-      {% for sub in subs %}
-        <tr class="col-12" align="center">
-          <td class="col-4"><a  class="col-12" align="center" href="{% url 'food' sub.id %}">{{ sub.name }}</a></td>
-          <td class="col-4" align="center">{{ sub.priceSmall }}</td>
-          <td class="col-4" align="center">{{ sub.priceLarge }}</td>
-          <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' sub.id %}">Card</button></td>
-        </tr>
-      {% endfor %}
-    </table>
-    <br/>
-    <h2 class="col-12" align="center">Pasta</h2>
-    <table align="center">
-      <tr class="col-12" align="center">
-        <th class="col-4" align="center">Food</th>
-        <th class="col-4" align="center">Price</th>
-        <!-- <th>Large</th> -->
-      </tr>
-      {% for pasta in pastas %}
-      <tr class="col-12" align="center">
-        <td class="col-4" align="center"><a  align="center"href="{% url 'food' pasta.id %}">{{ pasta.name }} with {{ pasta.sub1.name }}</a></td>
-        <td class="col-4" align="center">{{ pasta.priceSmall }}</td>
-        <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' pasta.id %}">Card</button></td>
-        <!-- <td>{{ pasta.priceLarge }}</td> -->
-      </tr>
-      {% endfor %}
-      </table>
-      <br/>
-    <h2 class="col-12" align="center">Salads</h2>
-    <table align="center">
-      <tr class="col-12" align="center">
-        <th class="col-4" align="center">Food</th>
-        <th class="col-4" align="center">Price</th>
-
-      {% for salad in salads %}
+          {% for sub in subs %}
             <tr class="col-12" align="center">
-              <td class="col-4" align="center"><a href="{% url 'food' salad.id %}">{{ salad.name }}</a></td>
-              <td class="col-4" align="center">{{ salad.priceSmall }}</td>
-              <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' salad.id %}">Card</button></td>
+              <td class="col-4"><a  class="col-12" align="center" href="{% url 'food' sub.id %}">{{ sub.name }}</a></td>
+              <td class="col-4" align="center">{{ sub.priceSmall }}</td>
+              <td class="col-4" align="center">{{ sub.priceLarge }}</td>
+              <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' sub.id %}">Card</button></td>
             </tr>
-      {% endfor %}
-      </table>
-      <br/>
-    <h2 class="col-12" align="center">Dinner Platters</h2>
-    <table align="center">
-      <tr class="col-12" align="center">
-        <th class="col-4" align="center">Food</th>
-        <th class="col-4" align="center">Small</th>
-        <th class="col-4" align="center">Large</th>
-      </tr>
-      {% for platter in platters %}
-      <tr class="col-12" align="center">
-        <td class="col-4"><a  class="col-12" align="center" href="{% url 'food' platter.id %}">{{ platter.name }}</a></td>
-        <td class="col-4" align="center">{{ platter.priceSmall }}</td>
-        <td class="col-4" align="center">{{ platter.priceLarge }}</td>
-        <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' platter.id %}">Card</button></td>
-      </tr>
-      {% endfor %}
-      </table>
-<br/><br/>
-</div>
+          {% endfor %}
+        </table>
+        <br/>
+        <h2 class="col-12" align="center">Pasta</h2>
+        <table align="center">
+          <tr class="col-12" align="center">
+            <th class="col-4" align="center">Food</th>
+            <th class="col-4" align="center">Price</th>
+            <!-- <th>Large</th> -->
+          </tr>
+          {% for pasta in pastas %}
+          <tr class="col-12" align="center">
+            <td class="col-4" align="center"><a  align="center"href="{% url 'food' pasta.id %}">{{ pasta.name }} with {{ pasta.sub1.name }}</a></td>
+            <td class="col-4" align="center">{{ pasta.priceSmall }}</td>
+            <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' pasta.id %}">Card</button></td>
+            <!-- <td>{{ pasta.priceLarge }}</td> -->
+          </tr>
+          {% endfor %}
+          </table>
+          <br/>
+        <h2 class="col-12" align="center">Salads</h2>
+        <table align="center">
+          <tr class="col-12" align="center">
+            <th class="col-4" align="center">Food</th>
+            <th class="col-4" align="center">Price</th>
 
+          {% for salad in salads %}
+                <tr class="col-12" align="center">
+                  <td class="col-4" align="center"><a href="{% url 'food' salad.id %}">{{ salad.name }}</a></td>
+                  <td class="col-4" align="center">{{ salad.priceSmall }}</td>
+                  <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' salad.id %}">Card</button></td>
+                </tr>
+          {% endfor %}
+          </table>
+          <br/>
+        <h2 class="col-12" align="center">Dinner Platters</h2>
+        <table align="center">
+          <tr class="col-12" align="center">
+            <th class="col-4" align="center">Food</th>
+            <th class="col-4" align="center">Small</th>
+            <th class="col-4" align="center">Large</th>
+          </tr>
+          {% for platter in platters %}
+          <tr class="col-12" align="center">
+            <td class="col-4"><a  class="col-12" align="center" href="{% url 'food' platter.id %}">{{ platter.name }}</a></td>
+            <td class="col-4" align="center">{{ platter.priceSmall }}</td>
+            <td class="col-4" align="center">{{ platter.priceLarge }}</td>
+            <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' platter.id %}">Card</button></td>
+          </tr>
+          {% endfor %}
+          </table>
+    <br/><br/>
+    </div>
+
+</div>
 <!-- ------------------------MODAL------------------------------------- -->
 
 <div id="myModal" class="modal">

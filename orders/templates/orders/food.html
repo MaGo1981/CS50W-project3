@@ -13,6 +13,7 @@
       <a href="{% url 'logout' %}" class="col-3">Logout</a>
     </span>
     <br/><br/>
+  <div class="food">
     <h1 class = "foodPage">{{ food }}
       {% if food.pizza %}
         Pizza
@@ -103,4 +104,7 @@
           <br><br>
         <a href="{% url 'menu' %}">Back to the menu.</a>
         <br><br>
+
+
+  </div>
 {% endblock %}
