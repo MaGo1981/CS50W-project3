@@ -1,3 +1,3 @@
 # Project 3
 
-Web Programming with Python and JavaScript - Django, Travis CI, Docker CD.
+Web Programming with Python and JavaScript
