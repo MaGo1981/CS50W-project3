@@ -20,10 +20,10 @@
             {% for pizza in pizzas %}
             <h2 class="col-12" align="center" >
               <span>
-                <a href="{% url 'food' pizza.id %}" class="col-12">
+                <a href="{% url 'food' pizza.id %}" class="col-12" data-toggle="modal" data-target="#myModal">
                 {{ pizza.name }} Pizza
                 </a>
-                <button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' pizza.id %}">Card</button>
+                <!-- <button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' pizza.id %}">Card</button> -->
               </span>
             </h2>
             <table align="center">
@@ -85,10 +85,10 @@
               <tr class="col-12" align="center">
                 <td class="col-4" align="center">
                   <span>
-                    <a class="col-12" align="center" href="{% url 'food' topping.id %}">
+                    <a class="col-12" align="center" href="{% url 'food' topping.id %}" data-toggle="modal" data-target="#myModal">
                       {{ topping.name }}
                     </a>
-                    <button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' topping.id %}">Card</button>
+                    <!-- <button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' topping.id %}">Card</button> -->
                   </span>
                 </td>
               </tr>
@@ -107,10 +107,10 @@
 
           {% for sub in subs %}
             <tr class="col-12" align="center">
-              <td class="col-4"><a  class="col-12" align="center" href="{% url 'food' sub.id %}">{{ sub.name }}</a></td>
+              <td class="col-4"><a  class="col-12" align="center" href="{% url 'food' sub.id %}" data-toggle="modal" data-target="#myModal">{{ sub.name }}</a></td>
               <td class="col-4" align="center">{{ sub.priceSmall }}</td>
               <td class="col-4" align="center">{{ sub.priceLarge }}</td>
-              <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' sub.id %}">Card</button></td>
+              <!-- <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' sub.id %}">Card</button></td> -->
             </tr>
           {% endfor %}
         </table>
@@ -124,9 +124,9 @@
           </tr>
           {% for pasta in pastas %}
           <tr class="col-12" align="center">
-            <td class="col-4" align="center"><a  align="center"href="{% url 'food' pasta.id %}">{{ pasta.name }} with {{ pasta.sub1.name }}</a></td>
+            <td class="col-4" align="center"><a  align="center"href="{% url 'food' pasta.id %}" data-toggle="modal" data-target="#myModal">{{ pasta.name }} with {{ pasta.sub1.name }}</a></td>
             <td class="col-4" align="center">{{ pasta.priceSmall }}</td>
-            <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' pasta.id %}">Card</button></td>
+            <!-- <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' pasta.id %}">Card</button></td> -->
             <!-- <td>{{ pasta.priceLarge }}</td> -->
           </tr>
           {% endfor %}
@@ -140,9 +140,9 @@
 
           {% for salad in salads %}
                 <tr class="col-12" align="center">
-                  <td class="col-4" align="center"><a href="{% url 'food' salad.id %}">{{ salad.name }}</a></td>
+                  <td class="col-4" align="center"><a href="{% url 'food' salad.id %}" data-toggle="modal" data-target="#myModal">{{ salad.name }}</a></td>
                   <td class="col-4" align="center">{{ salad.priceSmall }}</td>
-                  <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' salad.id %}">Card</button></td>
+                  <!-- <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' salad.id %}">Card</button></td> -->
                 </tr>
           {% endfor %}
           </table>
@@ -156,10 +156,10 @@
           </tr>
           {% for platter in platters %}
           <tr class="col-12" align="center">
-            <td class="col-4"><a  class="col-12" align="center" href="{% url 'food' platter.id %}">{{ platter.name }}</a></td>
+            <td class="col-4"><a  class="col-12" align="center" href="{% url 'food' platter.id %}" data-toggle="modal" data-target="#myModal">{{ platter.name }}</a></td>
             <td class="col-4" align="center">{{ platter.priceSmall }}</td>
             <td class="col-4" align="center">{{ platter.priceLarge }}</td>
-            <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' platter.id %}">Card</button></td>
+            <!-- <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' platter.id %}">Card</button></td> -->
           </tr>
           {% endfor %}
           </table>

@@ -17,6 +17,16 @@ div {
     margin: 5px;
 
 }
+
+h1,h2 {
+  text-align: center;
+  margin: 10px;
+  /* font-family: Verdana,Arial,Helvetica,sans-serif;
+  margin: 0; */
+}
+
+body a:hover { color: green; }
+
  /* div {
     border: ridge;
     padding-bottom: 15px;
@@ -31,12 +41,7 @@ div {
   align: center;
 
 }
-h1,h2 {
-  text-align: center;
-  margin: 10px;
-  /* font-family: Verdana,Arial,Helvetica,sans-serif;
-  margin: 0; */
-}
+
 .green { background-color: green; }
 .red {background-color: #ee1c23;}
 
