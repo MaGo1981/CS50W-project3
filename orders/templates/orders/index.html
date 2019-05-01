@@ -11,11 +11,10 @@
       <a href="{% url 'card' user.id %} " class="col-3">Shopping Card</a>
       <a href="{% url 'logout' %}" class="col-3">Logout</a>
     </span>
-    <div class="index">
-
-
-      <h1>Hello, <a href="{% url 'card' user.id %}">{{ user.first_name }}</a></h1>
-      <h2>Currently logged in as: {{ user.username }}</h2>
-      <h3>Would you like to order something? Proceed to our Menu page!</h3>
+    <div class="index"  class="center">
+      <h3>Hello <a href="{% url 'card' user.id %}">{{ user.first_name }}</a>!</h3>
+      <h3>Username: {{ user.username }}</h3> <br>
+      <h3>Would you like to order something? <br>
+        Proceed to our Menu page!</h3>
     </div>
 {% endblock %}
