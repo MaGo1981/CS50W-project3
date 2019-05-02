@@ -1,8 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 
 from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter
@@ -52,24 +53,32 @@ def login_view(request):
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
-        return render(request, "orders/login.html", {"message": "Invalid credentials."})
+        return render(request, "orders/login.html", {"message": "Invalid code!"})
 
 def logout_view(request):
     logout(request)
     return render(request, "orders/login.html", {"message": "Logged out."})
 
 def register_view(request):
-    username1 = request.POST.get("username1")
-    email1 = request.POST.get("email1")
-    password1 = request.POST.get("password1")
-    repeatPassword1 = request.POST.get("repeat-password1")
-    # user1 = User.objects.create_user("alice", "alice@something.com", "alice12345")
-    user1 = User.objects.create_user(username=username1, email=email1, password=password1)
-    if user1 is not None:
-        user1.save()
-        return HttpResponseRedirect(reverse("login"))
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+         # create a form instance and populate it with data from the request:
+        form = UserCreationForm(request.POST)
+        print("form = ", form)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            form.save()
+            # redirect to a new URL:
+            return HttpResponseRedirect(reverse("login"))
+        # if a GET (or any other method) we'll create a blank form
+        else:
+            return render(request, "orders/register.html", {'form': form, "message": "You did not suceed! Please try again."})
+    # if a GET (or any other method) we'll create a blank form
     else:
-        return render(request, "orders/register.html", {"message": "Invalid credentials."})
+        form = UserCreationForm()
+    return render(request, 'orders/register.html', {'form': form})
+
 
 def food(request, food_id):
     # print("food function food_id:", food_id)
