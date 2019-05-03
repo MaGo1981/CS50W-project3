@@ -64,7 +64,55 @@ body a:hover { color: green; }
     background: url("pizza2.jpg") no-repeat top center;
     background-attachment: fixed;
     background-size: 100% 100%;
+    padding-left: 25%;
+    padding-right: 25%;
 }
+
+.pic-index {
+    border: 1px ridge;
+    border-bottom: 1px ridge;
+    background-color: green;
+    background: url("pizza2.jpg") no-repeat top center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    padding-left: 25%;
+    padding-right: 25%;
+    height: 520px;
+}
+
+.pic-card {
+    border: 1px ridge;
+    border-bottom: 1px ridge;
+    background-color: green;
+    background: url("pizza2.jpg") no-repeat top center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.pic-orders {
+    border: 1px ridge;
+    border-bottom: 1px ridge;
+    background-color: green;
+    background: url("pizza2.jpg") no-repeat top center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.pic-food {
+    border: 1px ridge;
+    border-bottom: 1px ridge;
+    background-color: green;
+    background: url("pizza2.jpg") no-repeat top center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
 .index {background: url("") no-repeat top center;
         background-attachment: fixed;
         background-size: 100% 100%;

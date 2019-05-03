@@ -13,98 +13,104 @@
       <a href="{% url 'logout' %}" class="col-3">Logout</a>
     </span>
     <br/><br/>
-  <div class="food">
-    <h1 class = "foodPage">{{ food }}
-      {% if food.pizza %}
-        Pizza
-    </h1>
-      <br/>
-      <ul>
-        <li>Valid: {{ food.pizza.is_valid_pizza }}</li>
-      {% endif %}
-      <br/>
-        <li>Food ID: {{ food.id }}</li>
-        <!-- <li>Name: {{ food.name }}</li> -->
-
-        {% if food.sub %}
-          <li>Size:  {{ food.sub.size }}</li>
-          <br/>
-        {% endif %}
-        {% if food.topping %}
-          <li>Side:  {{ food.topping.side }}</li>
-
-        {% endif %}
-
-    </ul>
-    <br>
-    <h2 class = "foodPage">Submit an Order:</h2>
-    <br/>
-    <h3>{{ food.name }}
-      {% if food.pizza %}
-        Pizza
-      {% endif %}
-    </h3>
-          <form action="{% url 'order' food.id %}" method="post">
-              {% csrf_token %}
+    <div class="pic-food">
+      <!-- <div class="box"> -->
+        <div class="col-12" class="center">
+          <div class="food">
+            <h1 class = "foodPage">{{ food }}
               {% if food.pizza %}
-          <br/>
-          <h4>Toppings - whole pizza:</h4>
-              {% for topping in allToppings %}
-              {% if topping.side == "whole" %}
-                <input type="checkbox" value="{{ topping.id }}" name="topping-whole">{{ topping.name }}<br>
-               <br>
-               {% endif %}
-               {% endfor %}
-         <h4>Toppings - left side:</h4>
-             {% for topping in allToppings %}
-             {% if topping.side == "left" %}
-               <input type="checkbox" value="{{ topping.id }}" name="topping-left">{{ topping.name }}<br>
-               <br>
-               {% endif %}
-               {% endfor %}
-        <h4>Toppings - right side:</h4>
-            {% for topping in allToppings %}
-            {% if topping.side == "right" %}
-              <input type="checkbox" value="{{ topping.id }}" name="topping-right">{{ topping.name }}<br>
-              <br>
+                Pizza
+            </h1>
+              <br/>
+              <ul>
+                <li>Valid: {{ food.pizza.is_valid_pizza }}</li>
               {% endif %}
-              {% endfor %}
-            {% endif %}
+              <br/>
+                <li>Food ID: {{ food.id }}</li>
+                <!-- <li>Name: {{ food.name }}</li> -->
 
-            {% if food.pasta %}
-        <h4>Subs:</h4>
-            {% for sub in subs %}
-              <input type="checkbox" value="{{ sub.id }}" name="sub1">{{ sub.name }}, {{ sub.size }}<br>
-             {% endfor %}
-             <br>
-             {% endif %}
+                {% if food.sub %}
+                  <li>Size:  {{ food.sub.size }}</li>
+                  <br/>
+                {% endif %}
+                {% if food.topping %}
+                  <li>Side:  {{ food.topping.side }}</li>
+
+                {% endif %}
+
+            </ul>
+            <br>
+            <h2 class = "foodPage">Submit an Order:</h2>
+            <br/>
+            <h3>{{ food.name }}
+              {% if food.pizza %}
+                Pizza
+              {% endif %}
+            </h3>
+                  <form action="{% url 'order' food.id %}" method="post">
+                      {% csrf_token %}
+                      {% if food.pizza %}
+                  <br/>
+                  <h4>Toppings - whole pizza:</h4>
+                      {% for topping in allToppings %}
+                      {% if topping.side == "whole" %}
+                        <input type="checkbox" value="{{ topping.id }}" name="topping-whole">{{ topping.name }}<br>
+                       <br>
+                       {% endif %}
+                       {% endfor %}
+                 <h4>Toppings - left side:</h4>
+                     {% for topping in allToppings %}
+                     {% if topping.side == "left" %}
+                       <input type="checkbox" value="{{ topping.id }}" name="topping-left">{{ topping.name }}<br>
+                       <br>
+                       {% endif %}
+                       {% endfor %}
+                <h4>Toppings - right side:</h4>
+                    {% for topping in allToppings %}
+                    {% if topping.side == "right" %}
+                      <input type="checkbox" value="{{ topping.id }}" name="topping-right">{{ topping.name }}<br>
+                      <br>
+                      {% endif %}
+                      {% endfor %}
+                    {% endif %}
+
+                    {% if food.pasta %}
+                <h4>Subs:</h4>
+                    {% for sub in subs %}
+                      <input type="checkbox" value="{{ sub.id }}" name="sub1">{{ sub.name }}, {{ sub.size }}<br>
+                     {% endfor %}
+                     <br>
+                     {% endif %}
 
 
-            {% if food.sub or food.pizza or food.platter %}
-       <h4>Size:</h4>
-             <input type="checkbox" value="small" name="size">small<br>
-             <input type="checkbox" value="large" name="size">large<br>
-           <br><br>
-           {% endif %}
-           {% if food.topping %}
-       <h4>Side:</h4>
-               <input type="checkbox" value="whole" name="side">whole<br>
-               <input type="checkbox" value="left" name="side">left<br>
-               <input type="checkbox" value="right" name="side">right<br>
-          <br><br>
-          {% endif %}
-       <h4>Special Instructions:</h4>
-               <textarea  type="text" value="{{ food.specialInstructions }}" name="specialInstructions"></textarea>
-               <br><br><br>
-       <h4>Quantity:</h4>
-               <input type="number" name="quantity" value=1>
-               <br><br><br>
-               <input type="submit" value="Add to Shopping Card" />
-          </form>
-          <br><br>
-        <a href="{% url 'menu' %}">Back to the menu.</a>
-        <br><br>
+                    {% if food.sub or food.pizza or food.platter %}
+               <h4>Size:</h4>
+                     <input type="checkbox" value="small" name="size">small<br>
+                     <input type="checkbox" value="large" name="size">large<br>
+                   <br><br>
+                   {% endif %}
+                   {% if food.topping %}
+               <h4>Side:</h4>
+                       <input type="checkbox" value="whole" name="side">whole<br>
+                       <input type="checkbox" value="left" name="side">left<br>
+                       <input type="checkbox" value="right" name="side">right<br>
+                  <br><br>
+                  {% endif %}
+               <h4>Special Instructions:</h4>
+                       <textarea  type="text" value="{{ food.specialInstructions }}" name="specialInstructions"></textarea>
+                       <br><br><br>
+               <h4>Quantity:</h4>
+                       <input type="number" name="quantity" value=1>
+                       <br><br><br>
+                       <input type="submit" value="Add to Shopping Card" />
+                  </form>
+                  <br><br>
+                <a href="{% url 'menu' %}">Back to the menu.</a>
+                <br><br>
 
 
-  </div>
+          </div>
+        </div>
+      <!-- </div> -->
+    </div>
 {% endblock %}

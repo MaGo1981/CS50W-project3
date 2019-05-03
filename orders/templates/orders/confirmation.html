@@ -5,13 +5,19 @@
 {% endblock %}
 
 {% block body %}
-    <br>
-    <h1>Order received, thank you {{ user.first_name }}!</h1>
-    <br>
-    {{ message }}
+  <div class="pic-index">
+    <!-- <div class="box"> -->
+      <div class="col-12" class="center">
+        <br>
+        <h1>Order received, thank you {{ user.first_name }}!</h1>
+        <br>
+        {{ message }}
 
-    <hr>
+        <hr>
 
-    <a href="{% url 'index' %}">Return to Home page.</a>
+        <a href="{% url 'index' %}">Return to Home page.</a>
+      </div>
+    <!-- </div> -->
+  </div>
 
 {% endblock %}

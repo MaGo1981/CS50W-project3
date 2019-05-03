@@ -1,18 +1,24 @@
 {% extends "orders/base.html" %}
 
 {% block body %}
-<h1>Login</h1>
-{% if message %}
-    <div>
-        {{ message }}
-    </div>
-{% endif %}
-<form action="{% url 'login' %}" method="post">
-    {% csrf_token %}
-    <input name="username" placeholder="Username" type="text"/>
-    <input name="password" placeholder="Password" type="password"/>
-    <input type="submit" value="Login"/>
-</form>
-<br>
-<a href="{% url 'register' %}">Register</a></li>
+  <div class="pic-index">
+    <!-- <div class="box"> -->
+      <div class="col-12" class="center">
+        <h1>Login</h1>
+        {% if message %}
+            <div>
+                {{ message }}
+            </div>
+        {% endif %}
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <input name="username" placeholder="Username" type="text"/>
+            <input name="password" placeholder="Password" type="password"/>
+            <input type="submit" value="Login"/>
+        </form>
+        <br>
+        <a href="{% url 'register' %}">Register</a>
+      </div>
+    <!-- </div> -->
+  </div>
 {% endblock %}
