@@ -3,10 +3,11 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter
+
 
 # Create your views here.
 def index(request):
@@ -46,18 +47,30 @@ def orders(request):
     return render(request, "orders/orders.html", context)
 
 def login_view(request):
-    username = request.POST.get("username")
-    password = request.POST.get("password")
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return HttpResponseRedirect(reverse("index"))
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+         # create a form instance and populate it with data from the request:
+        form = AuthenticationForm(data=request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            user = form.get_user()
+            login(request, user)
+            # redirect to a new URL:
+            return HttpResponseRedirect(reverse("index"))
+        # if a GET (or any other method) we'll create a blank form
+        else:
+            return render(request, "orders/login.html", {'form': form, "message": "You did not suceed! Please try again."})
+    # if a GET (or any other method) we'll create a blank form
     else:
-        return render(request, "orders/login.html", {"message": "Invalid code!"})
+        form = AuthenticationForm()
+    return render(request, 'orders/login.html', {'form': form})
+
 
 def logout_view(request):
     logout(request)
-    return render(request, "orders/login.html", {"message": "Logged out."})
+    form = AuthenticationForm()
+    return render(request, "orders/login.html", {'form': form, "message": "Logged out."})
 
 def register_view(request):
     # if this is a POST request we need to process the form data

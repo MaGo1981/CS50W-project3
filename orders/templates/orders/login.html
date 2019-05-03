@@ -12,8 +12,9 @@
         {% endif %}
         <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
-            <input name="username" placeholder="Username" type="text"/>
-            <input name="password" placeholder="Password" type="password"/>
+            <table>
+              {{ form.as_table }}
+            </table>
             <input type="submit" value="Login"/>
         </form>
         <br>
