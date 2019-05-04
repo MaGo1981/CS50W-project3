@@ -9,9 +9,9 @@ urlpatterns = [
     path("register", views.register_view, name="register"),
     path("login", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),
-    path("<int:food_id>", views.food, name="food"),
-    path("<int:food_id>/order", views.order, name="order"),
-    path("<int:food_id>/set_Status", views.set_Status, name="status"),
-    path("<int:user_id>/confirmOrder", views.confirmOrder, name="confirm"),
-    path("<int:user_id>/card", views.card, name="card")
+    path("food/<int:food_id>", views.food, name="food"),
+    path("food/<int:food_id>/order", views.order, name="order"),
+    path("food/<int:food_id>/set_Status", views.set_Status, name="status"),
+    path("user/<int:user_id>/confirmOrder", views.confirmOrder, name="confirm"),
+    path("user/<int:user_id>/card", views.card, name="card")
 ]

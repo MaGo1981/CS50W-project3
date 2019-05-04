@@ -143,4 +143,4 @@ class Beverage(Food):
     size = models.CharField(max_length=64, default='2 dl')
 
     def __str__(self):
-        return f"{self.name} - {self.size}, special instructions: {self.specialInstructions}, quantity: {self.quantity}"
+        return f"{self.name} - {self.size}, special instructions: {self.specialInstructions}, quantity: {self.quantity}, id:{self.id}"

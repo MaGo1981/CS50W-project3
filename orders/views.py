@@ -21,7 +21,8 @@ def index(request):
 
 def menu(request):
     if not request.user.is_authenticated:
-        return render(request, "orders/register.html", {"message": None})
+        form = AuthenticationForm()
+        return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! Please Login or Register!", 'form':form})
 
     context = {
         "user": request.user,
@@ -37,6 +38,10 @@ def menu(request):
     return render(request, "orders/menu.html", context)
 
 def orders(request):
+    if not request.user.is_authenticated:
+        form = AuthenticationForm()
+        return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! Please Login or Register!", 'form':form})
+
     context = {
         "pizzas": Pizza.objects.exclude(menu=True).all(),
         "toppings": Topping.objects.exclude(menu=True).all(),
@@ -98,7 +103,9 @@ def register_view(request):
 
 def food(request, food_id):
     # print("food function food_id:", food_id)
-
+    if not request.user.is_authenticated:
+        form = AuthenticationForm()
+        return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! Please Login or Register!", 'form':form})
     try:
         food = Food.objects.get(pk=food_id)
         allToppings = Topping.objects.exclude(menu=False).all()
