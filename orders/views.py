@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
-from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter
+from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter, Beverage
 
 
 # Create your views here.
