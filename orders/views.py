@@ -30,7 +30,8 @@ def menu(request):
         "subs": Sub.objects.exclude(menu=False).all(),
         "pastas": Pasta.objects.exclude(menu=False).all(),
         "salads": Salad.objects.exclude(menu=False).all(),
-        "platters": Platter.objects.exclude(menu=False).all()
+        "platters": Platter.objects.exclude(menu=False).all(),
+        "beverages": Beverage.objects.exclude(menu=False).all()
     }
 
     return render(request, "orders/menu.html", context)
@@ -42,7 +43,8 @@ def orders(request):
         "subs": Sub.objects.exclude(menu=True).all(),
         "pastas": Pasta.objects.exclude(menu=True).all(),
         "salads": Salad.objects.exclude(menu=True).all(),
-        "platters": Platter.objects.exclude(menu=True).all()
+        "platters": Platter.objects.exclude(menu=True).all(),
+        "beverages": Beverage.objects.exclude(menu=True).all()
     }
 
     return render(request, "orders/orders.html", context)
@@ -243,7 +245,18 @@ def order(request, food_id):
                                 order = Platter(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user, priceSmall=priceSmall, priceLarge=priceLarge)
                                 order.save()
                         except Platter.DoesNotExist:
-                            return render(request, "orders/error.html", {"message": "Not a pizza or a topping or a sub or a pasta or a salad or a platter."})
+                            try:
+                                beverage = Beverage.objects.get(pk=food_id)
+                                if isinstance(beverage, Beverage):
+                                    quantity = int(request.POST["quantity"])
+                                    size = request.POST["size"]
+                                    specialInstructions = request.POST["specialInstructions"]
+                                    priceSmall=food.priceSmall
+                                    priceLarge=food.priceLarge
+                                    order = Beverage(name=food, quantity=quantity, size=size, specialInstructions=specialInstructions, user=user, priceSmall=priceSmall, priceLarge=priceLarge)
+                                    order.save()
+                            except Beverage.DoesNotExist:
+                                return render(request, "orders/error.html", {"message": "Not a pizza or a topping or a sub or a pasta or a salad or a platter or a beverage."})
         except KeyError:
             return render(request, "orders/error.html", {"message": "No selection, no id."})
     return HttpResponseRedirect(reverse("menu"))
