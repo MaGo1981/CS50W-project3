@@ -12,7 +12,8 @@ from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter
 # Create your views here.
 def index(request):
     if not request.user.is_authenticated:
-        return render(request, "orders/register.html", {"message": None})
+        form = AuthenticationForm()
+        return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! Please Login or Register!", 'form':form})
     context = {
         "user": request.user
     }
@@ -64,7 +65,7 @@ def login_view(request):
     # if a GET (or any other method) we'll create a blank form
     else:
         form = AuthenticationForm()
-    return render(request, 'orders/login.html', {'form': form})
+    return render(request, 'orders/login.html', {'form': form, "message": "Please login!"})
 
 
 def logout_view(request):
