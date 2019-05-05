@@ -2,3 +2,4 @@ Django==2.0.3
 psycopg2
 selenium
 gunicorn
+django-heroku
