@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter, Beverage
+from .forms import FoodForm
 
 
 # Create your views here.
@@ -14,8 +15,10 @@ def index(request):
     if not request.user.is_authenticated:
         form = AuthenticationForm()
         return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! Please Login or Register!", 'form':form})
+    form = FoodForm()
     context = {
-        "user": request.user
+        "user": request.user,
+        "form": form
     }
     return render(request, "orders/index.html", context)
 
@@ -387,3 +390,16 @@ def confirmOrder(request, user_id):
     # print("user:", user)
     # print("user.status:", user.status)
     return render(request, "orders/confirmation.html", {"message": "Such a thing has never been made. If you survive, please come again!!"})
+
+def addFood(request):
+    form = FoodForm(request.POST)
+    if form.is_valid():
+        food = Food(name = form.cleaned_data["name"],
+                    priceSmall = form.cleaned_data["priceSmall"],
+                    priceLarge = form.cleaned_data["priceLarge"],
+                    quantity = form.cleaned_data["quantity"],
+                    specialInstructions = form.cleaned_data["specialInstructions"],
+                    menu = form.cleaned_data["menu"],
+                    status = form.cleaned_data["status"])
+        food.save()
+    return HttpResponseRedirect(reverse("orders"))
