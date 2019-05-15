@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter, Beverage
-from .forms import FoodForm
+from .forms import FoodForm, ToppingForm
 
 
 # Create your views here.
@@ -118,7 +118,7 @@ def food(request, food_id):
         quantity = food.quantity
         # print("food.quantity:", quantity)
         subs = Sub.objects.exclude(menu=False).all()
-        foodForm = FoodForm()
+        toppingForm = ToppingForm()
     except Food.DoesNotExist:
         raise Http404("Food does not exist")
 
@@ -127,7 +127,7 @@ def food(request, food_id):
         "allToppings": allToppings,
         "pizzas": pizzas,
         "subs": subs,
-        "foodForm": FoodForm
+        "toppingForm": toppingForm
     }
     return render(request, "orders/food.html", context)
 
