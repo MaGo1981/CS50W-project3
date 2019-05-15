@@ -396,8 +396,8 @@ def confirmOrder(request, user_id):
 def addTopping(request):
     form = ToppingForm(request.POST)
     if form.is_valid():
-        food = Food(quantity = form.cleaned_data["quantity"],
+        topping = Topping(quantity = form.cleaned_data["quantity"],
                     specialInstructions = form.cleaned_data["specialInstructions"],
                     side = form.cleaned_data["side"])
-        food.save()
+        topping.save()
     return HttpResponseRedirect(reverse("orders"))
