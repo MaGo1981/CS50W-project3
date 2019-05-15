@@ -6,7 +6,7 @@ class FoodForm(forms.Form):
     specialInstructions = forms.CharField(max_length=640, label="Special Instructions")
 
 
-class ToppingForm(FoodForm):
+class ToppingForm(forms.FoodForm):
     side = forms.CharField(max_length=64, label="Side")
 
 # class PastaForm(forms.ModelForm):
