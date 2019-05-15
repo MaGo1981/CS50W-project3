@@ -112,7 +112,7 @@
                   <form action="{% url 'addFood' %}" method="post">
                     {% csrf_token %}
                     <table>
-                      {{ FoodForm.as_table }}
+                      {{ foodForm.as_table }}
                     </table>
                     <input type="submit" value="Add Food"/>
                   </form>

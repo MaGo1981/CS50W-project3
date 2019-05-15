@@ -118,16 +118,16 @@ def food(request, food_id):
         quantity = food.quantity
         # print("food.quantity:", quantity)
         subs = Sub.objects.exclude(menu=False).all()
-
+        foodForm = FoodForm()
     except Food.DoesNotExist:
         raise Http404("Food does not exist")
-    FoodForm = FoodForm()
+
     context = {
         "food": food,
         "allToppings": allToppings,
         "pizzas": pizzas,
         "subs": subs,
-        "FoodForm": FoodForm
+        "foodForm": FoodForm
     }
     return render(request, "orders/food.html", context)
 
