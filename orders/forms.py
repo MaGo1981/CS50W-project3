@@ -1,4 +1,5 @@
 from django import forms
+# from .models import Pasta
 
 class FoodForm(forms.Form):
     quantity = forms.IntegerField(label="Quantity")
@@ -7,3 +8,8 @@ class FoodForm(forms.Form):
 
 class ToppingForm(FoodForm):
     side = forms.CharField(max_length=64, label="Side")
+
+# class PastaForm(forms.ModelForm):
+#     class Meta:
+#         model = Pasta
+#         fields = ["sub1", "specialInstructions", "quantity"]

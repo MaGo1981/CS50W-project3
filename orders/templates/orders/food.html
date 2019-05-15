@@ -109,12 +109,12 @@
                 <br><br>
                 {% if food.topping %}
                 <div>
-                  <form action="{% url 'addFood' %}" method="post">
+                  <form action="{% url 'addTopping' %}" method="post">
                     {% csrf_token %}
                     <table>
                       {{ toppingForm.as_table }}
                     </table>
-                    <input type="submit" value="Add Food"/>
+                    <input type="submit" value="Add Topping"/>
                   </form>
                 </div>
                <br><br>

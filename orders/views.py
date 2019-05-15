@@ -393,15 +393,11 @@ def confirmOrder(request, user_id):
     # print("user.status:", user.status)
     return render(request, "orders/confirmation.html", {"message": "Such a thing has never been made. If you survive, please come again!!"})
 
-def addFood(request):
-    form = FoodForm(request.POST)
+def addTopping(request):
+    form = ToppingForm(request.POST)
     if form.is_valid():
-        food = Food(name = form.cleaned_data["name"],
-                    priceSmall = form.cleaned_data["priceSmall"],
-                    priceLarge = form.cleaned_data["priceLarge"],
-                    quantity = form.cleaned_data["quantity"],
+        food = Food(quantity = form.cleaned_data["quantity"],
                     specialInstructions = form.cleaned_data["specialInstructions"],
-                    menu = form.cleaned_data["menu"],
-                    status = form.cleaned_data["status"])
+                    side = form.cleaned_data["side"])
         food.save()
     return HttpResponseRedirect(reverse("orders"))
