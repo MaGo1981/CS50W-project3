@@ -15,10 +15,10 @@ def index(request):
     if not request.user.is_authenticated:
         form = AuthenticationForm()
         return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! Please Login or Register!", 'form':form})
-    form = FoodForm()
+
     context = {
         "user": request.user,
-        "form": form
+
     }
     return render(request, "orders/index.html", context)
 
@@ -121,11 +121,13 @@ def food(request, food_id):
 
     except Food.DoesNotExist:
         raise Http404("Food does not exist")
+    FoodForm = FoodForm()
     context = {
         "food": food,
         "allToppings": allToppings,
         "pizzas": pizzas,
-        "subs": subs
+        "subs": subs,
+        "FoodForm": FoodForm
     }
     return render(request, "orders/food.html", context)
 
