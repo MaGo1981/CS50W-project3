@@ -25,7 +25,7 @@ h1,h2 {
   margin: 0; */
 }
 
-body a:hover { color: yellow; }
+body a:hover { color: red; }
 
  /* div {
     border: ridge;
