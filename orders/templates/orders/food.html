@@ -33,16 +33,16 @@
                   <li>Size:  {{ food.sub.size }}</li>
                   <br/>
                 {% endif %}
-                {% if food.topping %}
+                <!-- {% if food.topping %}
                   <li>Side:  {{ food.topping.side }}</li>
 
-                {% endif %}
+                {% endif %} -->
 
             </ul>
             <br>
             <h2 class = "foodPage">Submit an Order:</h2>
             <br/>
-            <h3>{{ food.name }}
+            <!-- <h3>{{ food.name }} -->
               {% if food.pizza %}
                 Pizza
               {% endif %}
@@ -89,13 +89,15 @@
                      <input type="checkbox" value="large" name="size">large<br>
                    <br><br>
                    {% endif %}
-                   {% if food.topping %}
+                   <!-- {% if food.topping %}
                <h4>Side:</h4>
                        <input type="checkbox" value="whole" name="side">whole<br>
                        <input type="checkbox" value="left" name="side">left<br>
                        <input type="checkbox" value="right" name="side">right<br>
                   <br><br>
-                  {% endif %}
+                  {% endif %} -->
+
+              {% if not food.topping %}
                <h4>Special Instructions:</h4>
                        <textarea  type="text" value="{{ food.specialInstructions }}" name="specialInstructions"></textarea>
                        <br><br><br>
@@ -103,21 +105,25 @@
                        <input type="number" name="quantity" value=1>
                        <br><br><br>
                        <input type="submit" value="Add to Shopping Card" />
+              {% endif %}
                   </form>
                   <br><br>
+                {% if not food.topping %}
                 <a href="{% url 'menu' %}">Back to the menu.</a>
+                {% endif %}
                 <br><br>
                 {% if food.topping %}
                 <div>
-                  <form action="{% url 'addTopping' %}" method="post">
+                  <form action="{% url 'addTopping' food.id %}" method="post">
                     {% csrf_token %}
                     <table>
                       {{ toppingForm.as_table }}
                     </table>
-                    <input type="submit" value="Add Topping"/>
+                    <input type="submit" value="Add Topping to Shopping Card"/>
                   </form>
                 </div>
                <br><br>
+               <a href="{% url 'menu' %}">Back to the menu.</a>
                {% endif %}
 
           </div>

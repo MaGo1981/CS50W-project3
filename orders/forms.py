@@ -7,8 +7,13 @@ class FoodForm(forms.Form):
 
 
 class ToppingForm(FoodForm):
-    side = forms.CharField(max_length=64, label="Side")
-
+    OPTIONS = (
+                ("whole", "whole"),
+                ("left", "left"),
+                ("right", "right"),
+                )
+    side = forms.ChoiceField(widget=forms.Select, choices=OPTIONS)
+    # side = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=OPTIONS)
 # class PastaForm(forms.ModelForm):
 #     class Meta:
 #         model = Pasta
