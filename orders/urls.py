@@ -15,5 +15,6 @@ urlpatterns = [
     path("user/<int:user_id>/confirmOrder", views.confirmOrder, name="confirm"),
     path("food/<int:food_id>/addtopping", views.addTopping, name="addTopping"),
     path("food/<int:food_id>/addpasta", views.addPasta, name="addPasta"),
-    path("user/<int:user_id>/card", views.card, name="card")
+    path("user/<int:user_id>/card", views.card, name="card"),
+    path("user/<int:user_id>/profile", views.profile, name="profile")
 ]

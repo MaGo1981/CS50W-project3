@@ -420,3 +420,11 @@ def addPasta(request, food_id):
                     sub1 = pastaForm.cleaned_data["sub1"])
         pasta.save()
     return HttpResponseRedirect(reverse("orders"))
+
+def profile(request, user_id):
+    user=request.user
+
+    context = {
+        "user": user
+    }
+    return render(request, "orders/profile.html", context)

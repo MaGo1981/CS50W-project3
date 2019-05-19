@@ -10,11 +10,12 @@
       <a href="{% url 'orders' %}" class="col-3">Orders</a>
       <a href="{% url 'card' user.id %} " class="col-3">Shopping Card</a>
       <a href="{% url 'logout' %}" class="col-3">Logout</a>
+      <a href="{% url 'profile' user.id %} " class="col-3">Profile</a>
     </span>
     <div class="pic-index">
       <!-- <div class="box"> -->
         <div class="col-12" class="center">
-            <h3>Hello <a href="{% url 'card' user.id %}">{{ user.first_name }}</a>!</h3>
+            <h3>Hello <a href="{% url 'profile' user.id %}">{{ user.first_name }}</a>!</h3>
             <h3>Username: {{ user.username }}</h3> <br>
             <h3>Would you like to order something? <br>
               If you want to order online, proceed to our Menu page!</h3>

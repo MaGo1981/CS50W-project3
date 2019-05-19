@@ -1,0 +1,20 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Shopping Card
+{% endblock %}
+
+{% block body %}
+    <span>
+      <a href="{% url 'index' %}" class="col-3">Index</a>
+      <a href="{% url 'menu' %}"  class="col-3">Menu</a>
+      <a href="{% url 'orders' %}" class="col-3">Orders</a>
+      <a href="{% url 'logout' %}" class="col-3">Logout</a>
+    </span>
+    <div class="pic-profile">
+      <!-- <div class="box"> -->
+        <div class="col-12" class="center">
+          <h1>User profile:</h1>
+          <h2>Name: {{ user.username }}</h2>
+        </div>
+{% endblock %}
