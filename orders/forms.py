@@ -1,5 +1,5 @@
 from django import forms
-# from .models import Pasta
+from .models import Pasta
 
 class FoodForm(forms.Form):
     quantity = forms.IntegerField(label="Quantity")
@@ -14,7 +14,9 @@ class ToppingForm(FoodForm):
                 )
     side = forms.ChoiceField(widget=forms.Select, choices=OPTIONS)
     # side = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=OPTIONS)
-# class PastaForm(forms.ModelForm):
-#     class Meta:
-#         model = Pasta
-#         fields = ["sub1", "specialInstructions", "quantity"]
+
+
+class PastaForm(forms.ModelForm):
+    class Meta:
+        model = Pasta
+        fields = ["sub1", "specialInstructions", "quantity"]

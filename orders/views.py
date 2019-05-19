@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter, Beverage
-from .forms import FoodForm, ToppingForm
+from .forms import FoodForm, ToppingForm, PastaForm
 
 
 # Create your views here.
@@ -119,6 +119,7 @@ def food(request, food_id):
         # print("food.quantity:", quantity)
         subs = Sub.objects.exclude(menu=False).all()
         toppingForm = ToppingForm()
+        pastaForm = PastaForm()
     except Food.DoesNotExist:
         raise Http404("Food does not exist")
 
@@ -127,7 +128,8 @@ def food(request, food_id):
         "allToppings": allToppings,
         "pizzas": pizzas,
         "subs": subs,
-        "toppingForm": toppingForm
+        "toppingForm": toppingForm,
+        "pastaForm": pastaForm
     }
     return render(request, "orders/food.html", context)
 
@@ -403,4 +405,18 @@ def addTopping(request, food_id):
                     specialInstructions = form.cleaned_data["specialInstructions"],
                     side = form.cleaned_data["side"])
         topping.save()
+    return HttpResponseRedirect(reverse("orders"))
+
+def addPasta(request, food_id):
+    # print("order function food_id:", food_id)
+    food = Food.objects.get(pk=food_id)
+    pastaForm = PastaForm(request.POST)
+    print(pastaForm)
+    if pastaForm.is_valid():
+        # pastaForm.save(commit=True)
+        pasta = Pasta(name=food,
+                    quantity = pastaForm.cleaned_data["quantity"],
+                    specialInstructions = pastaForm.cleaned_data["specialInstructions"],
+                    sub1 = pastaForm.cleaned_data["sub1"])
+        pasta.save()
     return HttpResponseRedirect(reverse("orders"))

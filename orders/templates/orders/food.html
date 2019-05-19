@@ -74,13 +74,13 @@
                       {% endfor %}
                     {% endif %}
 
-                    {% if food.pasta %}
+                    <!-- {% if food.pasta %}
                 <h4>Subs:</h4>
                     {% for sub in subs %}
                       <input type="checkbox" value="{{ sub.id }}" name="sub1">{{ sub.name }}, {{ sub.size }}<br>
                      {% endfor %}
                      <br>
-                     {% endif %}
+                     {% endif %} -->
 
 
                     {% if food.sub or food.pizza or food.platter %}
@@ -97,7 +97,7 @@
                   <br><br>
                   {% endif %} -->
 
-              {% if not food.topping %}
+              {% if not food.topping and not food.pasta %}
                <h4>Special Instructions:</h4>
                        <textarea  type="text" value="{{ food.specialInstructions }}" name="specialInstructions"></textarea>
                        <br><br><br>
@@ -108,7 +108,7 @@
               {% endif %}
                   </form>
                   <br><br>
-                {% if not food.topping %}
+                {% if not food.topping and not food.pasta %}
                 <a href="{% url 'menu' %}">Back to the menu.</a>
                 {% endif %}
                 <br><br>
@@ -125,6 +125,20 @@
                <br><br>
                <a href="{% url 'menu' %}">Back to the menu.</a>
                {% endif %}
+
+               {% if food.pasta %}
+               <div>
+                 <form action="{% url 'addPasta' food.id %}" method="post">
+                   {% csrf_token %}
+                   <!-- <table> -->
+                     {{ pastaForm.as_p }}
+                   <!-- </table> -->
+                   <input type="submit" value="Add Pasta to Shopping Card"/>
+                 </form>
+               </div>
+              <br><br>
+              <a href="{% url 'menu' %}">Back to the menu.</a>
+              {% endif %}
 
           </div>
         </div>
