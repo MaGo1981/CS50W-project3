@@ -2,6 +2,8 @@ from django.urls import path
 
 from . import views
 
+from .views import FoodView
+
 urlpatterns = [
     path("", views.index, name="index"),
     path("menu", views.menu, name="menu"),
@@ -16,5 +18,6 @@ urlpatterns = [
     path("food/<int:food_id>/addtopping", views.addTopping, name="addTopping"),
     path("food/<int:food_id>/addpasta", views.addPasta, name="addPasta"),
     path("user/<int:user_id>/card", views.card, name="card"),
-    path("user/<int:user_id>/profile", views.profile, name="profile")
+    path("user/<int:user_id>/profile", views.profile, name="profile"),
+    path('foodapi/', FoodView.as_view(), name="foodApi"),
 ]

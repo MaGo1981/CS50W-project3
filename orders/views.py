@@ -9,6 +9,19 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter, Beverage
 from .forms import FoodForm, ToppingForm, PastaForm
 
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .serializers import FoodSerializer
+
+
+class FoodView(APIView):
+    def get(self, request):
+        food = Food.objects.all()
+        # the many param informs the serializer that it will be serializing more than a single article.
+        serializer = FoodSerializer(food, many=True)
+        return Response({"food": serializer.data})
+
 
 # Create your views here.
 def index(request):
