@@ -32,9 +32,17 @@ class ModelTestCase(TestCase):
         p = Pizza.objects.get(topping1=a1, topping2=a2, topping3=a3)
         self.assertTrue(p.is_valid_pizza())
 
-    def test2_validPizza(self):
+    def test_invalidPizzaToppings(self):
         a1 = Topping.objects.get(name="Oregano",side="whole")
         a2 = Topping.objects.get(name="Oregano",side="left")
         a3 = Topping.objects.get(name="Oregano",side="right")
         p = Pizza.objects.get(topping1=a1, topping2=a2, topping3=a3)
         self.assertFalse(Pizza.is_valid_pizza(p))
+
+    def test_toppingsName_count(self):
+        t = Topping.objects.filter(name="Onions")
+        self.assertEqual(t.count(), 3)
+
+    def test_toppingsNames_count(self):
+        t = Topping.objects.exclude(name="Oregano")
+        self.assertEqual(t.count(), 6)
