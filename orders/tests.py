@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 
 
 from .models import Food, Topping, Pizza
@@ -46,3 +46,10 @@ class ModelTestCase(TestCase):
     def test_toppingsNames_count(self):
         t = Topping.objects.exclude(name="Oregano")
         self.assertEqual(t.count(), 6)
+
+    # TESTING FRONT END SIDE
+
+    def test_index(self):
+        c = Client()
+        response = c.get("/")
+        self.assertEqual(response.status_code, 200)
