@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from .models import Food
 
 class FoodSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=64)
@@ -9,3 +9,7 @@ class FoodSerializer(serializers.Serializer):
     specialInstructions = serializers.CharField(max_length=640)
     menu = serializers.BooleanField()
     status = serializers.CharField(max_length=64)
+    user_id = serializers.IntegerField()
+
+    def create(self, validated_data):
+        return Food.objects.create(**validated_data)

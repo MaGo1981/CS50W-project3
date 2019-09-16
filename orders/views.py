@@ -21,6 +21,15 @@ class FoodView(APIView):
         serializer = FoodSerializer(food, many=True)
         return Response({"food": serializer.data})
 
+    def post(self, request):
+        food = request.data.get('food')
+
+        # Create food from the above data
+        serializer = FoodSerializer(data=food)
+        if serializer.is_valid(raise_exception=True):
+            food_saved = serializer.save()
+        return Response({"success": "Food '{}' created successfully".format(food_saved.name)})
+
 
 # Create your views here.
 def index(request):
