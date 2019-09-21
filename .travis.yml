@@ -7,9 +7,9 @@ script:
     - python manage.py test
 
 
-deploy:
-  provider: heroku
-  api_key: $HEROKU_API_KEY
-  app: pizza-marko
-  run: python manage.py runserver
-  on: master
+# deploy:
+#   provider: heroku
+#   api_key: $HEROKU_API_KEY
+#   app: pizza-marko
+#   run: python manage.py runserver
+#   on: master
