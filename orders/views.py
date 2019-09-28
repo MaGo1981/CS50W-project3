@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter
+from .forms import FoodForm, ToppingForm, PastaForm
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
