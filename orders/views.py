@@ -47,7 +47,7 @@ def index(request):
 def menu(request):
     if not request.user.is_authenticated:
         form = AuthenticationForm()
-        return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! Please Login or Register!", 'form':form})
+        return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! To see our menu page, please login or register!", 'form':form})
 
     context = {
         "user": request.user,
@@ -64,7 +64,7 @@ def menu(request):
 def orders(request):
     if not request.user.is_authenticated:
         form = AuthenticationForm()
-        return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! Please Login or Register!", 'form':form})
+        return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! To see our orders page, please login or register!", 'form':form})
 
     context = {
         "pizzas": Pizza.objects.exclude(menu=True).all(),
@@ -95,13 +95,13 @@ def login_view(request):
     # if a GET (or any other method) we'll create a blank form
     else:
         form = AuthenticationForm()
-    return render(request, 'orders/login.html', {'form': form, "message": "Please login!"})
+    return render(request, 'orders/login.html', {'form': form, "message": "Welcome to Marko's Pizza & Subs! Please login!"})
 
 
 def logout_view(request):
     logout(request)
     form = AuthenticationForm()
-    return render(request, "orders/login.html", {'form': form, "message": "Logged out."})
+    return render(request, "orders/login.html", {'form': form, "message": "Logged out from Marko's Pizza & Subs!"})
 
 def register_view(request):
     # if this is a POST request we need to process the form data
@@ -128,7 +128,7 @@ def food(request, food_id):
     # print("food function food_id:", food_id)
     if not request.user.is_authenticated:
         form = AuthenticationForm()
-        return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! Please Login or Register!", 'form':form})
+        return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! To see our food page, please login or register!", 'form':form})
     try:
         food = Food.objects.get(pk=food_id)
         allToppings = Topping.objects.exclude(menu=False).all()
@@ -220,7 +220,7 @@ def order(request, food_id):
 
 
     except KeyError:
-        return render(request, "orders/error.html", {"message": "No selection, no id."})
+        return render(request, "orders/error.html", {"message": "No selection, no id.  Please specify what you would like to order!"})
     except Pizza.DoesNotExist:
         try:
             topping = Topping.objects.get(pk=food_id)
