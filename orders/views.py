@@ -12,7 +12,7 @@ from .forms import FoodForm, ToppingForm, PastaForm
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .serializers import FoodSerializer
+from .serializers import FoodSerializer, ToppingsSerializer
 
 
 class FoodView(APIView):
@@ -30,6 +30,22 @@ class FoodView(APIView):
         if serializer.is_valid(raise_exception=True):
             food_saved = serializer.save()
         return Response({"success": "Food '{}' created successfully".format(food_saved.name)})
+
+class ToppingsView(APIView):
+    def get(self, request):
+        toppings = Topping.objects.all()
+        # the many param informs the serializer that it will be serializing more than a single article.
+        serializer = ToppingsSerializer(toppings, many=True)
+        return Response({"toppings": serializer.data})
+
+    def post(self, request):
+        toppings = request.data.get('toppings')
+
+        # Create food from the above data
+        serializer = ToppingsSerializer(data=toppings)
+        if serializer.is_valid(raise_exception=True):
+            topping_saved = serializer.save()
+        return Response({"success": "Topping '{}' created successfully".format(topping_saved.name)})
 
 
 # Create your views here.
