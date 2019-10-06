@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 
-from .views import FoodView, ToppingsView
+from .views import FoodView, ToppingsView, PizzasView, SinglePizzaView
 
 urlpatterns = [
     path("", views.index, name="index"),
@@ -21,4 +21,6 @@ urlpatterns = [
     path("user/<int:user_id>/profile", views.profile, name="profile"),
     path("api/food", FoodView.as_view(), name="foodApi"),
     path("api/toppings", ToppingsView.as_view(), name="toppingsApi"),
+    path("api/pizzas", PizzasView.as_view(), name="pizzasApi"),
+    path('api/pizzas/<int:pk>', SinglePizzaView.as_view(), name="singlePizaView"),
 ]

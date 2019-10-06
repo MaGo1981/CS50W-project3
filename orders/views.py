@@ -12,7 +12,13 @@ from .forms import FoodForm, ToppingForm, PastaForm
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .serializers import FoodSerializer, ToppingsSerializer
+from .serializers import FoodSerializer, ToppingsSerializer, PizzasSerializer
+
+from rest_framework.generics import GenericAPIView
+
+from django.shortcuts import get_object_or_404
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
+
 
 
 class FoodView(APIView):
@@ -47,6 +53,18 @@ class ToppingsView(APIView):
             topping_saved = serializer.save()
         return Response({"success": "Topping '{}' created successfully".format(topping_saved.name)})
 
+class PizzasView(ListCreateAPIView):
+    queryset = Pizza.objects.all()
+    serializer_class = PizzasSerializer
+
+    def perform_create(self, serializer):
+        user = get_object_or_404(User, id=self.request.data.get('user'))
+        # topping1 = get_object_or_404(Topping, name=self.request.data.get('topping1'))
+        return serializer.save(user=user)
+
+class SinglePizzaView(RetrieveUpdateAPIView):
+    queryset = Pizza.objects.all()
+    serializer_class = PizzasSerializer
 
 # Create your views here.
 def index(request):
