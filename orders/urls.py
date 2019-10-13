@@ -1,8 +1,6 @@
 from django.urls import path
 
-from . import views
-
-from .views import FoodView, ToppingsView, PizzasView, SinglePizzaView
+from . import views, apiViews
 
 urlpatterns = [
     path("", views.index, name="index"),
@@ -19,8 +17,8 @@ urlpatterns = [
     path("food/<int:food_id>/addpasta", views.addPasta, name="addPasta"),
     path("user/<int:user_id>/card", views.card, name="card"),
     path("user/<int:user_id>/profile", views.profile, name="profile"),
-    path("api/food", FoodView.as_view(), name="foodApi"),
-    path("api/toppings", ToppingsView.as_view(), name="toppingsApi"),
-    path("api/pizzas", PizzasView.as_view(), name="pizzasApi"),
-    path('api/pizzas/<int:pk>', SinglePizzaView.as_view(), name="singlePizaView"),
+    path("api/v1/food", apiViews.FoodView.as_view(), name="foodApi"),
+    path("api/v1/toppings", apiViews.ToppingsView.as_view(), name="toppingsApi"),
+    path("api/v1/pizzas", apiViews.PizzasView.as_view(), name="pizzasApi"),
+    path('api/v1/pizzas/<int:pk>', apiViews.SinglePizzaView.as_view(), name="singlePizaView"),
 ]
