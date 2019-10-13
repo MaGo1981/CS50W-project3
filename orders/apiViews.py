@@ -11,6 +11,9 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter
 
 class FoodView(APIView):
+    '''
+    This is an API view for all Food class objects.
+    '''
     def get(self, request):
         food = Food.objects.all()
         # the many param informs the serializer that it will be serializing more than a single article.
@@ -27,6 +30,9 @@ class FoodView(APIView):
         return Response({"success": "Food '{}' created successfully".format(food_saved.name)})
 
 class ToppingsView(APIView):
+    '''
+    This is an API view for Toppings.
+    '''
     def get(self, request):
         toppings = Topping.objects.all()
         # the many param informs the serializer that it will be serializing more than a single article.
@@ -43,6 +49,9 @@ class ToppingsView(APIView):
         return Response({"success": "Topping '{}' created successfully".format(topping_saved.name)})
 
 class PizzasView(ListCreateAPIView):
+    '''
+    This is an API view for Pizzas.
+    '''
     queryset = Pizza.objects.all()
     serializer_class = PizzasSerializer
 
@@ -52,5 +61,8 @@ class PizzasView(ListCreateAPIView):
         return serializer.save(user=user)
 
 class SinglePizzaView(RetrieveUpdateAPIView):
+    '''
+    This is an API view for single Pizza objects.
+    '''
     queryset = Pizza.objects.all()
     serializer_class = PizzasSerializer
