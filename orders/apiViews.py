@@ -3,10 +3,13 @@ from rest_framework.views import APIView
 
 from .serializers import FoodSerializer, ToppingsSerializer, PizzasSerializer
 
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateAPIView
 
 from django.shortcuts import get_object_or_404
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
+
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
+from rest_framework.pagination import LimitOffsetPagination
 
 from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter
 
@@ -66,3 +69,20 @@ class SinglePizzaView(RetrieveUpdateAPIView):
     '''
     queryset = Pizza.objects.all()
     serializer_class = PizzasSerializer
+
+
+class PizzasPagination(LimitOffsetPagination):
+    default_limit = 10
+    max_limit = 100
+
+
+class PizzaList(ListAPIView):
+    '''
+    This is the secound API view for Pizzas.
+    '''
+    queryset = Pizza.objects.all()
+    serializer_class = PizzasSerializer
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    filter_fields = ('id', 'name', 'user', 'size')
+    search_fields = ('name', 'specialInstructions')
+    pagination_class = PizzasPagination

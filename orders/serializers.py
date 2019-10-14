@@ -25,3 +25,8 @@ class PizzasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pizza
         fields = ('id', 'name', 'quantity', 'specialInstructions', 'size', 'topping1', 'topping2', 'topping3', 'user')
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['is_valid_pizza'] = instance.is_valid_pizza()
+        return data

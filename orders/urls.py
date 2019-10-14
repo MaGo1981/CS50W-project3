@@ -21,4 +21,5 @@ urlpatterns = [
     path("api/v1/toppings", apiViews.ToppingsView.as_view(), name="toppingsApi"),
     path("api/v1/pizzas", apiViews.PizzasView.as_view(), name="pizzasApi"),
     path('api/v1/pizzas/<int:pk>', apiViews.SinglePizzaView.as_view(), name="singlePizaView"),
+    path("api/v2/pizzas/", apiViews.PizzaList.as_view(), name="pizzasApi2"),
 ]
