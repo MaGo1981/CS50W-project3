@@ -7,6 +7,7 @@
 {% block body %}
     <span>
       <a href="{% url 'menu' %}"  class="col-3">Menu</a>
+      <a href="{% url 'v2menu' %}"  class="col-3">itemMenu</a>
       <a href="{% url 'orders' %}" class="col-3">Orders</a>
       <a href="{% url 'card' user.id %} " class="col-3">Shopping Card</a>
       <a href="{% url 'logout' %}" class="col-3">Logout</a>

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pasta
+from .models import Pasta, Item, NewFood
 
 class FoodForm(forms.Form):
     quantity = forms.IntegerField(label="Quantity")
@@ -19,4 +19,11 @@ class ToppingForm(FoodForm):
 class PastaForm(forms.ModelForm):
     class Meta:
         model = Pasta
-        fields = ["sub1", "specialInstructions", "quantity"]
+        fields = ["specialInstructions","sub1", "quantity"]
+
+
+class ItemForm(forms.ModelForm):
+    # form.fields["_food"].queryset = NewFood.objects.filter(food_id=item._food.id)
+    class Meta:
+        model = Item
+        fields = ["_food", "_size", "_quantity"]

@@ -4,7 +4,7 @@ from . import views, apiViews
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("menu", views.menu, name="menu"),
+    path("v1/menu", views.menu, name="menu"),
     path("orders", views.orders, name="orders"),
     path("register", views.register_view, name="register"),
     path("login", views.login_view, name="login"),
@@ -22,4 +22,6 @@ urlpatterns = [
     path("api/v1/pizzas", apiViews.PizzasView.as_view(), name="pizzasApi"),
     path('api/v1/pizzas/<int:pk>', apiViews.SinglePizzaView.as_view(), name="singlePizaView"),
     path("api/v2/pizzas/", apiViews.PizzaList.as_view(), name="pizzasApi2"),
+    path("item/<int:item_id>", views.item, name="item"),
+    path("v2/menu", views.v2menu, name="v2menu"),
 ]

@@ -163,6 +163,24 @@
           </tr>
           {% endfor %}
           </table>
+          <br/>
+        <h2 class="col-12" align="center">Food</h2>
+        <table align="center">
+          <tr class="col-12" align="center">
+            <th class="col-4" align="center">Item</th>
+            <th class="col-4" align="center">Small</th>
+            <th class="col-4" align="center">Large</th>
+
+          {% for item in items %}
+                <tr class="col-12" align="center">
+                  <td class="col-4" align="center"><a href="{% url 'item' item.id %}">{{ item.getName }}</a></td>
+                  <td class="col-4" align="center">{{ item.getPrice }}</td>
+                  <td class="col-4" align="center">{{ item.getPrice }}</td>
+                  <!-- item.setPizzaItemPriceAndTotal -->
+                  <!-- <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' item.id %}">Card</button></td> -->
+                </tr>
+          {% endfor %}
+          </table>
           <br/><br/>
     </div>
   <!-- </div> -->

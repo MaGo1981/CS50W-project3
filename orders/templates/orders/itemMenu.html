@@ -1,0 +1,87 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Menu
+{% endblock %}
+
+{% block body %}
+<span class="col-12">
+  <a href="{% url 'index' %}" class="col-3">Index</a>
+  <a href="{% url 'orders' %}" class="col-3">Orders</a>
+  <a href="{% url 'card' user.id %} " class="col-3">Shopping Card</a>
+  <a href="{% url 'logout' %}" class="col-3">Logout</a>
+</span>
+<br/>
+<br/>
+<div class="pic">
+  <!-- <div class="box"> -->
+    <div class="col-12" class="center">
+        <h1 class="col-12" align="center">Our Menu</h1>
+
+        <br/>
+        <h2 class="col-12" align="center">Food</h2>
+        <table align="center">
+          <tr class="col-12" align="center">
+            <th class="col-4" align="center">Item</th>
+            <th class="col-4" align="center">Small</th>
+            <th class="col-4" align="center">Large</th>
+
+          {% for item in items %}
+          <!-- <tr class="col-12">
+            <td class="col-4">Cheese</td>
+            <td class="col-4">{{ pizza.priceSmall }}</td>
+            <td class="col-4">{{ pizza.priceLarge }}</td>
+          </tr>
+
+          <tr class="col-12">
+            <td class="col-4">1 topping</td>
+            <td class="col-4">{{ pizza.get_priceSmallT1 }}</td>
+            <td class="col-4">{{ pizza.get_priceLargeT1 }}</td>
+          </tr>
+
+          <tr class="col-12">
+            <td class="col-4">2 toppings</td>
+            <td class="col-4">{{ pizza.get_priceSmallT2 }}</td>
+            <td class="col-4">{{ pizza.get_priceLargeT2 }}</td>
+          </tr>
+
+          <tr class="col-12">
+            <td class="col-4">3 toppings</td>
+            <td class="col-4">{{ pizza.get_priceSmallT3 }}</td>
+            <td class="col-4">{{ pizza.get_priceLargeT3 }}</td>
+          </tr>
+
+          <tr class="col-12">
+            <td class="col-4">Special</td>
+            <td class="col-4">{{ pizza.get_SIpriceSmall }}</td>
+            <td class="col-4">{{ pizza.get_SIpriceLarge }}</td>
+          </tr> -->
+
+                <tr class="col-12" align="center">
+                  <td class="col-4" align="center"><a href="{% url 'item' item.id %}">{{ item.getName }}</a></td>
+                  <td class="col-4" align="center">{{ item.getPrice }}</td>
+                  <td class="col-4" align="center">{{ item.getPrice }}</td>
+                  <!-- item.setPizzaItemPriceAndTotal -->
+                  <!-- <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' item.id %}">Card</button></td> -->
+                </tr>
+          {% endfor %}
+          </table>
+          <br/><br/>
+    </div>
+  <!-- </div> -->
+</div>
+<!-- ------------------------MODAL------------------------------------- -->
+
+<div id="myModal" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"></h3>
+        <button data-dismiss="modal"></button>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

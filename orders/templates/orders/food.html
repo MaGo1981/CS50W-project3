@@ -8,6 +8,7 @@
     <span>
       <a href="{% url 'index' %}" class="col-3">Index</a>
       <a href="{% url 'menu' %}"  class="col-3">Menu</a>
+      <a href="{% url 'v2menu' %}"  class="col-3">itemMenu</a>
       <a href="{% url 'orders' %}" class="col-3">Orders</a>
       <a href="{% url 'card' user.id %} " class="col-3">Shopping Card</a>
       <a href="{% url 'logout' %}" class="col-3">Logout</a>
@@ -139,6 +140,20 @@
               <br><br>
               <a href="{% url 'menu' %}">Back to the menu.</a>
               {% endif %}
+
+              {% if item %}
+              <div>
+                <form action="{% url 'addPasta' food.id %}" method="post">
+                  {% csrf_token %}
+                  <!-- <table> -->
+                    {{ itemForm.as_p }}
+                  <!-- </table> -->
+                  <input type="submit" value="Add Item to Shopping Card"/>
+                </form>
+              </div>
+             <br><br>
+             <a href="{% url 'menu' %}">Back to the menu.</a>
+             {% endif %}
 
           </div>
         </div>

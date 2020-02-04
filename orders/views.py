@@ -6,8 +6,46 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
-from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter
-from .forms import FoodForm, ToppingForm, PastaForm
+from .models import Food, Pizza, Topping, Sub, Pasta, Salad, Platter, NewFood, NewPizza, NewTopping, NewSalad, Item
+from .forms import FoodForm, ToppingForm, PastaForm, ItemForm
+
+
+def item(request, item_id):
+
+    if not request.user.is_authenticated:
+        form = AuthenticationForm()
+        return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! To see our item page, please login or register!", 'form':form})
+    try:
+        item = Item.objects.get(pk=item_id)
+        print("item function item_id:", item_id)
+        itemForm = ItemForm()
+        # itemForm.fields["_food"].queryset = NewFood.objects.filter(food_id=_food/.id)
+        # itemForm._food.queryset = NewFood.objects.filter(food_id=_food.id)
+    except Item.DoesNotExist:
+        raise Http404("Item does not exist")
+
+    context = {
+        "item": item,
+        "itemForm": itemForm,
+    }
+    return render(request, "orders/item.html", context)
+
+
+def v2menu(request):
+    if not request.user.is_authenticated:
+        form = AuthenticationForm()
+        return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! To see our menu page, please login or register!", 'form':form})
+
+    context = {
+        "user": request.user,
+        # "items": Item.objects.all().order_by('_food___menuPosition'), # extra dunder between fields
+        "items": Item.objects.all().order_by(Item.getFoodPosition()), # extra dunder between fiobject => data hiding
+    }
+
+    return render(request, "orders/itemMenu.html", context)
+
+
+
 
 
 
@@ -36,6 +74,9 @@ def menu(request):
         "pastas": Pasta.objects.exclude(menu=False).all(),
         "salads": Salad.objects.exclude(menu=False).all(),
         "platters": Platter.objects.exclude(menu=False).all(),
+        "newSalads": NewSalad.objects.all(),
+        # "items": Item.objects.all().order_by('_food___menuPosition'), # extra dunder between fields
+        "items": Item.objects.all().order_by(Item.getFoodPosition()), # extra dunder between fiobject => data hiding
     }
 
     return render(request, "orders/menu.html", context)
@@ -128,7 +169,7 @@ def food(request, food_id):
         "pizzas": pizzas,
         "subs": subs,
         "toppingForm": toppingForm,
-        "pastaForm": pastaForm
+        "pastaForm": pastaForm,
     }
     return render(request, "orders/food.html", context)
 
