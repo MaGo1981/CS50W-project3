@@ -37,7 +37,7 @@ def v2menu(request):
         return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! To see our menu page, please login or register!", 'form':form})
 
     context = {
-        # "user": request.user,
+        git
         # "items": Item.objects.all().order_by('_food___menuPosition'), # extra dunder between fields
         "items": Item.objects.all().order_by(Item.getFoodPosition()), # extra dunder between fiobject => data hiding
     }
@@ -76,7 +76,7 @@ def menu(request):
         "platters": Platter.objects.exclude(menu=False).all(),
         "newSalads": NewSalad.objects.all(),
         # "items": Item.objects.all().order_by('_food___menuPosition'), # extra dunder between fields
-        "items": Item.objects.all().order_by(Item.getFoodPosition()), # extra dunder between fiobject => data hiding
+        # "items": Item.objects.all().order_by(Item.getFoodPosition()), # extra dunder between fiobject => data hiding
     }
 
     return render(request, "orders/menu.html", context)
