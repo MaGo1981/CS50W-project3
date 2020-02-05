@@ -32,9 +32,9 @@ def item(request, item_id):
 
 
 def v2menu(request):
-    if not request.user.is_authenticated:
-        form = AuthenticationForm()
-        return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! To see our menu page, please login or register!", 'form':form})
+    # if not request.user.is_authenticated:
+    #     form = AuthenticationForm()
+    #     return render(request, "orders/login.html", {"message": "Welcome to Marko's Pizza & Subs! To see our menu page, please login or register!", 'form':form})
 
     context = {
         # "items": Item.objects.all().order_by('_food___menuPosition'), # extra dunder between fields
