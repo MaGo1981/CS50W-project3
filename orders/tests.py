@@ -77,7 +77,7 @@ class ModelTestCase(TestCase):
         response = c.post('/login', {'username': 'admin', 'password': 'admin'})
         self.assertEqual(response.status_code, 302)
 
-        response = c.get("/menu")
+        response = c.get("/v1/menu")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["pizzas"].count(), 1)
         self.assertEqual(response.context["toppings"].count(), 3)
