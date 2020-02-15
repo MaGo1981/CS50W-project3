@@ -23,7 +23,7 @@ class PastaForm(forms.ModelForm):
 
 
 class ItemForm(forms.ModelForm):
-    # form.fields["_food"].queryset = NewFood.objects.filter(food_id=item._food.id)
+    
     class Meta:
         model = Item
         fields = ["_food", "_size", "_quantity"]
