@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
-from .models import NewFood, NewPizza, NewTopping, NewSalad, Item
+from .models import NewFood, NewPizza, NewTopping, NewSalad, Item, NewPizzaNoTopping, NewPizza1Topping, NewPizza2Toppings, NewPizza3Toppings, NewPizzaSpecialInstructions
 from .forms import ItemForm
 
 

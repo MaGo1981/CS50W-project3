@@ -71,9 +71,9 @@ class NewTopping(NewFood):
 class NewPizza(NewFood):
 	"""A simple pizza class"""
 
-	_topping1 = models.ForeignKey(NewTopping, on_delete=models.CASCADE, related_name="topping1", null=True, blank=True)
-	_topping2 = models.ForeignKey(NewTopping, on_delete=models.CASCADE, related_name="topping2", null=True, blank=True)
-	_topping3 = models.ForeignKey(NewTopping, on_delete=models.CASCADE, related_name="topping3", null=True, blank=True)
+	_topping1 = models.ForeignKey(NewTopping, on_delete=models.CASCADE, related_name="topping13", null=True, blank=True)
+	_topping2 = models.ForeignKey(NewTopping, on_delete=models.CASCADE, related_name="topping23", null=True, blank=True)
+	_topping3 = models.ForeignKey(NewTopping, on_delete=models.CASCADE, related_name="topping33", null=True, blank=True)
 
 
 	def setPizzaPriceAndTotal(self, pizzaPrice):
@@ -120,6 +120,32 @@ class NewPizza(NewFood):
 		else:
 			return f"{self._name} "
 
+class NewPizzaNoTopping(NewFood):
+	"""A simple pizza class"""
+
+
+class NewPizza1Topping(NewPizzaNoTopping):
+	"""A simple pizza class with 1 topping"""
+
+	_topping1 = models.ForeignKey(NewTopping, on_delete=models.CASCADE, related_name="topping1", null=True, blank=True)
+
+
+class NewPizza2Toppings(NewPizza1Topping):
+	"""A simple pizza class with 2 toppings"""
+
+	_topping2 = models.ForeignKey(NewTopping, on_delete=models.CASCADE, related_name="topping2", null=True, blank=True)
+
+
+class NewPizza3Toppings(NewPizza2Toppings):
+	"""A simple pizza class with 3 toppings"""
+
+	_topping3 = models.ForeignKey(NewTopping, on_delete=models.CASCADE, related_name="topping3", null=True, blank=True)
+
+class NewPizzaSpecialInstructions(NewPizza3Toppings):
+	"""A simple pizza class with special instructions"""
+
+	_specialInstructions = models.CharField(max_length=640,  null=True, blank=True)
+
 class NewSalad(NewFood):
 
 
@@ -158,7 +184,18 @@ class Item(models.Model):
 		return self._food._name
 
 	def getPrice(self):
+		if self._size == "small":
+			return self._price._smallRegular
+		else:
+			return self._price._largeRegular
+
+	@property
+	def smallPrice(self):
 		return self._price._smallRegular
+
+	@property
+	def largePrice(self):
+		return self._price._largeRegular
 
 	def setPizzaItemPriceAndTotal(self):
 		if isinstance(self._food, NewPizza):

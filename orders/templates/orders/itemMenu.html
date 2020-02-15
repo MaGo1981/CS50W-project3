@@ -19,7 +19,8 @@
         <h1 class="col-12" align="center">Our Menu</h1>
 
         <br/>
-        <h2 class="col-12" align="center">Food</h2>
+        <h2 class="col-12" align="center">Items</h2>
+        <br/>
         <table align="center">
           <tr class="col-12" align="center">
             <th class="col-4" align="center">Item</th>
@@ -59,8 +60,8 @@
 
                 <tr class="col-12" align="center">
                   <td class="col-4" align="center"><a href="{% url 'item' item.id %}">{{ item.getName }}</a></td>
-                  <td class="col-4" align="center">{{ item.getPrice }}</td>
-                  <td class="col-4" align="center">{{ item.getPrice }}</td>
+                  <td class="col-4" align="center">{{ item.smallPrice }}</td>
+                  <td class="col-4" align="center">{{ item.largePrice }}</td>
                   <!-- item.setPizzaItemPriceAndTotal -->
                   <!-- <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' item.id %}">Card</button></td> -->
                 </tr>
