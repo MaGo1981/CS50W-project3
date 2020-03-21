@@ -39,7 +39,7 @@ def v2menu(request):
     context = {
         "user": request.user,
         # "items": Item.objects.all().order_by('_food___menuPosition'), # extra dunder between fields
-        "items": Item.objects.all().order_by(Item.getFoodPosition()), # extra dunder between fiobject => data hiding
+        "items": Item.objects.exclude(_menu=False).all().order_by(Item.getFoodPosition()), # extra dunder between fiobject => data hiding
     }
 
     return render(request, "orders/itemMenu.html", context)
@@ -49,7 +49,7 @@ def itemsCard(request, user_id):
     user=request.user
     user_id=request.user.id
     context = {
-        "items": Item.objects.filter(_user=user_id).all(),
+        "items": Item.objects.filter(_user=user_id).exclude(_menu=True).all(),
         "user": user,
         "user_id": user_id
     }
@@ -61,6 +61,8 @@ def addItem(request, item_id):
     user_id=request.user.id
     # print("order function food_id:", food_id)
     item = Item.objects.get(pk=item_id)
+    # size = itemForm.cleaned_data["_size"]
+    # price = item.itemprice(size)
     food = NewFood.objects.get(pk=item._food.id) # returns an object instance
     # food = NewFood.objects.filter(pk=item._food.id) # returns a list
     # price = FoodPrice.objects.get(pk=item._price.id)
@@ -72,15 +74,15 @@ def addItem(request, item_id):
     #     print("Noooo!")
         newItem = Item(
                         _food = itemForm.cleaned_data["_food"],
-                        # _food = food,
                         _size = itemForm.cleaned_data["_size"],
                         _quantity = itemForm.cleaned_data["_quantity"],
-                        # _price = price
+                        _menu=False
+                        # _price = item._price
                         )
         # print("newItem: ", newItem)
         newItem.save()
     context = {
         "items": Item.objects.filter(_user=user_id).all()
     }
-    # return HttpResponseRedirect(reverse("orders"))# https://stackoverflow.com/questions/42466620/django-relationship-between-boundfield-and-form-field
+    # return HttpResponseRedirect(reverse("itemsCard", args=(item_id,)))# https://stackoverflow.com/questions/42466620/django-relationship-between-boundfield-and-form-field
     return render(request, "orders/itemsCard.html", context)

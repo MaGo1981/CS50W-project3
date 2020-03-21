@@ -200,11 +200,20 @@ class Item(models.Model):
 
 	@cached_property
 	def smallPrice(self):
-		return self._price
+		return self._price._smallRegular
 
 	@cached_property
 	def largePrice(self):
-		return self._price
+		return self._price._largeRegular
+
+
+	@cached_property
+	def itemPrice(self, size):
+		if size == "small":
+			return self._price._smallRegular
+		else:
+			return self._price._largeRegular
+
 
 	def setPizzaItemPriceAndTotal(self):
 		if isinstance(self._food, NewPizza):

@@ -19,9 +19,9 @@
           <ul>
             {% for item in items %}
               <li>
-                <a href="{% url 'itemsCard' user.id %}">
-                    {{ item }} -- {{ item.getPrice }} eur/pc 
-                </a>
+                <!-- <a href="{% url 'itemsCard' user.id %}"> -->
+                    {{ item }} -- {{ item.price }} eur/pc
+                <!-- </a> -->
               </li>
             {% endfor %}
           </ul>
