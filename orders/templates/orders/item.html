@@ -23,7 +23,7 @@
 
               {% if item %}
               <div>
-                <form action="{% url 'addPasta' item.id %}" method="post">
+                <form action="{% url 'addItem' item.id %}" method="post">
                   {% csrf_token %}
                   <!-- <table> -->
                     {{ itemForm.as_p }}

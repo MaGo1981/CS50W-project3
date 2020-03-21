@@ -1,0 +1,31 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Shopping Card
+{% endblock %}
+
+{% block body %}
+    <span>
+      <a href="{% url 'index' %}" class="col-3">Index</a>
+      <a href="{% url 'menu' %}"  class="col-3">Menu</a>
+      <a href="{% url 'orders' %}" class="col-3">Orders</a>
+      <a href="{% url 'logout' %}" class="col-3">Logout</a>
+    </span>
+    <div class="pic-card">
+      <!-- <div class="box"> -->
+        <div class="col-12" class="center">
+          <h1>My Shopping Card:</h1>
+          <h2>My Items</h2>
+          <ul>
+            {% for item in items %}
+              <li>
+                <a href="{% url 'itemsCard' user.id %}">
+                    {{ item }} -- {{ item.getPrice }} eur/pc 
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      <!-- </div> -->
+    </div>
+{% endblock %}

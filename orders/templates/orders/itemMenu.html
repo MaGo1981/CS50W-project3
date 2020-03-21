@@ -28,42 +28,14 @@
             <th class="col-4" align="center">Large</th>
 
           {% for item in items %}
-          <!-- <tr class="col-12">
-            <td class="col-4">Cheese</td>
-            <td class="col-4">{{ pizza.priceSmall }}</td>
-            <td class="col-4">{{ pizza.priceLarge }}</td>
-          </tr>
 
-          <tr class="col-12">
-            <td class="col-4">1 topping</td>
-            <td class="col-4">{{ pizza.get_priceSmallT1 }}</td>
-            <td class="col-4">{{ pizza.get_priceLargeT1 }}</td>
-          </tr>
-
-          <tr class="col-12">
-            <td class="col-4">2 toppings</td>
-            <td class="col-4">{{ pizza.get_priceSmallT2 }}</td>
-            <td class="col-4">{{ pizza.get_priceLargeT2 }}</td>
-          </tr>
-
-          <tr class="col-12">
-            <td class="col-4">3 toppings</td>
-            <td class="col-4">{{ pizza.get_priceSmallT3 }}</td>
-            <td class="col-4">{{ pizza.get_priceLargeT3 }}</td>
-          </tr>
-
-          <tr class="col-12">
-            <td class="col-4">Special</td>
-            <td class="col-4">{{ pizza.get_SIpriceSmall }}</td>
-            <td class="col-4">{{ pizza.get_SIpriceLarge }}</td>
-          </tr> -->
 
                 <tr class="col-12" align="center">
                   <td class="col-4" align="center"><a href="{% url 'item' item.id %}">{{ item.getName }}</a></td>
                   <td class="col-4" align="center">{{ item.smallPrice }}</td>
                   <td class="col-4" align="center">{{ item.largePrice }}</td>
-                  <!-- item.setPizzaItemPriceAndTotal -->
-                  <!-- <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'food' item.id %}">Card</button></td> -->
+
+                  <!-- <td><button type="button" data-toggle="modal" data-target="#myModal" href="{% url 'item' item.id %}">Card</button></td> -->
                 </tr>
           {% endfor %}
           </table>

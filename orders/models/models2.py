@@ -1,11 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from django.utils.functional import cached_property
+
+
+
+class Profile(models.Model):
+	_user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
+
+
 
 class FoodPrice(models.Model):
 	_name = models.CharField(max_length=64, default='FoodPrice')
-	_smallRegular = models.FloatField(default=5)
-	_largeRegular = models.FloatField(default=10)
+	_smallRegular = models.FloatField(default=5, null=True, blank=True)
+	_largeRegular = models.FloatField(default=10, null=True, blank=True)
 
 	# def getPrice(self):
 	# 	return self._smallRegular
@@ -174,28 +182,29 @@ class Item(models.Model):
 
 	def setPriceAndTotal(self, priceClass): # filter priceClass by self_name = priceClass_name
 		if self._size == 'large':
-			self._price = price._largeRegular
+			self._price = priceClass._largeRegular
 		elif self._size == 'small':
-			self._price = price._smallRegular
-		self._total = self._price*self._quantity
+			self._price = priceClass._smallRegular
+		return self._price
+		# self._total = self._price*self._quantity
 
 
 	def getName(self):
 		return self._food._name
 
-	def getPrice(self):
-		if self._size == "small":
-			return self._price._smallRegular
+	def getPrice(self, size):
+		if size == "small":
+			return self._price
 		else:
-			return self._price._largeRegular
+			return self._price
 
-	@property
+	@cached_property
 	def smallPrice(self):
-		return self._price._smallRegular
+		return self._price
 
-	@property
+	@cached_property
 	def largePrice(self):
-		return self._price._largeRegular
+		return self._price
 
 	def setPizzaItemPriceAndTotal(self):
 		if isinstance(self._food, NewPizza):
@@ -222,7 +231,7 @@ class Item(models.Model):
 			self._total = self._price*self._quantity
 
 	def __str__(self):
-		return f"{self._food}, quantity: {self._quantity}, price: {self.getPrice()}, size: {self._size}"
+		return f"{self._food}, quantity: {self._quantity}, price: {self.getPrice(self._size)}, size: {self._size}"
 
 class Order(models.Model):
 	_items = models.ManyToManyField(Item, related_name="items") # filter items by user

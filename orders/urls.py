@@ -24,4 +24,7 @@ urlpatterns = [
     path("api/v2/pizzas/", apiViews1.PizzaList.as_view(), name="pizzasApi2"),
     path("v2/item/<int:item_id>", views2.item, name="item"),
     path("v2/menu", views2.v2menu, name="v2menu"),
+    path("item/<int:item_id>/additem", views2.addItem, name="addItem"),
+    path("v2/user/<int:user_id>/card", views2.itemsCard, name="itemsCard"),
+
 ]
