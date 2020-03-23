@@ -5,9 +5,9 @@ from django.utils.functional import cached_property
 
 
 
-class Profile(models.Model):
-	_user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
-
+# class Profile(models.Model):
+# _user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
+#
 
 
 class FoodPrice(models.Model):
