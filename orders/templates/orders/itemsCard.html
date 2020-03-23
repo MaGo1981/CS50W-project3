@@ -19,9 +19,13 @@
           <ul>
             {% for item in items %}
               <li>
+                {% if item.size == "small" %}
                 <!-- <a href="{% url 'itemsCard' user.id %}"> -->
-                    {{ item }} -- {{ item.price }} eur/pc
+                    {{ item }} -- {{ item.itemPrice.smallRegular }} eur/pc
                 <!-- </a> -->
+                {% elif item.size == "large" %}
+                    {{ item }} -- {{ item.itemPrice.largeRegular }} eur/pc
+                {% endif %}
               </li>
             {% endfor %}
           </ul>

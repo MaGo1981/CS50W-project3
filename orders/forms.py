@@ -23,7 +23,7 @@ class PastaForm(forms.ModelForm):
 
 
 class ItemForm(forms.ModelForm):
-    
+
     class Meta:
         model = Item
         fields = ["_food", "_size", "_quantity"]

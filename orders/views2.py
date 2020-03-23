@@ -61,12 +61,20 @@ def addItem(request, item_id):
     user_id=request.user.id
     # print("order function food_id:", food_id)
     item = Item.objects.get(pk=item_id)
-    # size = itemForm.cleaned_data["_size"]
-    # price = item.itemprice(size)
+    print("name: ", item._food._name)
+    priceId = item._price.id
+    print("priceId: ", priceId)
+    price = FoodPrice.objects.get(pk=priceId)
+    print("price: ", price._smallRegular)
+    # price = item._price
     food = NewFood.objects.get(pk=item._food.id) # returns an object instance
     # food = NewFood.objects.filter(pk=item._food.id) # returns a list
     # price = FoodPrice.objects.get(pk=item._price.id)
     itemForm = ItemForm(request.POST)
+    # print("itemForm = ", itemForm)
+    # size = itemForm.cleaned_data["_size"]
+    # price = item.itemPrice(size)
+    # print("price: ", price)
     if itemForm.is_valid():
     # if food.model is NewFood:
     #     print("Heurekaaaaa!")
@@ -76,10 +84,11 @@ def addItem(request, item_id):
                         _food = itemForm.cleaned_data["_food"],
                         _size = itemForm.cleaned_data["_size"],
                         _quantity = itemForm.cleaned_data["_quantity"],
-                        _menu=False
-                        # _price = item._price
+                        _menu=False,
+                        _price = item._price
                         )
-        # print("newItem: ", newItem)
+        print("newItem._price: ", newItem._price)
+        print("newItem: ", newItem)
         newItem.save()
     context = {
         "items": Item.objects.filter(_user=user_id).all()

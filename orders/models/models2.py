@@ -18,6 +18,14 @@ class FoodPrice(models.Model):
 	# def getPrice(self):
 	# 	return self._smallRegular
 
+	@cached_property
+	def smallRegular(self):
+		return self._smallRegular
+
+	@cached_property
+	def largeRegular(self):
+		return self._largeRegular
+
 	def __str__(self):
 		return f"{self._name} "
 
@@ -206,13 +214,16 @@ class Item(models.Model):
 	def largePrice(self):
 		return self._price._largeRegular
 
+	@cached_property
+	def size(self):
+		return self._size
 
 	@cached_property
-	def itemPrice(self, size):
-		if size == "small":
-			return self._price._smallRegular
+	def itemPrice(self):
+		if self.size == "small":
+			return self._price
 		else:
-			return self._price._largeRegular
+			return self._price
 
 
 	def setPizzaItemPriceAndTotal(self):
