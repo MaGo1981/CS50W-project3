@@ -61,10 +61,29 @@ class NewFood(models.Model):
 
 
 	def __str__(self):
-		if self._specialInstructions != None:
+		if isinstance(self, Pizza3):
+		    return "%s (%s)" % (
+		        self._name,
+		        ", ".join(topping._name for topping in self.toppings.all()),
+		    )
+		elif self._specialInstructions != None:
 			return f"{self._name}, special instructions: {self._specialInstructions} "
 		else:
 			return f"{self._name}"
+
+
+class Topping3(NewFood):
+	"""A simple Topping3 class"""
+
+class Pizza3(NewFood):
+	"""A simple Pizza3 class"""
+	toppings = models.ManyToManyField(Topping3, blank=True)
+
+	def __str__(self):
+	    return "%s (%s)" % (
+	        self._name,
+	        ", ".join(topping._name for topping in self.toppings.all()),
+	    )
 
 
 class NewTopping(NewFood):
