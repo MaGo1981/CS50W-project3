@@ -52,6 +52,7 @@ class NewFood(models.Model):
 
 	_name = models.CharField(max_length=64, default='Regular Pizza')
 	_specialInstructions = None
+	# _specialInstructions = models.CharField(max_length=640,  null=True, blank=True)
 	_menuPosition = models.FloatField(default=1)
 
 
@@ -179,7 +180,7 @@ class NewPizza3Toppings(NewPizza2Toppings):
 class NewPizzaSpecialInstructions(NewPizza3Toppings):
 	"""A simple pizza class with special instructions"""
 
-	_specialInstructions = models.CharField(max_length=640,  null=True, blank=True)
+	# _specialInstructions = models.CharField(max_length=640,  null=True, blank=True)
 
 class NewSalad(NewFood):
 

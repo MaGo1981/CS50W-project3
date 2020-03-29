@@ -26,6 +26,7 @@
                 <form action="{% url 'addItem' item.id %}" method="post">
                   {% csrf_token %}
                   <!-- <table> -->
+                    {{ foodForm.as_p }}
                     {{ itemForm.as_p }}
                   <!-- </table> -->
                   <input type="submit" value="Add Item to Shopping Card"/>

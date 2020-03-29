@@ -26,7 +26,7 @@ class ItemForm(forms.ModelForm):
 
     class Meta:
         model = Item
-        fields = ["_food", "_size", "_quantity"]
+        fields = ["_size", "_quantity"]
 
 class Pizza3Form(forms.ModelForm):
 
