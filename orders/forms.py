@@ -15,7 +15,7 @@ class ToppingForm(FoodForm):
     side = forms.ChoiceField(widget=forms.Select, choices=OPTIONS)
     # side = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=OPTIONS)
 
-    
+
 
 
 class PastaForm(forms.ModelForm):
@@ -34,4 +34,4 @@ class Pizza3Form(forms.ModelForm):
 
     class Meta:
         model = Pizza3
-        fields = ["_name", "toppings"]
+        fields = ["_name", "toppings", "_specialInstructions"]
