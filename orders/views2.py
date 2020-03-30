@@ -24,7 +24,6 @@ def item(request, item_id):
         foodForm = Pizza3Form()
         itemForm = ItemForm()
         # itemForm.fields["_food"].queryset = NewFood.objects.filter(pk=item._food.id) # hide data
-        # itemForm.fields["_food"].queryset = NewFood.objects.filter(pk=20) # hide data
     except Item.DoesNotExist:
         raise Http404("Item does not exist")
 
