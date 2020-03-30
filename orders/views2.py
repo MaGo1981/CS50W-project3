@@ -6,9 +6,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
-from .models import NewFood, NewPizza, NewTopping, NewSalad, Item, NewPizzaNoTopping, NewPizza1Topping, NewPizza2Toppings, NewPizza3Toppings, NewPizzaSpecialInstructions, FoodPrice #, Profile
+from .models import NewFood, NewSalad, Item, FoodPrice, Topping3, Pizza3 #, Profile
 from .forms import ItemForm, Pizza3Form
-
+ # NewPizza, NewTopping,  NewPizzaNoTopping, NewPizza1Topping, NewPizza2Toppings, NewPizza3Toppings, NewPizzaSpecialInstructions,
 
 def item(request, item_id):
 
@@ -24,6 +24,7 @@ def item(request, item_id):
         foodForm = Pizza3Form()
         itemForm = ItemForm()
         # itemForm.fields["_food"].queryset = NewFood.objects.filter(pk=item._food.id) # hide data
+        # itemForm.fields["_food"].queryset = NewFood.objects.filter(pk=20) # hide data
     except Item.DoesNotExist:
         raise Http404("Item does not exist")
 
@@ -71,7 +72,23 @@ def addItem(request, item_id):
     price = FoodPrice.objects.get(pk=priceId)
     print("price: ", price._smallRegular)
     # price = item._price
-    food = NewFood.objects.get(pk=item._food.id) # returns an object instance
+    # food = NewFood.objects.get(pk=item._food.id) # returns an object instance
+    foodForm = Pizza3Form(request.POST)
+    if foodForm.is_valid():
+        # newFood = Pizza3(
+        #                 _name = foodForm.cleaned_data["_name"],
+        #                 toppings = foodForm.cleaned_data["toppings"],
+        #                 _specialInstructions = foodForm.cleaned_data["_specialInstructions"]
+        #                 )
+        # BECAUSE OF M2M FIELD WE MUST DO IT THIS WAY.
+        newFood = foodForm.save(commit=False)
+        topping = foodForm.cleaned_data['toppings']
+        newFood.save()
+
+        # this will save by it self
+        newFood.toppings.set(topping)
+
+    # newFood.toppings.set(foodForm.cleaned_data["toppings"])
     # food = NewFood.objects.filter(pk=item._food.id) # returns a list
     # price = FoodPrice.objects.get(pk=item._price.id)
     itemForm = ItemForm(request.POST)
@@ -85,7 +102,7 @@ def addItem(request, item_id):
     # else:
     #     print("Noooo!")
         newItem = Item(
-                        _food = itemForm.cleaned_data["_food"],
+                        _food = newFood,
                         _size = itemForm.cleaned_data["_size"],
                         _quantity = itemForm.cleaned_data["_quantity"],
                         _menu=False,

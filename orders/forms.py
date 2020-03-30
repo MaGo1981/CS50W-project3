@@ -15,6 +15,8 @@ class ToppingForm(FoodForm):
     side = forms.ChoiceField(widget=forms.Select, choices=OPTIONS)
     # side = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=OPTIONS)
 
+    
+
 
 class PastaForm(forms.ModelForm):
     class Meta:
